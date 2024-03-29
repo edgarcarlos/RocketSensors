@@ -17,19 +17,19 @@ class LevelSensor: public AbstractSensor {
         string unita;
 
     public:
-        LevelSensor(string name,
-                    string descrizione,
-                    string logo_path,
-                    string ID,
-                    double capacity,
-                    vector<double> dati,
-                    double currentLevel,
-                    string unita);
-        double getCapacity();
+        LevelSensor(const string name,
+                    const string descrizione,
+                    const string logo_path,
+                    const string ID,
+                    const double capacity,
+                    const vector<double> dati,
+                    const double currentLevel,
+                    const string unita);
+        const double getCapacity()const ;
         LevelSensor& setCapacity(double capacity);
-        vector<double> getDati();
-        double getCurrentlevel();
-        string getUnita();
+        const vector<double> getDati()const ;
+        const double getCurrentlevel()const ;
+        const string getUnita()const ;
         LevelSensor& setUnita(string unita); 
 };
 

@@ -9,25 +9,29 @@
 using namespace std;
 
 class PositionSensor: public AbstractSensor {
-    private:
+    protected:
         struct Localisation{
             double latitude;
             double longitude;
             double altitude;
         };
+        
+    private:
         Localisation positionAttuale;
         vector<Localisation> dati;
+    
+    
         
     public:
-        PositionSensor(string name,
-                       string descrizione,
-                       string logo_path,
-                       string ID,
-                       Localisation positionAttuale,
-                       vector<Localisation> dati);
-        Localisation& getPosition();
-        vector<Localisation> getDati();
-        double getAltitude();
+        PositionSensor(const string name,
+                       const string descrizione,
+                       const string logo_path,
+                       const string ID,
+                       const Localisation positionAttuale,
+                       const vector<Localisation> dati);
+        const Localisation& getPosition()const ;
+        const vector<Localisation> getDati()const ;
+        const double getAltitude()const ;
 };
 
 #endif // POSITIONSENSOR_H

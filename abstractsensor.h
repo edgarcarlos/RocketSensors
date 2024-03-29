@@ -13,18 +13,18 @@ class AbstractSensor {
         string ID;
 
     public:
-        AbstractSensor(string name,
-                       string descrizione,
-                       string logo_path,
-                       string ID);
+        AbstractSensor(const string name,
+                       const string descrizione,
+                       const string logo_path,
+                       const string ID);
         virtual ~AbstractSensor();
-        string& getName();
-        AbstractSensor& setName(string name);
-        string& getDescrizione();
-        AbstractSensor& setDescrizione(string descrizione);
-        string& getLogo();
-        string& getID();
-        AbstractSensor& setID(string ID);
+        const string& getName() const;
+        AbstractSensor& setName(const string name);
+        const string& getDescrizione()const;
+        AbstractSensor& setDescrizione(const string descrizione);
+        const string& getLogo()const ;
+        const string& getID()const ;
+        AbstractSensor& setID(const string ID);
 
 
 };

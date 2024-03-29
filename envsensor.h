@@ -15,20 +15,20 @@ class EnvSensor: public AbstractSensor {
         string unita; 
 
     public:
-        EnvSensor(string name,
-                    string descrizione,
-                    string logo_path,
-                    string ID,
-                    vector<double> dati,
-                    double valoreCorrente,
-                    string unita);
-        vector<double> getDati();
-        double getValoreCorrente();
-        string getUnita();
+        EnvSensor(const string name,
+                    const string descrizione,
+                    const string logo_path,
+                    const string ID,
+                    const vector<double> dati,
+                    const double valoreCorrente,
+                    const string unita);
+        const vector<double> getDati()const ;
+        const double getValoreCorrente()const ;
+        const string getUnita()const ;
         EnvSensor& setUnita(string unita);
-        double media(vector<double> dati);
-        double valoreMin(vector<double> dati);
-        double valoreMax(vector<double> dati);
+        double media()const ;
+        double valoreMin()const ;
+        double valoreMax()const ;
 };
 
 #endif // ENVSENSOR_H
