@@ -4,9 +4,11 @@
 #include <string>
 #include <vector>
 
+#include "abstractsensor.h"
+
 using namespace std;
 
-class PositionSensor {
+class PositionSensor: public AbstractSensor {
     private:
         struct Localisation{
             double latitude;

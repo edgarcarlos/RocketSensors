@@ -4,10 +4,12 @@
 #include <string>
 #include <vector>
 
+#include "abstractsensor.h"
+
 using namespace std;
 
 
-class LevelSensor {
+class LevelSensor: public AbstractSensor {
     private:
         double capacity;
         vector<double> dati;
