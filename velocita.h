@@ -14,14 +14,18 @@ class Velocita: public PositionSensor {
         vector<double> altitudeDati;
 
     public:
-        Velocita(string name,
-                        string descrizione,
-                        string logo_path,
-                        string ID,
-                        Localisation positionAttuale,
-                        vector<Localisation> dati);
-        double accelerazione(vector<double> altitudeDati);
-        double velocitaMedia(vector<double> altitudeDati);
+        Velocita(const string name,
+                        const string descrizione,
+                        const string logo_path,
+                        const string ID,
+                        const Localisation positionAttuale,
+                        const vector<Localisation> dati,
+                        const PositionSensor position,
+                        const vector<double> altitudeDati);
+
+        vector<double> velocitaDati(const vector<double> altitudeDati) const ;
+        double accelerazione(vector<double> velocitaDati)const ;
+        double velocitaMedia(vector<double> altitudeDati)const ;
 };
 
 #endif // VELOCITA_H

@@ -15,16 +15,16 @@ class Temperatura: public EnvSensor {
         double Tmax;
 
     public:
-        Temperatura(string name,
-                    string descrizione,
-                    string logo_path,
-                    string ID,
-                    vector<double> dati,
-                    double valoreCorrente,
-                    string unita,
-                    double Tmin,
-                    double Tmax);
-        string stato(double valoreCorrente);
+        Temperatura(const string name,
+                    const string descrizione,
+                    const string logo_path,
+                    const string ID,
+                    const vector<double> dati,
+                    const double valoreCorrente,
+                    const string unita,
+                    const double Tmin,
+                    const double Tmax);
+        string stato(double valoreCorrente)const ;
 
 };
 

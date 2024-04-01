@@ -16,18 +16,18 @@ class Ossigeno: public LevelSensor {
         double soglio;
 
     public:
-        Ossigeno(string name,
-                    string descrizione,
-                    string logo_path,
-                    string ID,
-                    double capacity,
-                    vector<double> dati,
-                    double currentLevel,
-                    string unita,
-                    bool qualita,
-                    double soglio);
-        bool isQualita();
-        string statoQuantita(double currentLevel);
+        Ossigeno(const string name,
+                    const string descrizione,
+                    const string logo_path,
+                    const string ID,
+                    const double capacity,
+                    const vector<double> dati,
+                    const double currentLevel,
+                    const string unita,
+                    const bool qualita,
+                    const double soglio);
+        bool isQualita()const ;
+        string statoQuantita(double currentLevel)const ;
 };
 
 #endif // OSSIGENO_H

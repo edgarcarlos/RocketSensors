@@ -13,17 +13,17 @@ class Carburante: public LevelSensor {
         double soglio;
 
     public:
-        Carburante(string name,
-                    string descrizione,
-                    string logo_path,
-                    string ID,
-                    double capacity,
-                    vector<double> dati,
-                    double currentLevel,
-                    string unita,
-                    double soglio);
-        double debito(vector<double> dati);
-        string statoQuantita(double currentLevel);
+        Carburante(const string name,
+                    const string descrizione,
+                    const string logo_path,
+                    const string ID,
+                    const double capacity,
+                    const vector<double> dati,
+                    const double currentLevel,
+                    const string unita,
+                    const double soglio);
+        double debito(vector<double> dati)const;
+        string statoQuantita(double currentLevel)const;
 };
 
 #endif // CARBURANTE_H

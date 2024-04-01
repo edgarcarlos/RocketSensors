@@ -12,15 +12,16 @@ class Pressione: public EnvSensor {
     private:
         double pressioneAtmos;
     public:
-        Pressione(string name,
-            string descrizione,
-            string logo_path,
-            string ID,
-            vector<double> dati,
-            double valoreCorrente,
-            string unita,
-            double pressioneAtmos);
-        vector<double> pressioneAtmos(vector<double> dati);
+        Pressione(const string name,
+            const string descrizione,
+            const string logo_path,
+            const string ID,
+            const vector<double> dati,
+            const double valoreCorrente,
+            const string unita,
+            const double pressioneAtmos);
+            
+        vector<double> pressioneAssoluta(vector<double> dati)const ;
 };
 
 #endif // PRESSIONE_H

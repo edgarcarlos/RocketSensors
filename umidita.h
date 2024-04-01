@@ -14,16 +14,15 @@ class Umidita: public EnvSensor {
         double soglioUmidita;
 
     public:
-        Umidita(string name,
-                string descrizione,
-                string logo_path,
-                string ID,
-                vector<double> dati,
-                double valoreCorrente,
-                string unita,
-                double soglioUmidita);
-        string statoUmidita(double valoreCorrente);
-        double tassoCambiamento(vector<double> dati);
+        Umidita(const string name,
+                const string descrizione,
+                const string logo_path,
+                const string ID,
+                const vector<double> dati,
+                const double valoreCorrente,
+                const string unita,
+                const double soglioUmidita);
+        string statoUmidita(double valoreCorrente)const ;
 };
 
 #endif // UMIDITA_H
