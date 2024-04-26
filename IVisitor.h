@@ -1,5 +1,5 @@
-#ifndef ITEM_I_VISITOR_H
-#define ITEM_I_VISITOR_H
+#ifndef IVISITOR_H
+#define IVISITOR_H
 
 
 class Carburante;
@@ -20,6 +20,7 @@ public :
     virtual void visit(Umidita& umidita) =0;
     virtual void visit(Velocita& velocita) =0;
     virtual void visit(Positionsensor& positionsensor) =0;
-}
+};
 
-#endif 
+
+#endif // IVISITOR_H

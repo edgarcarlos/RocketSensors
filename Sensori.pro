@@ -23,6 +23,7 @@ SOURCES += \
     velocita.cpp
 
 HEADERS += \
+    IVisitor.h \
     abstractsensor.h \
     carburante.h \
     envsensor.h \
