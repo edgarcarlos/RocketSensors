@@ -8,18 +8,25 @@
 #include <QLineEdit>
 #include <QFormLayout>
 #include <QLabel>
+#include <QPushButton>
+#include <QToolButton>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 
 {
     QVBoxLayout* mainLayout = new QVBoxLayout;
+    QWidget* centralWidget = new QWidget(this);
+    centralWidget->setLayout(mainLayout);
+    setCentralWidget(centralWidget);
 
     //Menubar
 
     //QMenuBar* menuBar = new QMenuBar(this);
+    QMenuBar* menuBar = new QMenuBar(this);
+    setMenuBar(menuBar);
 
-    QMenu* file =  menuBar()->addMenu("&File");
+    QMenu* file =  menuBar->addMenu("&File");
     //file->addAction(create);
     //file->addAction(open);
     //file->addAction(save);
@@ -34,29 +41,42 @@ MainWindow::MainWindow(QWidget *parent)
     file->addAction(new QAction("save as",file));
     file->addAction(new QAction("close",file));
 
-    QMenu* view =  menuBar()->addMenu("&View");
-    QMenu* home =  menuBar()->addMenu("&Home");
+    QMenu* view =  menuBar->addMenu("&View");
+    QMenu* home =  menuBar->addMenu("&Home");
 
     //search layout
 
-    QHBoxLayout* searchLayout = new QHBoxLayout;
-    searchLayout->setAlignment(Qt::AlignHCenter);
+    QHBoxLayout* searchLayout = new QHBoxLayout(this);
+    //searchLayout->setAlignment(Qt::AlignHCenter);
 
 
     QFormLayout* form = new QFormLayout();
+    form->setLabelAlignment(Qt::AlignRight | Qt::AlignVCenter);
     searchLayout->addLayout(form);
 
-    QLabel* title_label = new QLabel("Search Engine");
-    title_label->setObjectName("title");
-    title_label->setAlignment(Qt::AlignHCenter);
-    searchLayout->addWidget(title_label);
 
     QLineEdit* query_input;
     query_input = new QLineEdit();
     form->addRow("Search", query_input);
 
+    //filter menu
+    QMenu* filterMenu = new QMenu(this);
+    filterMenu->setTitle("Filter");
 
-    mainLayout->addLayout(searchLayout);
+    QAction* option1Action = filterMenu->addAction("Option 1");
+    QAction* option2Action = filterMenu->addAction("Option 2");
+
+
+    QToolButton* filterButton = new QToolButton();
+    filterButton->setText("Filter");
+    filterButton->setMenu(filterMenu);
+    filterButton->setPopupMode(QToolButton::InstantPopup); // Affichez le menu instantanément lors du clic
+    searchLayout->addWidget(filterButton);
+
+
+
+
+    mainLayout->addLayout(searchLayout, 0);
 
 
 
