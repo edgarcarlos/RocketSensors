@@ -10,6 +10,14 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QToolButton>
+#include <QPixmap>
+
+#include <string>
+
+#include "abstractsensor.h"
+
+using namespace std;
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -27,12 +35,7 @@ MainWindow::MainWindow(QWidget *parent)
     setMenuBar(menuBar);
 
     QMenu* file =  menuBar->addMenu("&File");
-    //file->addAction(create);
-    //file->addAction(open);
-    //file->addAction(save);
-    //file->addAction(save_as);
-    //file->addSeparator();
-    //file->addAction(close);
+
 
     //menuBar->addMenu(file);
     file->addAction(new QAction("new",file));
@@ -73,10 +76,48 @@ MainWindow::MainWindow(QWidget *parent)
     filterButton->setPopupMode(QToolButton::InstantPopup); // Affichez le menu instantanément lors du clic
     searchLayout->addWidget(filterButton);
 
+    //Item
+    //ListItem
+
+    QWidget* widget = new QWidget();
+
+    QHBoxLayout* hbox = new QHBoxLayout(widget);
+
+    QVBoxLayout* vbox = new QVBoxLayout();
+    hbox->addLayout(vbox);
+
+    QHBoxLayout* hbox2 = new QHBoxLayout();
+    vbox->addLayout(hbox2);
+
+    QLabel* logo = new QLabel();
+    //logo->setPixmap();
+    hbox2->addWidget(logo);
+
+    const string nome = "temperatura";
+    const string descrizione = "qwertyuiopp";
+    const string logo_path = "adfgkernàoes";
+    const string ID = "234";
+    AbstractSensor Sensor(nome,descrizione,logo_path,ID);
+    QLabel* name = new QLabel(QString::fromStdString(Sensor.getName()));
+    name->setObjectName("name");
+    hbox2->addWidget(name);
+
+    QLabel* type = new QLabel();
+    type->setText("type: TEmperature");
+    vbox->addWidget(type);
+
+
+    QLabel* des = new QLabel();
+    des->setText("TEmperature mon cul");
+    vbox->addWidget(des);
+
+    //QLabel* media = new QLabel()
 
 
 
-    mainLayout->addLayout(searchLayout, 0);
+
+    mainLayout->addLayout(searchLayout);
+    mainLayout->addWidget(widget);
 
 
 
@@ -87,8 +128,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 
-
-    setLayout(mainLayout);
+    //setLayout(mainLayout);
 }
 
 MainWindow::~MainWindow()

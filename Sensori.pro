@@ -13,11 +13,13 @@ SOURCES += \
     carburante.cpp \
     envsensor.cpp \
     levelsensor.cpp \
+    listsensor.cpp \
     main.cpp \
     mainwindow.cpp \
     ossigeno.cpp \
     positionsensor.cpp \
     pressione.cpp \
+    sensorwidget.cpp \
     temperatura.cpp \
     umidita.cpp \
     velocita.cpp
@@ -28,10 +30,12 @@ HEADERS += \
     carburante.h \
     envsensor.h \
     levelsensor.h \
+    listsensor.h \
     mainwindow.h \
     ossigeno.h \
     positionsensor.h \
     pressione.h \
+    sensorwidget.h \
     temperatura.h \
     umidita.h \
     velocita.h
