@@ -1,46 +1,36 @@
-#include "SensorWidget.h"
+#include "sensorwidget.h"
 
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QLabel>
-#include <string>
-
+#include <QPixmap>
 #include "abstractsensor.h"
 
-SensorWidget::SensorWidget(QWidget *parent ): QWidget(parent) {
-
+SensorWidget::SensorWidget(AbstractSensor* sensor, QWidget *parent) : QWidget(parent), sensor(sensor) {
     QHBoxLayout* hbox = new QHBoxLayout();
-
     QVBoxLayout* vbox = new QVBoxLayout();
     hbox->addLayout(vbox);
 
     QHBoxLayout* hbox2 = new QHBoxLayout();
     vbox->addLayout(hbox2);
 
-    QLabel* logo = new QLabel();
-    //logo->setPixmap();
-    hbox2->addWidget(logo);
+    //a rivedere
+    QPixmap icon("path/to/icon.png");
+    QLabel* sensorIcon = new QLabel();
+    sensorIcon->setPixmap(icon);
+    hbox2->addWidget(sensorIcon);
 
-    const string nome = "temperatura";
-    const string descrizione = "qwertyuiopp";
-    const string logo_path = "adfgkernàoes";
-    const string ID = "234";
-    AbstractSensor Sensor(nome,descrizione,logo_path,ID);
-    QLabel* name = new QLabel(QString::fromStdString(Sensor.getName()));
+    QLabel* name = new QLabel(QString::fromStdString(sensor->getName()));
     name->setObjectName("name");
     hbox2->addWidget(name);
 
-    QLabel* type = new QLabel();
-    type->setText("type: TEmperature");
-    vbox->addWidget(type);
-
-
-    QLabel* des = new QLabel();
-    des->setText("TEmperature mon cul");
+    QLabel* des = new QLabel(QString::fromStdString(sensor->getDescrizione()));
+    des->setObjectName("des");
     vbox->addWidget(des);
 
-    //QLabel* media = new QLabel()
+    QLabel* ID = new QLabel(QString::fromStdString(sensor->getID()));
+    ID->setObjectName("ID");
+    vbox->addWidget(ID);
 
+    setLayout(hbox);
 }
-
-

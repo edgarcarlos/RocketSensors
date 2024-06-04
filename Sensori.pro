@@ -19,6 +19,7 @@ SOURCES += \
     ossigeno.cpp \
     positionsensor.cpp \
     pressione.cpp \
+    sensorspanel.cpp \
     sensorwidget.cpp \
     temperatura.cpp \
     umidita.cpp \
@@ -35,6 +36,7 @@ HEADERS += \
     ossigeno.h \
     positionsensor.h \
     pressione.h \
+    sensorspanel.h \
     sensorwidget.h \
     temperatura.h \
     umidita.h \

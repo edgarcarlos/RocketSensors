@@ -7,7 +7,7 @@ class SensorWidget : public QWidget {
     Q_OBJECT
 
 public:
-    explicit SensorWidget(QWidget *parent = nullptr);
+    explicit SensorWidget(AbstractSensor* sensor, QWidget *parent = nullptr);
 };
 
 #endif // SENSORWIDGET_H
