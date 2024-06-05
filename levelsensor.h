@@ -18,8 +18,7 @@ class LevelSensor: public AbstractSensor {
 
     public:
         LevelSensor(const string name,
-                    const string descrizione,
-                    const string logo_path,
+                    const string description,
                     const string ID,
                     const double capacity,
                     const vector<double> dati,

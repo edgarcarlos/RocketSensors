@@ -28,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
     centralWidget->setLayout(mainLayout);
     setCentralWidget(centralWidget);
 
+    resize(600,400);
     //Menubar
 
     //QMenuBar* menuBar = new QMenuBar(this);

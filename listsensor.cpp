@@ -33,9 +33,9 @@ void ListSensor:: visit(const AbstractSensor& sensor) {
     name->setObjectName("name");
     vbox->addWidget(name);
 
-    QLabel* descrizione = new QLabel(QString::fromStdString(sensor.getDescrizione()));
-    descrizione->setObjectName("descrizione");
-    vbox->addWidget(descrizione);
+    QLabel* description = new QLabel(QString::fromStdString(sensor.getdescription()));
+    description->setObjectName("description");
+    vbox->addWidget(description);
 
     QLabel* ID = new QLabel(QString::fromStdString(sensor.getID()));
     ID ->setObjectName("ID");

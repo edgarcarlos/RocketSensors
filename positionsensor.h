@@ -25,7 +25,6 @@ class PositionSensor: public AbstractSensor {
     public:
         PositionSensor(const string name,
                        const string descrizione,
-                       const string logo_path,
                        const string ID,
                        const Localisation positionAttuale,
                        const vector<Localisation> dati);

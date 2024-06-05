@@ -8,21 +8,18 @@ using namespace std;
 class AbstractSensor {
     private:
         string name;
-        string descrizione;
-        string logo_path;
+        string description;
         string ID;
 
     public:
         AbstractSensor(const string name,
-                       const string descrizione,
-                       const string logo_path,
+                       const string description,
                        const string ID);
         virtual ~AbstractSensor();
         const string& getName() const;
         AbstractSensor& setName(const string name);
-        const string& getDescrizione()const;
-        AbstractSensor& setDescrizione(const string descrizione);
-        const string& getLogo()const ;
+        const string& getDescription()const;
+        AbstractSensor& setDescription(const string description);
         const string& getID()const ;
         AbstractSensor& setID(const string ID);
 

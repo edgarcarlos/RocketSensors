@@ -16,8 +16,7 @@ class Temperatura: public EnvSensor {
 
     public:
         Temperatura(const string name,
-                    const string descrizione,
-                    const string logo_path,
+                    const string description,
                     const string ID,
                     const vector<double> dati,
                     const double valoreCorrente,

@@ -1,14 +1,13 @@
 #include "temperatura.h"
 
 Temperatura::Temperatura(const string name,
-                    const string descrizione,
-                    const string logo_path,
+                    const string description,
                     const string ID,
                     const vector<double> dati,
                     const double valoreCorrente,
                     const string unita,
                     const double Tmin,
-                    const double Tmax): EnvSensor(name,descrizione,logo_path,ID,dati,valoreCorrente,unita),
+                    const double Tmax): EnvSensor(name,description,ID,dati,valoreCorrente,unita),
                                         Tmin(Tmin),
                                         Tmax(Tmax) {}
 

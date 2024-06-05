@@ -3,11 +3,9 @@
 using namespace std;
 
 AbstractSensor::AbstractSensor(const string name,
-                       const string descrizione,
-                       const string logo_path,
+                       const string description,
                        const string ID): name(name), 
-                                         descrizione(descrizione),
-                                         logo_path(logo_path), 
+                                         description(description),
                                          ID(ID) {}
 
 
@@ -22,17 +20,13 @@ AbstractSensor& AbstractSensor::setName(const string name){
     return *this;
 }
 
-const string& AbstractSensor::getDescrizione()const{
-    return descrizione;
+const string& AbstractSensor::getDescription()const{
+    return description;
 }
 
-AbstractSensor& AbstractSensor::setDescrizione(const string descrizione){
-    this->descrizione;
+AbstractSensor& AbstractSensor::setDescription(const string description){
+    this->description;
     return *this;
-}
-
-const string& AbstractSensor::getLogo()const {
-    return logo_path;
 }
 
 const string& AbstractSensor::getID()const {

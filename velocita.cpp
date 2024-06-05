@@ -1,13 +1,12 @@
 #include "velocita.h"
 
 Velocita::Velocita(const string name,
-                        const string descrizione,
-                        const string logo_path,
+                        const string description,
                         const string ID,
                         const Localisation positionAttuale,
                         const vector<Localisation> dati,
                         const PositionSensor position,
-                        const vector<double> altitudeDati): PositionSensor(name,descrizione,logo_path,ID,positionAttuale,dati), 
+                        const vector<double> altitudeDati): PositionSensor(name,description,ID,positionAttuale,dati),
                                                             position(position),
                                                             altitudeDati(altitudeDati) {}
 

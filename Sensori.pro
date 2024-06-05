@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     abstractsensor.cpp \
     carburante.cpp \
+    chartpanel.cpp \
     envsensor.cpp \
     levelsensor.cpp \
     listsensor.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
     ossigeno.cpp \
     positionsensor.cpp \
     pressione.cpp \
+    sensordetail.cpp \
     sensorspanel.cpp \
     sensorwidget.cpp \
     temperatura.cpp \
@@ -29,6 +31,7 @@ HEADERS += \
     IVisitor.h \
     abstractsensor.h \
     carburante.h \
+    chartpanel.h \
     envsensor.h \
     levelsensor.h \
     listsensor.h \
@@ -36,6 +39,7 @@ HEADERS += \
     ossigeno.h \
     positionsensor.h \
     pressione.h \
+    sensordetail.h \
     sensorspanel.h \
     sensorwidget.h \
     temperatura.h \

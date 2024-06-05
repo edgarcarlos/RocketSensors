@@ -16,8 +16,7 @@ class EnvSensor: public AbstractSensor {
 
     public:
         EnvSensor(const string name,
-                    const string descrizione,
-                    const string logo_path,
+                    const string description,
                     const string ID,
                     const vector<double> dati,
                     const double valoreCorrente,

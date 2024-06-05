@@ -1,11 +1,10 @@
 #include "positionsensor.h"
 
 PositionSensor::PositionSensor(const string name,
-                       const string descrizione,
-                       const string logo_path,
+                       const string description,
                        const string ID,
                        const Localisation positionAttuale,
-                       const vector<Localisation> dati): AbstractSensor(name,descrizione,logo_path,ID),
+                       const vector<Localisation> dati): AbstractSensor(name,description,ID),
                                                         positionAttuale(positionAttuale),
                                                         dati(dati) {}
 

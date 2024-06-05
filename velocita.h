@@ -15,8 +15,7 @@ class Velocita: public PositionSensor {
 
     public:
         Velocita(const string name,
-                        const string descrizione,
-                        const string logo_path,
+                        const string description,
                         const string ID,
                         const Localisation positionAttuale,
                         const vector<Localisation> dati,
