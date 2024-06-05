@@ -21,6 +21,7 @@ SensorWidget::SensorWidget(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
     QLabel* sensorIcon = new QLabel();
     //sensorIcon->setIcon(icon);
     //hbox2->addWidget(sensorIcon);
+    //osdmvojoj
 
     QLabel* name = new QLabel(QString::fromStdString(sensor->getName()));
     name->setObjectName("name");
