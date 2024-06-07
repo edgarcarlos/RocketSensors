@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QString>
+#include <QLabel>
 #include "abstractsensor.h"
 
 class SensorWidget : public QWidget {
@@ -10,10 +11,14 @@ class SensorWidget : public QWidget {
 
 public:
     explicit SensorWidget(AbstractSensor* sensor, QWidget *parent = nullptr);
-    void setSensorIcon(const QString& type);                               type);
+    void setSensorIcon(const QIcon& icon);
+    void setSensorType(const QString& type);
 
 private:
     AbstractSensor* sensor;
+    QLabel* sensorTypeLabel;
+    QLabel* sensorIcon;
+    QString sensorType;
 };
 
 #endif // SENSORWIDGET_H

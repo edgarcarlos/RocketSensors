@@ -24,6 +24,7 @@ SOURCES += \
     sensorspanel.cpp \
     sensorwidget.cpp \
     temperatura.cpp \
+    typeandiconvisitor.cpp \
     umidita.cpp \
     velocita.cpp
 
@@ -43,6 +44,7 @@ HEADERS += \
     sensorspanel.h \
     sensorwidget.h \
     temperatura.h \
+    typeandiconvisitor.h \
     umidita.h \
     velocita.h
 

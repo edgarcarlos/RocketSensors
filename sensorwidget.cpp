@@ -4,6 +4,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QIcon>
+#include <QPixmap>
 #include "abstractsensor.h"
 
 SensorWidget::SensorWidget(AbstractSensor* sensor, QWidget *parent) : QWidget(parent), sensor(sensor) {
@@ -19,6 +20,9 @@ SensorWidget::SensorWidget(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
     //a rivedere
     //QIcon icon("path/to/icon.png");
     QLabel* sensorIcon = new QLabel();
+    //sensorIcon = new QLabel();
+    hbox2->addWidget(sensorIcon);
+
     //sensorIcon->setIcon(icon);
     //hbox2->addWidget(sensorIcon);
     //osdmvojoj
@@ -27,11 +31,11 @@ SensorWidget::SensorWidget(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
     name->setObjectName("name");
     hbox2->addWidget(name);
 
-    //QLabel* type = new QLabel("Type: " + QString::fromStdString(sensor->getType()));
-    //type->setObjectName("type");
-    //vbox->addWidget(type);
+    QLabel* sensorTypeLabel = new QLabel();
+    sensorTypeLabel->setObjectName("type");
+    vbox->addWidget(sensorTypeLabel);
 
-    QLabel* description = new QLabel(QString::fromStdString(sensor->getDescrizione()));
+    QLabel* description = new QLabel(QString::fromStdString(sensor->getDescription()));
     description->setObjectName("description");
     vbox->addWidget(description);
 
@@ -42,23 +46,12 @@ SensorWidget::SensorWidget(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
     setLayout(hbox);
 }
 
-void SensorWidget::setSensorIcon(const QString& type){
+void SensorWidget::setSensorIcon(const QIcon& icon){
+    sensorIcon->setPixmap(icon.pixmap(32, 32));
 
-    QIcon icon;
+}
 
-    if (type == "Temperature") {
-        icon = QIcon(":/icons/temperature_icon.png");
-    } else if (type == "Pressione") {
-        icon = QIcon(":/icons/pressure_icon.png");
-    } else if (type == "Umidità") {
-        icon = QIcon(":/icons/humidity_icon.png");
-    } else if (type == "Ossigeno") {
-        icon = QIcon(":/icons/light_icon.png");
-    } else {
-
-        icon = QIcon(":/icons/default_icon.png");
-    }
-
-    sensorIcon->setIcon(icon);
-
+void SensorWidget::setSensorType(const QString& type){
+    sensorType = type;
+    sensorTypeLabel->setText(type);
 }
