@@ -14,8 +14,6 @@ SensorsPanel::SensorsPanel(QWidget* parent): QWidget(parent) {
     content->setLayout(panelLayout);
     scrollArea->setWidget(content);
 
-
-
     setLayout(panelLayout);
 
 
@@ -23,8 +21,6 @@ SensorsPanel::SensorsPanel(QWidget* parent): QWidget(parent) {
 
 
 void SensorsPanel::addSensors(const std::vector<AbstractSensor*>& sensors){
-
-
 
     for(auto sensor : sensors){
 

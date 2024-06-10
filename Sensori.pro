@@ -13,6 +13,7 @@ SOURCES += \
     carburante.cpp \
     chartpanel.cpp \
     envsensor.cpp \
+    infopanel.cpp \
     levelsensor.cpp \
     listsensor.cpp \
     main.cpp \
@@ -20,9 +21,9 @@ SOURCES += \
     ossigeno.cpp \
     positionsensor.cpp \
     pressione.cpp \
-    sensordetail.cpp \
     sensorspanel.cpp \
     sensorwidget.cpp \
+    sensorwindow.cpp \
     temperatura.cpp \
     typeandiconvisitor.cpp \
     umidita.cpp \
@@ -34,15 +35,16 @@ HEADERS += \
     carburante.h \
     chartpanel.h \
     envsensor.h \
+    infopanel.h \
     levelsensor.h \
     listsensor.h \
     mainwindow.h \
     ossigeno.h \
     positionsensor.h \
     pressione.h \
-    sensordetail.h \
     sensorspanel.h \
     sensorwidget.h \
+    sensorwindow.h \
     temperatura.h \
     typeandiconvisitor.h \
     umidita.h \
