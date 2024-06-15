@@ -31,6 +31,8 @@ class PositionSensor: public AbstractSensor {
         const Localisation& getPosition()const ;
         const vector<Localisation> getDati()const ;
         const double getAltitude()const ;
+        const double getLongitude()const ;
+        const double getLatitude()const ;
 };
 
 #endif // POSITIONSENSOR_H

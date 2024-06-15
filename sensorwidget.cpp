@@ -1,5 +1,6 @@
 #include "sensorwidget.h"
-
+#include "IVisitor.h"
+#include "typeandiconvisitor.h"
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QLabel>
@@ -19,7 +20,7 @@ SensorWidget::SensorWidget(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
 
     //a rivedere
     //QIcon icon("path/to/icon.png");
-    QLabel* sensorIcon = new QLabel();
+    sensorIcon = new QLabel();
     //sensorIcon = new QLabel();
     hbox2->addWidget(sensorIcon);
 
@@ -31,9 +32,9 @@ SensorWidget::SensorWidget(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
     name->setObjectName("name");
     hbox2->addWidget(name);
 
-    QLabel* sensorTypeLabel = new QLabel();
-    sensorTypeLabel->setObjectName("type");
+    sensorTypeLabel = new QLabel();
     vbox->addWidget(sensorTypeLabel);
+
 
     QLabel* description = new QLabel(QString::fromStdString(sensor->getDescription()));
     description->setObjectName("description");
@@ -42,6 +43,9 @@ SensorWidget::SensorWidget(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
     QLabel* ID = new QLabel(QString::fromStdString(sensor->getID()));
     ID->setObjectName("ID");
     vbox->addWidget(ID);
+
+    TypeAndIconVisitor visitor(this);
+    sensor->accept(visitor);
 
     setLayout(hbox);
 }
