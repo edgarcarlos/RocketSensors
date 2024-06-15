@@ -33,6 +33,7 @@ class PositionSensor: public AbstractSensor {
         const double getAltitude()const ;
         const double getLongitude()const ;
         const double getLatitude()const ;
+        void accept(IVisitor& visitor) override;
 };
 
 #endif // POSITIONSENSOR_H

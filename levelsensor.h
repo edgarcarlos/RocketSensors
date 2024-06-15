@@ -29,7 +29,8 @@ class LevelSensor: public AbstractSensor {
         const vector<double> getDati()const ;
         const double getCurrentlevel()const ;
         const string getUnita()const ;
-        LevelSensor& setUnita(string unita); 
+        LevelSensor& setUnita(string unita);
+        void accept(IVisitor& visitor) override;
 };
 
 #endif // LEVELSENSOR_H

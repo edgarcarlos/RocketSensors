@@ -21,6 +21,7 @@ class Pressione: public EnvSensor {
             const double pressioneAtmos);
             
         vector<double> pressioneAssoluta(vector<double> dati)const ;
+        void accept(IVisitor& visitor) override;
 };
 
 #endif // PRESSIONE_H

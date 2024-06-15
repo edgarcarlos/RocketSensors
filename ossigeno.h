@@ -27,6 +27,7 @@ class Ossigeno: public LevelSensor {
                     const double soglio);
         bool isQualita()const ;
         string statoQuantita(double currentLevel)const ;
+        void accept(IVisitor& visitor) override;
 };
 
 #endif // OSSIGENO_H

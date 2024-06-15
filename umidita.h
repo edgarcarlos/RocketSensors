@@ -22,6 +22,7 @@ class Umidita: public EnvSensor {
                 const string unita,
                 const double soglioUmidita);
         string statoUmidita(double valoreCorrente)const ;
+        void accept(IVisitor& visitor) override;
 };
 
 #endif // UMIDITA_H

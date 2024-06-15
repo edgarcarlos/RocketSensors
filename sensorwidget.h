@@ -14,7 +14,7 @@ public:
     explicit SensorWidget(AbstractSensor* sensor, QWidget *parent = nullptr);
     void setSensorIcon(const QIcon& icon);
     void setSensorType(const QString& type);
-    void accept(TypeAndIconVisitor& visitor);
+    void accept(IVisitor& visitor);
 
 protected:
     QString sensorType;

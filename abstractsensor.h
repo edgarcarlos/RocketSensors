@@ -3,6 +3,8 @@
 
 #include <string>
 
+#include "IVisitor.h"
+
 using namespace std;
 
 class AbstractSensor {
@@ -22,6 +24,7 @@ class AbstractSensor {
         AbstractSensor& setDescription(const string description);
         const string& getID()const ;
         AbstractSensor& setID(const string ID);
+        virtual void accept(IVisitor& visitor) = 0;
 
 
 };
