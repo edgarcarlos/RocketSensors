@@ -4,25 +4,28 @@ SensorWindowVisitor::SensorWindowVisitor(SensorWindow* window) : window(window) 
 
 
 void SensorWindowVisitor::visit(Carburante& carburante) {
-    window->levelInfo(sensor);
+    window->levelInfo(carburante);
 }
 
 void SensorWindowVisitor::visit(Ossigeno& ossigeno) {
-    window->levelInfo(sensor);
+    window->levelInfo(ossigeno);
 }
 
 void SensorWindowVisitor::visit(Pressione& pressione) {
-    window->environmentInfo(sensor);
+    window->environmentInfo(pressione);
 }
 
 void SensorWindowVisitor::visit(Temperatura& temperatura) {
-    window->environmentInfo(sensor);
+    window->environmentInfo(temperatura);
 }
 
 void SensorWindowVisitor::visit(Umidita& umidita){
-    window->environmentInfo(sensor);
+    window->environmentInfo(umidita);
 }
 void SensorWindowVisitor::visit(Velocita& velocita) {
+    window->positionInfo(velocita);
+}
+void SensorWindowVisitor::visit(Positionsensor& positionsensor) {
+    window->positionInfo(positionsensor);
 
 }
-void SensorWindowVisitor::visit(Positionsensor& positionsensor) override;

@@ -6,7 +6,7 @@
 #include <QLabel>
 #include <QPushButton>
 
-SensorWindow::SensorWindow(AbstractSensor* sensor, QWidget *parent) : QWidget(parent), sensor(sensor) {
+SensorWindow::SensorWindow(AbstractSensor* sensor, QWidget *parent) : SensorWidget(sensor, parent) {
 
     QVBoxLayout* vbox = new QVBoxLayout();
     QHBoxLayout* hbox = new QHBoxLayout();
