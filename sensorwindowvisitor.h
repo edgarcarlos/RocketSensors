@@ -16,6 +16,9 @@ public:
     void visit(Umidita& umidita) override;
     void visit(Velocita& velocita) override;
     void visit(Positionsensor& positionsensor) override;
+
+private:
+    SensorWindow* window;
 };
 
 #endif // SENSORWINDOWVISITOR_H

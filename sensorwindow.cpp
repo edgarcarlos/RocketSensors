@@ -39,7 +39,7 @@ SensorWindow::SensorWindow(AbstractSensor* sensor, QWidget *parent) : SensorWidg
 }
 
 
-void SensorWindow::environmentInfo(EnvSensor* sensor){
+void SensorWindow::environmentInfo(const EnvSensor& sensor){
 
     QWidget* widget = new QWidget();
     QVBoxLayout* infoLayout = new QVBoxLayout(widget);
@@ -49,24 +49,24 @@ void SensorWindow::environmentInfo(EnvSensor* sensor){
     sensorTypeLabel->setObjectName("type");
     infoLayout->addWidget(sensorTypeLabel);
 
-    QLabel* current = new QLabel("Attuale" + QString::number(sensor->getValoreCorrente()));
+    QLabel* current = new QLabel("Attuale" + QString::number(sensor.getValoreCorrente()));
     current->setObjectName("current");
     infoLayout->addWidget(current);
 
-    QLabel* min = new QLabel("Min" + QString::number(sensor->valoreMin()));
+    QLabel* min = new QLabel("Min" + QString::number(sensor.valoreMin()));
     min->setObjectName("min");
     infoLayout->addWidget(min);
 
-    QLabel* max = new QLabel("Max" + QString::number(sensor->valoreMax()));
+    QLabel* max = new QLabel("Max" + QString::number(sensor.valoreMax()));
     max->setObjectName("max");
     infoLayout->addWidget(max);
 
-    QLabel* average = new QLabel("Media" + QString::number(sensor->media()));
+    QLabel* average = new QLabel("Media" + QString::number(sensor.media()));
     average->setObjectName("average");
     infoLayout->addWidget(average);
 
 }
-void SensorWindow::levelInfo(LevelSensor* sensor){
+void SensorWindow::levelInfo(const LevelSensor& sensor){
 
     QWidget* widget = new QWidget();
     QVBoxLayout* infoLayout = new QVBoxLayout(widget);
@@ -76,18 +76,18 @@ void SensorWindow::levelInfo(LevelSensor* sensor){
     sensorTypeLabel->setObjectName("type");
     infoLayout->addWidget(sensorTypeLabel);
 
-    QLabel* current = new QLabel("Attuale: " + QString::number(sensor->getCurrentlevel()));
+    QLabel* current = new QLabel("Attuale: " + QString::number(sensor.getCurrentlevel()));
     current->setObjectName("current");
     infoLayout->addWidget(current);
 
-    QLabel* capacity = new QLabel("Capacità: " + QString::number(sensor->getCapacity()));
+    QLabel* capacity = new QLabel("Capacità: " + QString::number(sensor.getCapacity()));
     capacity->setObjectName("capacity");
     infoLayout->addWidget(capacity);
 
 
 
 }
-void SensorWindow::positionInfo(PositionSensor* sensor){
+void SensorWindow::positionInfo(const PositionSensor& sensor){
 
     QWidget* widget = new QWidget();
     QVBoxLayout* infoLayout = new QVBoxLayout(widget);
@@ -97,15 +97,15 @@ void SensorWindow::positionInfo(PositionSensor* sensor){
     sensorTypeLabel->setObjectName("type");
     infoLayout->addWidget(sensorTypeLabel);
 
-    QLabel* altitude = new QLabel("Altitude: " + QString::number(sensor->getAltitude()));
+    QLabel* altitude = new QLabel("Altitude: " + QString::number(sensor.getAltitude()));
     altitude->setObjectName("altitude");
     infoLayout->addWidget(altitude);
 
-    QLabel* longitude = new QLabel("Min" + QString::number(sensor->getLongitude()));
+    QLabel* longitude = new QLabel("Min" + QString::number(sensor.getLongitude()));
     longitude->setObjectName("longitude");
     infoLayout->addWidget(longitude);
 
-    QLabel* latitude = new QLabel("Max" + QString::number(sensor->getLatitude()));
+    QLabel* latitude = new QLabel("Max" + QString::number(sensor.getLatitude()));
     latitude->setObjectName("latitude");
     infoLayout->addWidget(latitude);
 

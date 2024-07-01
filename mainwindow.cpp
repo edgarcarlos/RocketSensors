@@ -29,7 +29,16 @@ MainWindow::MainWindow(QWidget *parent)
     setCentralWidget(centralWidget);
 
     resize(600,400);
+
+
     //Menubar
+
+    QAction* open = new QAction("Open", this);
+    QAction* save = new QAction("Save", this);
+    QAction* save_as = new QAction("Save_as", this);
+    QAction* close = new QAction("close", this);
+    QAction* add_sensor = new QAction("Add sensor", this);
+
 
     //QMenuBar* menuBar = new QMenuBar(this);
     QMenuBar* menuBar = new QMenuBar(this);
@@ -37,45 +46,57 @@ MainWindow::MainWindow(QWidget *parent)
 
     QMenu* file =  menuBar->addMenu("&File");
 
-
     //menuBar->addMenu(file);
-    file->addAction(new QAction("new",file));
-    file->addAction(new QAction("open",file));
-    file->addAction(new QAction("save",file));
-    file->addAction(new QAction("save as",file));
-    file->addAction(new QAction("close",file));
 
+    file->addAction(open);
+    file->addAction(save);
+    file->addAction(save_as);
+    file->addAction(close);
+
+    //View menu
     QMenu* view =  menuBar->addMenu("&View");
+    QAction* fullScreen = new QAction("Full Screen", this);
+    QAction* viewOption2 = new QAction("View Option 2", this);
+
+    view->addAction(fullScreen);
+    view->addAction(viewOption2);
+
+    //Home Menu
     QMenu* home =  menuBar->addMenu("&Home");
+    QAction* homeOption1 = new QAction("Home Option 1", this);
+    QAction* homeOption2 = new QAction("Home Option 2", this);
 
-    //search layout
-
-    QHBoxLayout* searchLayout = new QHBoxLayout(this);
-    //searchLayout->setAlignment(Qt::AlignHCenter);
-
-
-    QFormLayout* form = new QFormLayout();
-    form->setLabelAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    searchLayout->addLayout(form);
+    home->addAction(homeOption1);
+    home->addAction(homeOption2);
 
 
-    QLineEdit* query_input;
-    query_input = new QLineEdit();
-    form->addRow("Search", query_input);
+    //Toolbar
+    QToolBar* toolbar = new QToolBar(this);
 
-    //filter menu
-    QMenu* filterMenu = new QMenu(this);
-    filterMenu->setTitle("Filter");
+    toolbar = addToolBar("File Toolbar");
+    toolbar->addAction(open);
+    toolbar->addAction(save);
+    toolbar->addAction(save_as);
+    toolbar->addSeparator();
+    toolbar->addAction(add_sensor);
 
-    QAction* option1Action = filterMenu->addAction("Option 1");
-    QAction* option2Action = filterMenu->addAction("Option 2");
+    //set search Widget
+    searchWidget = new SearchWidget(this);
+    mainLayout->addWidget(searchWidget);
 
 
-    QToolButton* filterButton = new QToolButton();
-    filterButton->setText("Filter");
-    filterButton->setMenu(filterMenu);
-    filterButton->setPopupMode(QToolButton::InstantPopup); // Affichez le menu instantanément lors du clic
-    searchLayout->addWidget(filterButton);
+    //connect Signals
+    connect(open, &QAction::triggered, this, &MainWindow::openFile);
+    connect(save, &QAction::triggered, this, &MainWindow::saveFile);
+    connect(save_as, &QAction::triggered, this, &MainWindow::saveAsFile);
+    connect(close, &QAction::triggered, this, &MainWindow::closeFile);
+    connect(fullScreen, &QAction::triggered, this, &MainWindow::setFullScreen);
+
+
+
+
+
+
 
     //Item
     //ListItem
@@ -122,13 +143,6 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 
-
-
-
-
-
-
-
     //setLayout(mainLayout);
 }
 
@@ -136,3 +150,11 @@ MainWindow::~MainWindow()
 {
 
 }
+
+
+//Action functions
+void MainWindow::openFile(){}
+void MainWindow::saveFile(){}
+void MainWindow::saveAsFile(){}
+void MainWindow::closeFile(){}
+void MainWindow::setFullScreen(){}

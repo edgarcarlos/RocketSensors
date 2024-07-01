@@ -21,6 +21,7 @@ SOURCES += \
     ossigeno.cpp \
     positionsensor.cpp \
     pressione.cpp \
+    searchwidget.cpp \
     sensorspanel.cpp \
     sensorwidget.cpp \
     sensorwindow.cpp \
@@ -43,6 +44,7 @@ HEADERS += \
     ossigeno.h \
     positionsensor.h \
     pressione.h \
+    searchwidget.h \
     sensorspanel.h \
     sensorwidget.h \
     sensorwindow.h \

@@ -3,11 +3,8 @@
 
 #include <QMainWindow>
 
-QT_BEGIN_NAMESPACE
-namespace Ui {
-class MainWindow;
-}
-QT_END_NAMESPACE
+#include "searchwidget.h"
+
 
 class MainWindow : public QMainWindow
 {
@@ -18,6 +15,15 @@ public:
     ~MainWindow();
 
 private:
-    Ui::MainWindow *ui;
+    SearchWidget* searchWidget;
+
+public slots:
+    void openFile();
+    void saveFile();
+    void saveAsFile();
+    void closeFile();
+    void setFullScreen();
 };
+
+
 #endif // MAINWINDOW_H

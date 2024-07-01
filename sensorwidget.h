@@ -4,8 +4,9 @@
 #include <QWidget>
 #include <QString>
 #include <QLabel>
+
 #include "abstractsensor.h"
-#include "typeandiconvisitor.h"
+
 
 class SensorWidget : public QWidget {
     Q_OBJECT

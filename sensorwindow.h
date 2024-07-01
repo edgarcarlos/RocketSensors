@@ -14,11 +14,12 @@ class SensorWindow : public SensorWidget
 
 public:
     SensorWindow(AbstractSensor* sensor, QWidget *parent);
+    void environmentInfo(const EnvSensor& sensor);
+    void levelInfo(const LevelSensor& sensor);
+    void positionInfo(const PositionSensor& sensor);
 
 private:
-    void environmentInfo(EnvSensor* sensor);
-    void levelInfo(LevelSensor* sensor);
-    void positionInfo(PositionSensor* sensor);
+
 };
 
 #endif // SENSORWINDOW_H
