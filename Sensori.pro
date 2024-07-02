@@ -12,6 +12,7 @@ SOURCES += \
     abstractsensor.cpp \
     carburante.cpp \
     chartpanel.cpp \
+    currentvaluevisitor.cpp \
     envsensor.cpp \
     infopanel.cpp \
     levelsensor.cpp \
@@ -36,6 +37,7 @@ HEADERS += \
     abstractsensor.h \
     carburante.h \
     chartpanel.h \
+    currentvaluevisitor.h \
     envsensor.h \
     infopanel.h \
     levelsensor.h \
