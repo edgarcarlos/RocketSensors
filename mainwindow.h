@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 #include "searchwidget.h"
+#include "sensorspanel.h"
 
 
 class MainWindow : public QMainWindow
@@ -16,6 +17,7 @@ public:
 
 private:
     SearchWidget* searchWidget;
+    SensorsPanel* sensorspanel;
 
 public slots:
     void openFile();
@@ -23,6 +25,7 @@ public slots:
     void saveAsFile();
     void closeFile();
     void setFullScreen();
+    void addSensor();
 };
 
 

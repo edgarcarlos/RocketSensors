@@ -25,9 +25,9 @@ vector<double> Velocita::velocitaDati(const vector<double> altitudeDati) const {
         }
 
         return velocita;
-}        
+}
 
-double Velocita::velocitaMedia(vector<double> altitudeDati)const {
+double Velocita::velocitaMedia()const {
 
     double distanzaTotale = 0.0;
     

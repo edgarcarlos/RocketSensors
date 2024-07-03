@@ -17,7 +17,7 @@ public:
     void visit(Temperatura& temperatura) override;
     void visit(Umidita& umidita) override;
     void visit(Velocita& velocita) override;
-    void visit(Positionsensor& positionsensor) override;
+    void visit(PositionSensor& positionsensor) override;
 
 private:
     SensorWidget* sensor;

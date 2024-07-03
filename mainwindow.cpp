@@ -11,6 +11,7 @@
 #include <QPushButton>
 #include <QToolButton>
 #include <QPixmap>
+#include <QToolBar>
 
 #include <string>
 
@@ -84,6 +85,10 @@ MainWindow::MainWindow(QWidget *parent)
     searchWidget = new SearchWidget(this);
     mainLayout->addWidget(searchWidget);
 
+    //set sensor panel
+    sensorspanel= new SensorsPanel(this);
+    mainLayout->addWidget(sensorspanel);
+
 
     //connect Signals
     connect(open, &QAction::triggered, this, &MainWindow::openFile);
@@ -91,64 +96,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(save_as, &QAction::triggered, this, &MainWindow::saveAsFile);
     connect(close, &QAction::triggered, this, &MainWindow::closeFile);
     connect(fullScreen, &QAction::triggered, this, &MainWindow::setFullScreen);
+    connect(add_sensor, &QAction::triggered, this, &MainWindow::addSensor);
 
-
-
-
-
-
-
-    //Item
-    //ListItem
-
-    QWidget* widget = new QWidget();
-
-    QHBoxLayout* hbox = new QHBoxLayout(widget);
-
-    QVBoxLayout* vbox = new QVBoxLayout();
-    hbox->addLayout(vbox);
-
-    QHBoxLayout* hbox2 = new QHBoxLayout();
-    vbox->addLayout(hbox2);
-
-    QLabel* logo = new QLabel();
-    //logo->setPixmap();
-    hbox2->addWidget(logo);
-
-    const string nome = "temperatura";
-    const string descrizione = "qwertyuiopp";
-    const string logo_path = "adfgkernàoes";
-    const string ID = "234";
-    AbstractSensor Sensor(nome,descrizione,logo_path,ID);
-    QLabel* name = new QLabel(QString::fromStdString(Sensor.getName()));
-    name->setObjectName("name");
-    hbox2->addWidget(name);
-
-    QLabel* type = new QLabel();
-    type->setText("type: TEmperature");
-    vbox->addWidget(type);
-
-
-    QLabel* des = new QLabel();
-    des->setText("TEmperature mon cul");
-    vbox->addWidget(des);
-
-    //QLabel* media = new QLabel()
-
-
-
-
-    mainLayout->addLayout(searchLayout);
-    mainLayout->addWidget(widget);
-
-
-
-    //setLayout(mainLayout);
 }
 
 MainWindow::~MainWindow()
 {
-
 }
 
 
@@ -158,3 +111,4 @@ void MainWindow::saveFile(){}
 void MainWindow::saveAsFile(){}
 void MainWindow::closeFile(){}
 void MainWindow::setFullScreen(){}
+void MainWindow::addSensor(){}

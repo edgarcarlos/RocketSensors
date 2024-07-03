@@ -25,7 +25,7 @@ void SensorWindowVisitor::visit(Umidita& umidita){
 void SensorWindowVisitor::visit(Velocita& velocita) {
     window->positionInfo(velocita);
 }
-void SensorWindowVisitor::visit(Positionsensor& positionsensor) {
+void SensorWindowVisitor::visit(PositionSensor& positionsensor) {
     window->positionInfo(positionsensor);
 
 }

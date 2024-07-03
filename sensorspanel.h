@@ -27,6 +27,9 @@ private:
     const int initialRowSize = 3;
     QScrollArea* scrollArea;
     QWidget* content;
+
+public slots:
+    void showSensor();
 };
 
 #endif // SENSORSPANEL_H

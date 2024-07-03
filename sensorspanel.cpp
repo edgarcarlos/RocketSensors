@@ -1,5 +1,5 @@
 #include "sensorspanel.h"
-
+#include "typeandiconvisitor.h"
 #include <QGridLayout>
 
 SensorsPanel::SensorsPanel(QWidget* parent): QWidget(parent) {
@@ -22,13 +22,25 @@ SensorsPanel::SensorsPanel(QWidget* parent): QWidget(parent) {
 
 void SensorsPanel::addSensors(const std::vector<AbstractSensor*>& sensors){
 
+    std::vector<SensorWidget*> sensorWidgets;
+
     for(auto sensor : sensors){
 
         SensorWidget* sensorWidget = new SensorWidget(sensor, content);
+        //sensorWidget->setName(QString::fromStdString(sensor->getName()));
+        //sensorWidget->setId(sensor->getIdentifier());
+
+        TypeAndIconVisitor TypeAndIconVisitor(sensorWidget);
+        sensor->accept(TypeAndIconVisitor);
+
         sensorWidgets.push_back(sensorWidget);
         panelLayout->addWidget(sensorWidget);
     }
     updateLayout();
+
+    for (SensorWidget* sensorWidget : sensorWidgets) {
+        connect(sensorWidget, &SensorWidget::selected, this, &SensorsPanel::showSensor());
+    }
 
 }
 
@@ -60,7 +72,7 @@ void SensorsPanel::updateLayout() {
 }
 
 
-
+void SensorsPanel::showSensor() {}
 
 
 

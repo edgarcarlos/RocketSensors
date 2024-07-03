@@ -14,7 +14,7 @@ class LevelSensor: public AbstractSensor {
         double capacity;
         vector<double> dati;
         double currentLevel;
-        string unita;
+
 
     public:
         LevelSensor(const string name,
@@ -28,8 +28,6 @@ class LevelSensor: public AbstractSensor {
         LevelSensor& setCapacity(double capacity);
         const vector<double> getDati()const ;
         const double getCurrentlevel()const ;
-        const string getUnita()const ;
-        LevelSensor& setUnita(string unita);
         void accept(IVisitor& visitor) override;
 };
 

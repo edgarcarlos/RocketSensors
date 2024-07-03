@@ -12,7 +12,6 @@ class EnvSensor: public AbstractSensor {
     private:
         vector<double> dati;
         double valoreCorrente;
-        string unita; 
 
     public:
         EnvSensor(const string name,
@@ -23,8 +22,6 @@ class EnvSensor: public AbstractSensor {
                     const string unita);
         const vector<double> getDati()const ;
         const double getValoreCorrente()const ;
-        const string getUnita()const ;
-        EnvSensor& setUnita(string unita);
         double media()const ;
         double valoreMin()const ;
         double valoreMax()const ;

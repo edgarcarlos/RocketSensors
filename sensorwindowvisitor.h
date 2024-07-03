@@ -1,8 +1,17 @@
 #ifndef SENSORWINDOWVISITOR_H
 #define SENSORWINDOWVISITOR_H
 
+
 #include "IVisitor.h"
 #include "sensorwindow.h"
+
+#include "carburante.h"
+#include "ossigeno.h"
+#include "pressione.h"
+#include "temperatura.h"
+#include "umidita.h"
+#include "velocita.h"
+#include "positionsensor.h"
 
 class SensorWindowVisitor : public IVisitor
 {
@@ -15,7 +24,7 @@ public:
     void visit(Temperatura& temperatura) override;
     void visit(Umidita& umidita) override;
     void visit(Velocita& velocita) override;
-    void visit(Positionsensor& positionsensor) override;
+    void visit(PositionSensor& positionsensor) override;
 
 private:
     SensorWindow* window;

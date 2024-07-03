@@ -24,7 +24,7 @@ class Velocita: public PositionSensor {
 
         vector<double> velocitaDati(const vector<double> altitudeDati) const ;
         double accelerazione(vector<double> velocitaDati)const ;
-        double velocitaMedia(vector<double> altitudeDati)const ;
+        double velocitaMedia()const ;
         void accept(IVisitor& visitor) override;
 };
 

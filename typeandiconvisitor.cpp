@@ -33,7 +33,7 @@ void TypeAndIconVisitor::visit(Velocita& /*velocita*/) {
     sensor->setSensorIcon(QIcon(":/icons/velocita_icon.png"));
 }
 
-void TypeAndIconVisitor::visit(Positionsensor& /*positionsensor*/) {
+void TypeAndIconVisitor::visit(PositionSensor& /*positionsensor*/) {
     sensor->setSensorType("positionsensor");
     sensor->setSensorIcon(QIcon(":/icons/positionsensor.png"));
 }

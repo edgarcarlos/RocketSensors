@@ -15,6 +15,7 @@ public:
     explicit SensorWidget(AbstractSensor* sensor, QWidget *parent = nullptr);
     void setSensorIcon(const QIcon& icon);
     void setSensorType(const QString& type);
+    void setSensorValue(const QString& value);
     void accept(IVisitor& visitor);
 
 protected:
@@ -24,6 +25,7 @@ private:
     AbstractSensor* sensor;
     QLabel* sensorTypeLabel;
     QLabel* sensorIcon;
+    QLabel* valueLabel;
 
 };
 

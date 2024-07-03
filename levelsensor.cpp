@@ -29,11 +29,4 @@ const double LevelSensor::getCurrentlevel()const {
     return currentLevel;
 }
 
-const string LevelSensor::getUnita()const {
-    return unita;
-}
 
-LevelSensor& LevelSensor::setUnita(string unita) {
-    this->unita;
-    return *this;
-}

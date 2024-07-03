@@ -8,7 +8,7 @@ class Pressione;
 class Temperatura;
 class Umidita;
 class Velocita;
-class Positionsensor;
+class PositionSensor;
 
 class IVisitor {
 public :
@@ -19,7 +19,7 @@ public :
     virtual void visit(Temperatura& temperatura) =0;
     virtual void visit(Umidita& umidita) =0;
     virtual void visit(Velocita& velocita) =0;
-    virtual void visit(Positionsensor& positionsensor) =0;
+    virtual void visit(PositionSensor& positionsensor) =0;
 };
 
 

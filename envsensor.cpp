@@ -16,14 +16,6 @@ const double EnvSensor::getValoreCorrente()const {
     return valoreCorrente;
 }
 
-const string EnvSensor::getUnita()const {
-    return unita;
-}
-
-EnvSensor& EnvSensor::setUnita(string unita){
-    this->unita;
-    return *this;
-}
 
 double EnvSensor::media()const {
 
