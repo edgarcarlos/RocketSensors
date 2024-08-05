@@ -72,7 +72,11 @@ void SensorsPanel::updateLayout() {
 }
 
 
-void SensorsPanel::showSensor() {}
+void SensorsPanel::showSensor(AbstractSensor* sensor) {
+    SensorWindow* detailWindow = new SensorWindow(sensor);
+    detailWindow->setAttribute(Qt::WA_DeleteOnClose);
+    detailWindow->show();
+}
 
 
 

@@ -1,4 +1,5 @@
 #include "sensorwindow.h"
+#include "sensorwindowvisitor.h"
 
 #include <QWidget>
 #include <QVBoxLayout>
@@ -6,9 +7,9 @@
 #include <QLabel>
 #include <QPushButton>
 
-SensorWindow::SensorWindow(AbstractSensor* sensor, QWidget *parent) : SensorWidget(sensor, parent) {
+SensorWindow::SensorWindow(AbstractSensor* sensor, QWidget *parent) : QWidget(parent) {
 
-    QVBoxLayout* vbox = new QVBoxLayout();
+    QVBoxLayout* vbox = new QVBoxLayout(this);
     QHBoxLayout* hbox = new QHBoxLayout();
     vbox->addLayout(hbox);
 
@@ -33,8 +34,17 @@ SensorWindow::SensorWindow(AbstractSensor* sensor, QWidget *parent) : SensorWidg
     QVBoxLayout* infoLayout = new QVBoxLayout();
     hbox2->addLayout(infoLayout);
 
+    setLayout(vbox);
+
+    // Connect
+    connect(back, &QPushButton::clicked, this, &SensorWindow::handleBack);
+    connect(simula, &QPushButton::clicked, this, &SensorWindow::simulaSensor);
+    connect(modifica, &QPushButton::clicked, this, &SensorWindow::modifySensor);
+    connect(delete_, &QPushButton::clicked, this, &SensorWindow::deleteSensor);
 
 
+    SensorWindowVisitor visitor(infoLayout);
+    sensor->accept(visitor);
 
 }
 
@@ -113,8 +123,21 @@ void SensorWindow::positionInfo(const PositionSensor& sensor){
 
 }
 
+void SensorWindow::handleBack(){
+    close();
+}
 
+void SensorWindow::simulaSensor(){
+    emit simulateSignal();
+}
 
+void SensorWindow::modifySensor(){
+    emit modifySignal();
+}
+
+void SensorWindow::deleteSensor(){
+    emit deleteSignal();
+}
 
 
 

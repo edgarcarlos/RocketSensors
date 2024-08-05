@@ -27,6 +27,9 @@ private:
     QLabel* sensorIcon;
     QLabel* valueLabel;
 
+signals:
+    void selected();
+
 };
 
 #endif // SENSORWIDGET_H

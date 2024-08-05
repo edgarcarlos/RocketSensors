@@ -8,18 +8,28 @@
 #include "positionsensor.h"
 #include <QWidget>
 
-class SensorWindow : public SensorWidget
+class SensorWindow : public QWidget
 {
     Q_OBJECT
 
 public:
-    SensorWindow(AbstractSensor* sensor, QWidget *parent);
+    SensorWindow(AbstractSensor* sensor, QWidget *parent = nullptr);
     void environmentInfo(const EnvSensor& sensor);
     void levelInfo(const LevelSensor& sensor);
     void positionInfo(const PositionSensor& sensor);
 
 private:
 
+public slots:
+    void handleBack();
+    void simulaSensor();
+    void modifySensor();
+    void deleteSensor();
+
+signals:
+    void modifySignal();
+    void simulateSignal();
+    void deleteSignal();
 };
 
 #endif // SENSORWINDOW_H

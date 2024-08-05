@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -12,6 +12,7 @@ SOURCES += \
     abstractsensor.cpp \
     carburante.cpp \
     chartpanel.cpp \
+    chartvisitor.cpp \
     currentvaluevisitor.cpp \
     envsensor.cpp \
     infopanel.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     abstractsensor.h \
     carburante.h \
     chartpanel.h \
+    chartvisitor.h \
     currentvaluevisitor.h \
     envsensor.h \
     infopanel.h \

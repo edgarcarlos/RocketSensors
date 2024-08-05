@@ -1,31 +1,31 @@
 #include "sensorwindowvisitor.h"
 
-SensorWindowVisitor::SensorWindowVisitor(SensorWindow* window) : window(window) {}
+SensorWindowVisitor::SensorWindowVisitor(QVBoxLayout* layout) : infoLayout(layout) {}
 
 
 void SensorWindowVisitor::visit(Carburante& carburante) {
-    window->levelInfo(carburante);
+    infoLayout->levelInfo(carburante);
 }
 
 void SensorWindowVisitor::visit(Ossigeno& ossigeno) {
-    window->levelInfo(ossigeno);
+    infoLayout->levelInfo(ossigeno);
 }
 
 void SensorWindowVisitor::visit(Pressione& pressione) {
-    window->environmentInfo(pressione);
+    infoLayout->environmentInfo(pressione);
 }
 
 void SensorWindowVisitor::visit(Temperatura& temperatura) {
-    window->environmentInfo(temperatura);
+    infoLayout->environmentInfo(temperatura);
 }
 
 void SensorWindowVisitor::visit(Umidita& umidita){
-    window->environmentInfo(umidita);
+    infoLayout->environmentInfo(umidita);
 }
 void SensorWindowVisitor::visit(Velocita& velocita) {
-    window->positionInfo(velocita);
+    infoLayout->positionInfo(velocita);
 }
 void SensorWindowVisitor::visit(PositionSensor& positionsensor) {
-    window->positionInfo(positionsensor);
+    infoLayout->positionInfo(positionsensor);
 
 }

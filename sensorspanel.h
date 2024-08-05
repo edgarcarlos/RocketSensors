@@ -7,6 +7,7 @@
 #include <vector>
 #include "sensorwidget.h"
 #include "abstractsensor.h"
+#include "sensorwindow.h"
 
 using namespace std;
 
@@ -28,8 +29,10 @@ private:
     QScrollArea* scrollArea;
     QWidget* content;
 
+
+
 public slots:
-    void showSensor();
+    void showSensor(AbstractSensor* sensor);
 };
 
 #endif // SENSORSPANEL_H
