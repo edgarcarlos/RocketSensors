@@ -1,6 +1,8 @@
 #include "sensorwindow.h"
 #include "sensorwindowvisitor.h"
-
+#include "typeandiconvisitor.h"
+#include "chartvisitor.h"
+#include "sensorwidget.h"
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -34,6 +36,9 @@ SensorWindow::SensorWindow(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
     QVBoxLayout* infoLayout = new QVBoxLayout();
     hbox2->addLayout(infoLayout);
 
+    chartPanel = new ChartPanel();
+    hbox2->addWidget(chartPanel);
+
     setLayout(vbox);
 
     // Connect
@@ -43,8 +48,16 @@ SensorWindow::SensorWindow(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
     connect(delete_, &QPushButton::clicked, this, &SensorWindow::deleteSensor);
 
 
-    SensorWindowVisitor visitor(infoLayout);
-    sensor->accept(visitor);
+    SensorWidget sensorWidget(sensor);
+    TypeAndIconVisitor typeAndIconVisitor(&sensorWidget);
+    sensor->accept(typeAndIconVisitor);
+    sensorType = sensorWidget.getSensorType();
+
+    SensorWindowVisitor infovisitor(infoLayout);
+    sensor->accept(infovisitor);
+
+    ChartVisitor chartvisitor(chartPanel);
+    sensor->accept(chartvisitor);
 
 }
 

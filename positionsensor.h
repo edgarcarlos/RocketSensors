@@ -9,7 +9,7 @@
 using namespace std;
 
 class PositionSensor: public AbstractSensor {
-    protected:
+    public:
         struct Localisation{
             double latitude;
             double longitude;
@@ -30,9 +30,9 @@ class PositionSensor: public AbstractSensor {
                        const vector<Localisation> dati);
         const Localisation& getPosition()const ;
         const vector<Localisation> getDati()const ;
-        const double getAltitude()const ;
-        const double getLongitude()const ;
-        const double getLatitude()const ;
+        double getAltitude()const ;
+        double getLongitude()const ;
+        double getLatitude()const ;
         void accept(IVisitor& visitor) override;
 };
 

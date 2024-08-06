@@ -5,19 +5,17 @@ LevelSensor::LevelSensor(const string name,
                     const string ID,
                     const double capacity,
                     const vector<double> dati,
-                    const double currentLevel,
-                    const string unita): AbstractSensor(name,description,ID),
+                    const double currentLevel): AbstractSensor(name,description,ID),
                                         capacity(capacity),
                                         dati(dati),
-                                        currentLevel(currentLevel),
-                                        unita(unita) {}
+                                        currentLevel(currentLevel) {}
                      
-const double LevelSensor:: getCapacity()const {
+double LevelSensor:: getCapacity()const {
     return capacity;
 }
 
 LevelSensor& LevelSensor:: setCapacity(double capacity){
-    this->capacity;
+    this->capacity = capacity;
     return *this;
 }
 
@@ -25,7 +23,7 @@ const vector<double> LevelSensor::getDati()const {
     return dati;
 }
 
-const double LevelSensor::getCurrentlevel()const {
+double LevelSensor::getCurrentlevel()const {
     return currentLevel;
 }
 

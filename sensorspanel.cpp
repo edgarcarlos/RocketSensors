@@ -39,7 +39,7 @@ void SensorsPanel::addSensors(const std::vector<AbstractSensor*>& sensors){
     updateLayout();
 
     for (SensorWidget* sensorWidget : sensorWidgets) {
-        connect(sensorWidget, &SensorWidget::selected, this, &SensorsPanel::showSensor());
+        connect(sensorWidget, &SensorWidget::selected, this, &SensorsPanel::showSensor);
     }
 
 }

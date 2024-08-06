@@ -6,9 +6,8 @@ Ossigeno::Ossigeno(const string name,
                     const double capacity,
                     const vector<double> dati,
                     const double currentLevel,
-                    const string unita,
                     const bool qualita,
-                    const double soglio): LevelSensor(name,description,ID,capacity,dati,currentLevel,unita),
+                    const double soglio): LevelSensor(name,description,ID,capacity,dati,currentLevel),
                                             qualita(qualita),
                                             soglio(soglio) {}
 
@@ -21,6 +20,6 @@ string Ossigeno::statoQuantita(double currentLevel)const {
     if(currentLevel <= soglio)
         return string("Basso");
         
-    else string("Sufficiente");
+    else return string("Sufficiente");
 }
 

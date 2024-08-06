@@ -6,8 +6,7 @@ Carburante::Carburante(const string name,
                     const double capacity,
                     const vector<double> dati,
                     const double currentLevel,
-                    const string unita,
-                    const double soglio): LevelSensor(name,description,ID,capacity,dati,currentLevel,unita),
+                    const double soglio): LevelSensor(name,description,ID,capacity,dati,currentLevel),
                                     soglio(soglio) {}
 
 
@@ -15,8 +14,8 @@ Carburante::Carburante(const string name,
 double Carburante::debito(vector<double> dati) const{
     double difTotale = 0.0;
     
-    for(int i=1; i<dati.size(); i++){
-        double difTotale = dati[i-1] - dati[i];
+    for(unsigned int i=1; i<dati.size(); i++){
+        difTotale = dati[i-1] - dati[i];
          
     }
 
@@ -30,5 +29,5 @@ string Carburante::statoQuantita(double currentLevel) const{
     if(currentLevel <= soglio)
         return string("Basso");
         
-    else string("Sufficiente");
+    else return string("Sufficiente");
 }

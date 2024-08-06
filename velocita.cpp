@@ -17,7 +17,7 @@ vector<double> Velocita::velocitaDati(const vector<double> altitudeDati) const {
             return velocita;
         }
 
-        for (int i = 1; i < altitudeDati.size(); ++i) {
+        for (unsigned int i = 1; i < altitudeDati.size(); ++i) {
             double spazio = altitudeDati[i] - altitudeDati[i - 1];
             double tempo = 1.0; //tempo costante fra le misure
             double vel = spazio / tempo;
@@ -31,7 +31,7 @@ double Velocita::velocitaMedia()const {
 
     double distanzaTotale = 0.0;
     
-    for(int i=1; i<altitudeDati.size(); i++){
+    for(unsigned int i=1; i<altitudeDati.size(); i++){
         double spazio = altitudeDati[i] - altitudeDati[i-1];
         distanzaTotale += spazio;
     }
@@ -44,8 +44,8 @@ double Velocita::velocitaMedia()const {
 double Velocita::accelerazione(vector<double> velocitaDati)const {
     double difTotale = 0.0;
     
-    for(int i=1; i<velocitaDati.size(); i++){
-        double difTotale = velocitaDati[i] - velocitaDati[i-1];
+    for(unsigned int i=1; i<velocitaDati.size(); i++){
+        difTotale = velocitaDati[i] - velocitaDati[i-1];
          
     }
 

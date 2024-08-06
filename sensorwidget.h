@@ -14,21 +14,25 @@ class SensorWidget : public QWidget {
 public:
     explicit SensorWidget(AbstractSensor* sensor, QWidget *parent = nullptr);
     void setSensorIcon(const QIcon& icon);
+    QIcon getSensorIcon() const;
     void setSensorType(const QString& type);
+    QString getSensorType() const;
     void setSensorValue(const QString& value);
     void accept(IVisitor& visitor);
 
 protected:
     QString sensorType;
+    QIcon sensorIcon;
 
 private:
     AbstractSensor* sensor;
     QLabel* sensorTypeLabel;
-    QLabel* sensorIcon;
+    QLabel* sensorIconLabel;
     QLabel* valueLabel;
 
+
 signals:
-    void selected();
+    void selected(AbstractSensor* sensor);
 
 };
 

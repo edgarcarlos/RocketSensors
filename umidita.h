@@ -19,7 +19,6 @@ class Umidita: public EnvSensor {
                 const string ID,
                 const vector<double> dati,
                 const double valoreCorrente,
-                const string unita,
                 const double soglioUmidita);
         string statoUmidita(double valoreCorrente)const ;
         void accept(IVisitor& visitor) override;

@@ -22,7 +22,6 @@ class Ossigeno: public LevelSensor {
                     const double capacity,
                     const vector<double> dati,
                     const double currentLevel,
-                    const string unita,
                     const bool qualita,
                     const double soglio);
         bool isQualita()const ;

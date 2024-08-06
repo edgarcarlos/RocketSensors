@@ -17,14 +17,14 @@ const vector<PositionSensor::Localisation> PositionSensor::getDati()const {
     return dati;
 }
 
-const double PositionSensor::getAltitude()const {
+double PositionSensor::getAltitude()const {
     return positionAttuale.altitude;
 }
 
-const double PositionSensor::getLongitude()const {
+double PositionSensor::getLongitude()const {
     return positionAttuale.longitude;
 }
 
-const double PositionSensor::getLatitude()const {
+double PositionSensor::getLatitude()const {
     return positionAttuale.latitude;
 }

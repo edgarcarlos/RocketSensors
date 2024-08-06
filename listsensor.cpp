@@ -1,4 +1,4 @@
-#include "listsensor.h"
+//#include "listsensor.h"
 
 #include <QLabel>
 #include <QVBoxLayout>
@@ -6,9 +6,9 @@
 #include <QPixmap>
 #include <QPushButton>
 
-#include "abstractsensor.h"
+//#include "abstractsensor.h"
 
-
+/*
 ListSensor::ListSensor() {}
 
 
@@ -22,11 +22,11 @@ void ListSensor:: visit(const AbstractSensor& sensor) {
     vbox->setAlignment(Qt::AlignLeft | Qt::AlignTop);
     hbox->addLayout(vbox);
 
-    QPixmap iconSensor(sensor.getLogo().c_str());
-    iconSensor = QPixmap(":/Assets/858753.png");
+    //QPixmap iconSensor(sensor.getLogo().c_str());
+    //iconSensor = QPixmap(":/Assets/858753.png");
 
     QLabel* icon = new QLabel();
-    icon ->setPixmap(iconSensor);
+    //icon ->setPixmap(iconSensor);
     vbox -> addWidget(icon);
 
     QLabel* name = new QLabel(QString::fromStdString(sensor.getName()));
@@ -47,3 +47,4 @@ void ListSensor:: visit(const AbstractSensor& sensor) {
 
 
 }
+*/

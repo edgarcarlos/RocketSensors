@@ -4,15 +4,14 @@ EnvSensor::EnvSensor(const string name,
                     const string description,
                     const string ID,
                     const vector<double> dati,
-                    const double valoreCorrente,
-                    const string unita): AbstractSensor(name,description,ID),
-                                        dati(dati) {}
+                    const double valoreCorrente): AbstractSensor(name,description,ID),
+                                                    dati(dati), valoreCorrente(valoreCorrente) {}
 
  const vector<double> EnvSensor::getDati()const {
     return dati;
  }
 
-const double EnvSensor::getValoreCorrente()const {
+double EnvSensor::getValoreCorrente()const {
     return valoreCorrente;
 }
 

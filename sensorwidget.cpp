@@ -19,9 +19,9 @@ SensorWidget::SensorWidget(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
     QHBoxLayout* hbox2 = new QHBoxLayout();
     vbox->addLayout(hbox2);
 
-    sensorIcon = new QLabel();
+    sensorIconLabel = new QLabel();
     //sensorIcon = new QLabel();
-    hbox2->addWidget(sensorIcon);
+    hbox2->addWidget(sensorIconLabel);
 
     QLabel* name = new QLabel(QString::fromStdString(sensor->getName()));
     name->setObjectName("name");
@@ -53,14 +53,23 @@ SensorWidget::SensorWidget(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
 }
 
 void SensorWidget::setSensorIcon(const QIcon& icon){
-    sensorIcon->setPixmap(icon.pixmap(32, 32));
+    sensorIconLabel->setPixmap(icon.pixmap(32, 32));
 
+}
+
+QIcon SensorWidget::getSensorIcon() const {
+    return sensorIcon;
 }
 
 void SensorWidget::setSensorType(const QString& type){
     sensorType = type;
     sensorTypeLabel->setText(type);
 }
+
+QString SensorWidget::getSensorType() const {
+    return sensorType;
+}
+
 
 void SensorWidget::setSensorValue(const QString& value){
     valueLabel->setText(value);

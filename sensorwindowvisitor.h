@@ -3,7 +3,7 @@
 
 #include <QVBoxLayout>
 #include "IVisitor.h"
-#include "sensorwindow.h"
+//#include "sensorwindow.h"
 
 #include "carburante.h"
 #include "ossigeno.h"

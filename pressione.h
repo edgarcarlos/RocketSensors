@@ -17,7 +17,6 @@ class Pressione: public EnvSensor {
             const string ID,
             const vector<double> dati,
             const double valoreCorrente,
-            const string unita,
             const double pressioneAtmos);
             
         vector<double> pressioneAssoluta(vector<double> dati)const ;

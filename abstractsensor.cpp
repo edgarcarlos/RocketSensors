@@ -16,7 +16,7 @@ const string& AbstractSensor::getName() const {
 }
 
 AbstractSensor& AbstractSensor::setName(const string name){
-    this->name;
+    this->name = name;
     return *this;
 }
 
@@ -25,7 +25,7 @@ const string& AbstractSensor::getDescription()const{
 }
 
 AbstractSensor& AbstractSensor::setDescription(const string description){
-    this->description;
+    this->description = description;
     return *this;
 }
 
@@ -34,7 +34,7 @@ const string& AbstractSensor::getID()const {
 }
 
 AbstractSensor& AbstractSensor::setID(const string ID){
-    this->ID;
+    this->ID = ID;
     return *this;
 }
 

@@ -19,7 +19,6 @@ class Carburante: public LevelSensor {
                     const double capacity,
                     const vector<double> dati,
                     const double currentLevel,
-                    const string unita,
                     const double soglio);
         double debito(vector<double> dati)const;
         string statoQuantita(double currentLevel)const;

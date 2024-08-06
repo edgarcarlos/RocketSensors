@@ -22,12 +22,11 @@ class LevelSensor: public AbstractSensor {
                     const string ID,
                     const double capacity,
                     const vector<double> dati,
-                    const double currentLevel,
-                    const string unita);
-        const double getCapacity()const ;
+                    const double currentLevel);
+        double getCapacity()const ;
         LevelSensor& setCapacity(double capacity);
         const vector<double> getDati()const ;
-        const double getCurrentlevel()const ;
+        double getCurrentlevel()const ;
         void accept(IVisitor& visitor) override;
 };
 
