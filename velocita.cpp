@@ -2,7 +2,7 @@
 
 Velocita::Velocita(const string name,
                         const string description,
-                        const string ID,
+                        const unsigned int ID,
                         const Localisation positionAttuale,
                         const vector<Localisation> dati,
                         const PositionSensor position,

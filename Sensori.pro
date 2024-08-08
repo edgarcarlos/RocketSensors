@@ -16,6 +16,10 @@ SOURCES += \
     currentvaluevisitor.cpp \
     envsensor.cpp \
     infopanel.cpp \
+    json.cpp \
+    jsonfile.cpp \
+    jsonrepository.cpp \
+    jsonvisitor.cpp \
     levelsensor.cpp \
     listsensor.cpp \
     main.cpp \
@@ -23,6 +27,7 @@ SOURCES += \
     ossigeno.cpp \
     positionsensor.cpp \
     pressione.cpp \
+    reader.cpp \
     searchwidget.cpp \
     sensorspanel.cpp \
     sensorwidget.cpp \
@@ -35,6 +40,8 @@ SOURCES += \
 
 HEADERS += \
     IVisitor.h \
+    SReader.h \
+    SRepository.h \
     abstractsensor.h \
     carburante.h \
     chartpanel.h \
@@ -42,12 +49,18 @@ HEADERS += \
     currentvaluevisitor.h \
     envsensor.h \
     infopanel.h \
+    json.h \
+    jsonfile.h \
+    jsonrepository.h \
+    jsonvisitor.h \
     levelsensor.h \
     listsensor.h \
     mainwindow.h \
     ossigeno.h \
     positionsensor.h \
     pressione.h \
+    reader.h \
+    sconstvisitor.h \
     searchwidget.h \
     sensorspanel.h \
     sensorwidget.h \

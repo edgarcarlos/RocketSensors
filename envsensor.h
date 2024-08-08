@@ -16,7 +16,7 @@ class EnvSensor: public AbstractSensor {
     public:
         EnvSensor(const string name,
                     const string description,
-                    const string ID,
+                    const unsigned int ID,
                     const vector<double> dati,
                     const double valoreCorrente);
         const vector<double> getDati()const ;
@@ -25,6 +25,8 @@ class EnvSensor: public AbstractSensor {
         double valoreMin()const ;
         double valoreMax()const ;
         void accept(IVisitor& visitor) override;
+        void accept(SConstVisitor& visitor) const override;
+
 };
 
 #endif // ENVSENSOR_H

@@ -15,13 +15,17 @@ class Carburante: public LevelSensor {
     public:
         Carburante(const string name,
                     const string description,
-                    const string ID,
+                    const unsigned int ID,
                     const double capacity,
                     const vector<double> dati,
                     const double currentLevel,
                     const double soglio);
+        const double& getSoglio() const;
         double debito(vector<double> dati)const;
         string statoQuantita(double currentLevel)const;
+        void accept(IVisitor& visitor) override;
+        void accept(SConstVisitor& visitor) const override;
+
 };
 
 #endif // CARBURANTE_H

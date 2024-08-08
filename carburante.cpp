@@ -2,7 +2,7 @@
 
 Carburante::Carburante(const string name,
                     const string description,
-                    const string ID,
+                    const unsigned int ID,
                     const double capacity,
                     const vector<double> dati,
                     const double currentLevel,
@@ -31,3 +31,8 @@ string Carburante::statoQuantita(double currentLevel) const{
         
     else return string("Sufficiente");
 }
+
+const double& Carburante::getSoglio() const{
+    return soglio;
+}
+

@@ -2,7 +2,7 @@
 
 Umidita::Umidita(const string name,
                 const string description,
-                const string ID,
+                const unsigned int ID,
                 const vector<double> dati,
                 const double valoreCorrente,
                 const double soglioUmidita): EnvSensor(name,description,ID,dati,valoreCorrente),

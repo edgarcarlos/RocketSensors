@@ -106,7 +106,25 @@ MainWindow::~MainWindow()
 
 
 //Action functions
-void MainWindow::openFile(){}
+void MainWindow::openFile(){
+
+    QString path = QFileDialog::getOpenFileName(
+        this,
+        "Open Dataset",
+        "./Assets/DataJson/",
+        "JSON files *.json"
+        );
+    if (path.isEmpty()) {
+        return;
+    }
+
+
+}
+
+
+
+
+
 void MainWindow::saveFile(){}
 void MainWindow::saveAsFile(){}
 void MainWindow::closeFile(){}

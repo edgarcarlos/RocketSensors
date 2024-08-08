@@ -17,13 +17,16 @@ class Temperatura: public EnvSensor {
     public:
         Temperatura(const string name,
                     const string description,
-                    const string ID,
+                    const unsigned int ID,
                     const vector<double> dati,
                     const double valoreCorrente,
                     const double Tmin,
                     const double Tmax);
+        const double& getTmin() const;
+        const double& getTmax() const;
         string stato(double valoreCorrente)const ;
         void accept(IVisitor& visitor) override;
+        void accept(SConstVisitor& visitor) const override;
 };
 
 #endif // TEMPERATURA_H

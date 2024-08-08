@@ -2,7 +2,7 @@
 
 Temperatura::Temperatura(const string name,
                     const string description,
-                    const string ID,
+                    const unsigned int ID,
                     const vector<double> dati,
                     const double valoreCorrente,
                     const double Tmin,
@@ -16,4 +16,11 @@ string Temperatura::stato(double valoreCorrente)const {
     else if(Tmin < valoreCorrente < Tmax) return string("Normale");
     else if(valoreCorrente >= Tmax) return string("Elevato");
     else return string("errore");
+}
+
+const double& Temperatura::getTmin() const{
+    return Tmin;
+}
+const double& Temperatura::getTmax() const{
+    return Tmax;
 }

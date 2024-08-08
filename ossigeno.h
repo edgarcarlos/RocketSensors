@@ -18,7 +18,7 @@ class Ossigeno: public LevelSensor {
     public:
         Ossigeno(const string name,
                     const string description,
-                    const string ID,
+                    const unsigned int ID,
                     const double capacity,
                     const vector<double> dati,
                     const double currentLevel,

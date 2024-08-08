@@ -4,6 +4,7 @@
 #include <string>
 
 #include "IVisitor.h"
+#include "sconstvisitor.h"
 
 using namespace std;
 
@@ -11,21 +12,20 @@ class AbstractSensor {
     private:
         string name;
         string description;
-        string ID;
+        unsigned int ID;
 
     public:
         AbstractSensor(const string name,
                        const string description,
-                       const string ID);
+                       const unsigned int ID);
         virtual ~AbstractSensor();
         const string& getName() const;
         AbstractSensor& setName(const string name);
         const string& getDescription()const;
         AbstractSensor& setDescription(const string description);
-        const string& getID()const ;
-        AbstractSensor& setID(const string ID);
+        unsigned int getID() const;
         virtual void accept(IVisitor& visitor) = 0;
-
+        virtual void accept(SConstVisitor& visitor) const = 0;
 
 };
 

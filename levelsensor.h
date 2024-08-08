@@ -19,7 +19,7 @@ class LevelSensor: public AbstractSensor {
     public:
         LevelSensor(const string name,
                     const string description,
-                    const string ID,
+                    const unsigned int ID,
                     const double capacity,
                     const vector<double> dati,
                     const double currentLevel);
@@ -28,6 +28,8 @@ class LevelSensor: public AbstractSensor {
         const vector<double> getDati()const ;
         double getCurrentlevel()const ;
         void accept(IVisitor& visitor) override;
+        void accept(SConstVisitor& visitor) const override;
+
 };
 
 #endif // LEVELSENSOR_H

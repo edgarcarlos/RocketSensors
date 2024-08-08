@@ -2,7 +2,7 @@
 
 EnvSensor::EnvSensor(const string name,
                     const string description,
-                    const string ID,
+                    const unsigned int ID,
                     const vector<double> dati,
                     const double valoreCorrente): AbstractSensor(name,description,ID),
                                                     dati(dati), valoreCorrente(valoreCorrente) {}

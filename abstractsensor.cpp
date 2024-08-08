@@ -4,7 +4,7 @@ using namespace std;
 
 AbstractSensor::AbstractSensor(const string name,
                        const string description,
-                       const string ID): name(name), 
+                       const unsigned int ID): name(name),
                                          description(description),
                                          ID(ID) {}
 
@@ -29,14 +29,10 @@ AbstractSensor& AbstractSensor::setDescription(const string description){
     return *this;
 }
 
-const string& AbstractSensor::getID()const {
+unsigned int AbstractSensor::getID()const {
     return ID;
 }
 
-AbstractSensor& AbstractSensor::setID(const string ID){
-    this->ID = ID;
-    return *this;
-}
 
 
 

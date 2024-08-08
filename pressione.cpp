@@ -2,11 +2,12 @@
 
 Pressione::Pressione(const string name,
             const string description,
-            const string ID,
+            const unsigned int ID,
             const vector<double> dati,
             const double valoreCorrente,
-            const double pressioneAtmos): EnvSensor(name,description,ID,dati,valoreCorrente),
-                                            pressioneAtmos(pressioneAtmos) {}
+            const double pressioneAtmos,
+            const double Pmax): EnvSensor(name,description,ID,dati,valoreCorrente),
+    pressioneAtmos(pressioneAtmos), Pmax(Pmax) {}
             
 
 vector<double> Pressione::pressioneAssoluta(vector<double> dati)const {
@@ -20,5 +21,9 @@ vector<double> Pressione::pressioneAssoluta(vector<double> dati)const {
     }
 
     return A;
+}
+
+const double& Pressione::getPmax() const{
+    return Pmax;
 }
 
