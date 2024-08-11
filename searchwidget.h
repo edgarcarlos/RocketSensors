@@ -25,10 +25,11 @@ private:
     QMenu* filterMenu;
 
 signals:
-    void  searchTriggered(const QString &searchString);
+    void  searchTriggered(const std::string& query);
+
 
 public slots:
-    void search();
+    void searchClicked();
     void Checkboxchanged();
 };
 

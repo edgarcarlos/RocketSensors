@@ -6,6 +6,8 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 
+namespace DataMapper{
+
 JsonFile::JsonFile(const std::string& path, Json& converter): path(path), converter(converter) {}
 
 JsonFile JsonFile::fromPath(const std::string& path) {
@@ -58,6 +60,6 @@ std::vector<AbstractSensor*> JsonFile::load(){
     return sensors;
 
 }
-
+}
 
 

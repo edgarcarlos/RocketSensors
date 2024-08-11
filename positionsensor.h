@@ -25,9 +25,10 @@ class PositionSensor: public AbstractSensor {
     public:
         PositionSensor(const string name,
                        const string descrizione,
-                       const string ID,
-                       const Localisation positionAttuale,
-                       const vector<Localisation> dati);
+                       const unsigned int ID,
+                       const Localisation& positionAttuale = {0.0, 0.0, 0.0},
+                       const vector<Localisation>& dati = {}
+                       );
         const Localisation& getPosition()const ;
         const vector<Localisation> getDati()const ;
         double getAltitude()const ;

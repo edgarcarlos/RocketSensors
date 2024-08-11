@@ -12,11 +12,8 @@ public:
     TypeAndIconVisitor(SensorWidget* sensor);
 
     void visit(Carburante& carburante) override;
-    void visit(Ossigeno& ossigeno) override;
     void visit(Pressione& pressione) override;
     void visit(Temperatura& temperatura) override;
-    void visit(Umidita& umidita) override;
-    void visit(Velocita& velocita) override;
     void visit(PositionSensor& positionsensor) override;
 
 private:

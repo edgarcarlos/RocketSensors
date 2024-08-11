@@ -5,6 +5,8 @@
 
 #include "searchwidget.h"
 #include "sensorspanel.h"
+#include "jsonrepository.h"
+
 
 
 class MainWindow : public QMainWindow
@@ -14,18 +16,27 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    JsonRepository* getRepository();
+    MainWindow& reloadData();
+    SearchWidget* getSearchWidget();
+    void showStatus(QString message);
 
 private:
+
     SearchWidget* searchWidget;
     SensorsPanel* sensorspanel;
+    JsonRepository* repository;
+    std::vector<AbstractSensor*> sensors;
+    bool isFullScreenMode = false;
 
 public slots:
-    void openFile();
-    void saveFile();
-    void saveAsFile();
-    void closeFile();
+    void openData();
+    void saveData();
+    void saveAsData();
+    void close_();
     void setFullScreen();
     void addSensor();
+    void search(const std::string& query);
 };
 
 

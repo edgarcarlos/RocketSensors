@@ -11,7 +11,7 @@ void ChartPanel::envChart(const EnvSensor& envSensor){
 
     QLineSeries *series = new QLineSeries();
 
-    for(unsigned int i =0; i <= data.size(); ++i){
+    for(unsigned int i =0; i < data.size(); ++i){
         series->append(i, data[i]);
     }
 
@@ -19,8 +19,16 @@ void ChartPanel::envChart(const EnvSensor& envSensor){
     chart->legend()->hide();
     chart->addSeries(series);
     chart->createDefaultAxes();
-    chart->axes(Qt::Vertical).first()->setRange(0, 12);
-    chart->axes(Qt::Horizontal).first()->setRange(0, 11);
+    QList<QAbstractAxis*> verticalAxes = chart->axes(Qt::Vertical);
+    if (!verticalAxes.isEmpty()) {
+        verticalAxes.first()->setRange(0, 12);
+    }
+
+    QList<QAbstractAxis*> horizontalAxes = chart->axes(Qt::Horizontal);
+    if (!horizontalAxes.isEmpty()) {
+        horizontalAxes.first()->setRange(0, 11);
+    }
+
     chart->setVisible(true);
 
     QChartView *chartView = new QChartView();
@@ -94,11 +102,13 @@ void ChartPanel::positionChart(const PositionSensor& positionSensor){
 
     QValueAxis* axisX = new QValueAxis();
     axisX->setTitleText("Longitude");
-    scatterChart->setAxisX(axisX, scatterSeries);
+    scatterChart->addAxis(axisX, Qt::AlignBottom);  // Replacing setAxisX
+    scatterSeries->attachAxis(axisX);
 
     QValueAxis* axisY = new QValueAxis();
     axisY->setTitleText("Latitude");
-    scatterChart->setAxisY(axisY, scatterSeries);
+    scatterChart->addAxis(axisY, Qt::AlignLeft);  // Replacing setAxisY
+    scatterSeries->attachAxis(axisY);
 
     QChartView* scatterChartView = new QChartView(scatterChart);
     scatterChartView->setRenderHint(QPainter::Antialiasing);
@@ -117,11 +127,13 @@ void ChartPanel::positionChart(const PositionSensor& positionSensor){
 
     QValueAxis* lineAxisX = new QValueAxis();
     lineAxisX->setTitleText("Index"); // Change to a proper time unit if applicable
-    lineChart->setAxisX(lineAxisX, lineSeries);
+    lineChart->addAxis(lineAxisX, Qt::AlignBottom);  // Replacing setAxisX
+    lineSeries->attachAxis(lineAxisX);
 
     QValueAxis* lineAxisY = new QValueAxis();
     lineAxisY->setTitleText("Altitude");
-    lineChart->setAxisY(lineAxisY, lineSeries);
+    lineChart->addAxis(lineAxisY, Qt::AlignLeft);  // Replacing setAxisY
+    lineSeries->attachAxis(lineAxisY);
 
     QChartView* lineChartView = new QChartView(lineChart);
     lineChartView->setRenderHint(QPainter::Antialiasing);

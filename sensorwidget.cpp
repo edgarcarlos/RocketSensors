@@ -35,7 +35,7 @@ SensorWidget::SensorWidget(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
     description->setObjectName("description");
     vbox->addWidget(description);
 
-    QLabel* ID = new QLabel(QString::fromStdString(sensor->getID()));
+    QLabel* ID = new QLabel(QString::number(sensor->getID()));
     ID->setObjectName("ID");
     vbox->addWidget(ID);
 

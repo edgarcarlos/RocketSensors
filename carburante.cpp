@@ -4,9 +4,9 @@ Carburante::Carburante(const string name,
                     const string description,
                     const unsigned int ID,
                     const double capacity,
+                    const double soglio,
                     const vector<double> dati,
-                    const double currentLevel,
-                    const double soglio): LevelSensor(name,description,ID,capacity,dati,currentLevel),
+                    const double currentLevel): LevelSensor(name,description,ID,capacity,dati,currentLevel),
                                     soglio(soglio) {}
 
 
@@ -35,4 +35,14 @@ string Carburante::statoQuantita(double currentLevel) const{
 const double& Carburante::getSoglio() const{
     return soglio;
 }
+
+
+void Carburante::accept(IVisitor& visitor) {
+    visitor.visit(*this);
+}
+
+void Carburante::accept(SConstVisitor& visitor) const {
+    visitor.visit(*this);
+}
+
 

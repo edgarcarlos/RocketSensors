@@ -24,8 +24,8 @@ class EnvSensor: public AbstractSensor {
         double media()const ;
         double valoreMin()const ;
         double valoreMax()const ;
-        void accept(IVisitor& visitor) override;
-        void accept(SConstVisitor& visitor) const override;
+        //void accept(IVisitor& visitor) override;
+        //void accept(SConstVisitor& visitor) const override;
 
 };
 

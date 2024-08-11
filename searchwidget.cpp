@@ -23,19 +23,13 @@ SearchWidget::SearchWidget(QWidget *parent) : QWidget(parent) {
     QVBoxLayout *filterLayout = new QVBoxLayout(filterWidget);
 
     QCheckBox* temperatura = new QCheckBox("Temperatura");
-    QCheckBox* umidita = new QCheckBox("umidita");
     QCheckBox* pressione = new QCheckBox("pressione");
     QCheckBox* carburante = new QCheckBox("Carburante");
-    QCheckBox* ossigeno = new QCheckBox("Ossigeno");
-    QCheckBox* velocita = new QCheckBox("Velocita");
     QCheckBox* position = new QCheckBox("Position");
 
     filterLayout->addWidget(temperatura);
-    filterLayout->addWidget(umidita);
     filterLayout->addWidget(pressione);
     filterLayout->addWidget(carburante);
-    filterLayout->addWidget(ossigeno);
-    filterLayout->addWidget(velocita);
     filterLayout->addWidget(position);
 
     filterWidget->setLayout(filterLayout);
@@ -51,22 +45,19 @@ SearchWidget::SearchWidget(QWidget *parent) : QWidget(parent) {
 
 
     //connect
-    connect(search_input, &QPushButton::clicked, this, &SearchWidget::search);
+    connect(search_input, &QPushButton::clicked, this, &SearchWidget::searchClicked);
     connect(temperatura, &QCheckBox::stateChanged, this, &SearchWidget::Checkboxchanged);
-    connect(umidita, &QCheckBox::stateChanged, this, &SearchWidget::Checkboxchanged);
     connect(pressione, &QCheckBox::stateChanged, this, &SearchWidget::Checkboxchanged);
     connect(carburante, &QCheckBox::stateChanged, this, &SearchWidget::Checkboxchanged);
-    connect(ossigeno, &QCheckBox::stateChanged, this, &SearchWidget::Checkboxchanged);
-    connect(velocita, &QCheckBox::stateChanged, this, &SearchWidget::Checkboxchanged);
     connect(position, &QCheckBox::stateChanged, this, &SearchWidget::Checkboxchanged);
 
 
 }
 
 
-void SearchWidget::search(){
+void SearchWidget::searchClicked(){
 
-    QString searchString = searchInput->text();
+    std::string searchString = searchInput->text().toStdString();
     emit searchTriggered(searchString);
 }
 

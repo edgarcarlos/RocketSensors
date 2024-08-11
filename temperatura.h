@@ -18,10 +18,10 @@ class Temperatura: public EnvSensor {
         Temperatura(const string name,
                     const string description,
                     const unsigned int ID,
-                    const vector<double> dati,
-                    const double valoreCorrente,
                     const double Tmin,
-                    const double Tmax);
+                    const double Tmax,
+                    const vector<double> dati = {0,0,0,0,0,0,0,0,0},
+                    const double valoreCorrente = 0.0);
         const double& getTmin() const;
         const double& getTmax() const;
         string stato(double valoreCorrente)const ;

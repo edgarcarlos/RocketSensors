@@ -78,5 +78,17 @@ void SensorsPanel::showSensor(AbstractSensor* sensor) {
     detailWindow->show();
 }
 
+void SensorsPanel::clearResults() {
+    // Iterate over all items in the layout and remove each widget
+    while (QLayoutItem* item = panelLayout->takeAt(0)) {
+        if (QWidget* widget = item->widget()) {
+            widget->deleteLater(); // Mark widget for deletion
+        }
+        delete item; // Delete the layout item
+    }
+    sensorWidgets.clear(); // Clear the sensorWidgets vector
+}
+
+
 
 

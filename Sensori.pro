@@ -24,7 +24,6 @@ SOURCES += \
     listsensor.cpp \
     main.cpp \
     mainwindow.cpp \
-    ossigeno.cpp \
     positionsensor.cpp \
     pressione.cpp \
     reader.cpp \
@@ -34,9 +33,7 @@ SOURCES += \
     sensorwindow.cpp \
     sensorwindowvisitor.cpp \
     temperatura.cpp \
-    typeandiconvisitor.cpp \
-    umidita.cpp \
-    velocita.cpp
+    typeandiconvisitor.cpp
 
 HEADERS += \
     IVisitor.h \
@@ -56,7 +53,6 @@ HEADERS += \
     levelsensor.h \
     listsensor.h \
     mainwindow.h \
-    ossigeno.h \
     positionsensor.h \
     pressione.h \
     reader.h \
@@ -67,9 +63,7 @@ HEADERS += \
     sensorwindow.h \
     sensorwindowvisitor.h \
     temperatura.h \
-    typeandiconvisitor.h \
-    umidita.h \
-    velocita.h
+    typeandiconvisitor.h
 
 FORMS +=
 

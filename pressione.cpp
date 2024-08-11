@@ -3,10 +3,11 @@
 Pressione::Pressione(const string name,
             const string description,
             const unsigned int ID,
+            const double Pmax,
             const vector<double> dati,
             const double valoreCorrente,
-            const double pressioneAtmos,
-            const double Pmax): EnvSensor(name,description,ID,dati,valoreCorrente),
+            const double pressioneAtmos
+            ): EnvSensor(name,description,ID,dati,valoreCorrente),
     pressioneAtmos(pressioneAtmos), Pmax(Pmax) {}
             
 
@@ -25,5 +26,13 @@ vector<double> Pressione::pressioneAssoluta(vector<double> dati)const {
 
 const double& Pressione::getPmax() const{
     return Pmax;
+}
+
+void Pressione::accept(IVisitor& visitor) {
+    visitor.visit(*this);
+}
+
+void Pressione::accept(SConstVisitor& visitor) const {
+    visitor.visit(*this);
 }
 

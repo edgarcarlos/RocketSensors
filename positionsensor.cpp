@@ -2,9 +2,9 @@
 
 PositionSensor::PositionSensor(const string name,
                        const string description,
-                       const string ID,
-                       const Localisation positionAttuale,
-                       const vector<Localisation> dati): AbstractSensor(name,description,ID),
+                       const unsigned int ID,
+                       const Localisation& positionAttuale,
+                       const vector<Localisation>& dati): AbstractSensor(name,description,ID),
                                                         positionAttuale(positionAttuale),
                                                         dati(dati) {}
 
@@ -28,3 +28,12 @@ double PositionSensor::getLongitude()const {
 double PositionSensor::getLatitude()const {
     return positionAttuale.latitude;
 }
+
+void PositionSensor::accept(IVisitor& visitor) {
+    visitor.visit(*this);
+}
+
+void PositionSensor::accept(SConstVisitor& visitor) const {
+    visitor.visit(*this);
+}
+

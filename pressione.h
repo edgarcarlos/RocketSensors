@@ -16,10 +16,11 @@ class Pressione: public EnvSensor {
         Pressione(const string name,
             const string description,
             const unsigned int ID,
-            const vector<double> dati,
-            const double valoreCorrente,
-            const double pressioneAtmos,
-            const double Pmax);
+            const double Pmax,
+            const vector<double> dati= {0,0,0,0,0,0,0},
+            const double valoreCorrente= 0.0,
+            const double pressioneAtmos = 0.0
+            );
 
         const double& getPmax() const;
         vector<double> pressioneAssoluta(vector<double> dati)const ;

@@ -4,6 +4,7 @@
 #include <map>
 #include <QJsonObject>
 #include "SReader.h"
+#include "json.h"
 
 class Reader: public SReader
 {
@@ -15,10 +16,10 @@ public:
     AbstractSensor* read(const QJsonObject& object) override;
 
 private:
-    static AbstractSensor* readTemperatura(const QJsonObject& object) ;
-    static AbstractSensor* readPressione(const QJsonObject& object) ;
-    static AbstractSensor* readCarburante(const QJsonObject& object) ;
-    static AbstractSensor* readPositionSensor(const QJsonObject& object) ;
+    static Temperatura* readTemperatura(const QJsonObject& object) ;
+    static Pressione* readPressione(const QJsonObject& object) ;
+    static Carburante* readCarburante(const QJsonObject& object) ;
+    static PositionSensor* readPositionSensor(const QJsonObject& object) ;
 
 };
 

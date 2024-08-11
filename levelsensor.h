@@ -27,8 +27,8 @@ class LevelSensor: public AbstractSensor {
         LevelSensor& setCapacity(double capacity);
         const vector<double> getDati()const ;
         double getCurrentlevel()const ;
-        void accept(IVisitor& visitor) override;
-        void accept(SConstVisitor& visitor) const override;
+        //void accept(IVisitor& visitor) override;
+        //void accept(SConstVisitor& visitor) const override;
 
 };
 

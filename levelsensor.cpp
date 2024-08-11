@@ -27,4 +27,3 @@ double LevelSensor::getCurrentlevel()const {
     return currentLevel;
 }
 
-

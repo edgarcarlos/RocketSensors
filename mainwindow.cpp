@@ -13,9 +13,12 @@
 #include <QPixmap>
 #include <QToolBar>
 
-#include <string>
+//#include <string>
 
-#include "abstractsensor.h"
+//#include "abstractsensor.h"
+#include "reader.h"
+#include "json.h"
+#include "jsonfile.h"
 
 using namespace std;
 
@@ -91,22 +94,39 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     //connect Signals
-    connect(open, &QAction::triggered, this, &MainWindow::openFile);
-    connect(save, &QAction::triggered, this, &MainWindow::saveFile);
-    connect(save_as, &QAction::triggered, this, &MainWindow::saveAsFile);
-    connect(close, &QAction::triggered, this, &MainWindow::closeFile);
+    connect(open, &QAction::triggered, this, &MainWindow::openData);
+    connect(save, &QAction::triggered, this, &MainWindow::saveData);
+    connect(save_as, &QAction::triggered, this, &MainWindow::saveAsData);
+    connect(close, &QAction::triggered, this, &MainWindow::close_);
     connect(fullScreen, &QAction::triggered, this, &MainWindow::setFullScreen);
     connect(add_sensor, &QAction::triggered, this, &MainWindow::addSensor);
+    connect(searchWidget, &SearchWidget::searchTriggered, this, &MainWindow::search);
 
+    //showStatus("Ready.");
 }
 
 MainWindow::~MainWindow()
 {
 }
 
+/*Sensors::Repository::*/JsonRepository* MainWindow::getRepository() {
+    return repository;
+}
+
+MainWindow& MainWindow::reloadData() {
+    std::vector</*Sensor::*/AbstractSensor*> add_sensors(repository->readAll());
+    for (auto it = sensors.begin(); it != sensors.end(); ++it ){
+        sensors.push_back(*it);
+    }
+    return *this;
+}
+
+SearchWidget* MainWindow::getSearchWidget() {
+    return searchWidget;
+}
 
 //Action functions
-void MainWindow::openFile(){
+void MainWindow::openData(){
 
     QString path = QFileDialog::getOpenFileName(
         this,
@@ -117,16 +137,98 @@ void MainWindow::openFile(){
     if (path.isEmpty()) {
         return;
     }
+    if (repository != nullptr) {
+        delete repository;
+    }
+    Reader reader;
+    Json converter(reader);
+    DataMapper::JsonFile data_mapper(path.toStdString(), converter);
+    repository = new /*Sensor::Repository::*/JsonRepository(data_mapper);
+    reloadData();
+
+}
+
+void MainWindow::saveData(){
+    if (repository == nullptr) {
+        return;
+    }
+    repository->store();
+}
+
+void MainWindow::saveAsData(){
+    QString path = QFileDialog::getSaveFileName(
+        this,
+        "Creates new Dataset",
+        "./",
+        "JSON files *.json"
+        );
+    if (path.isEmpty() || repository == nullptr) {
+        return;
+    }
+    repository->setPath(path.toStdString()).store();
+}
+
+void MainWindow::search(const std::string& query){
+
+    if (!repository) {
+        showStatus("No repository loaded.");
+        return;
+    }
+
+    sensorspanel->clearResults();
+
+    std::vector<AbstractSensor*> results;
+    std::vector<AbstractSensor*> sensors = repository->readAll();
+
+    for (AbstractSensor* sensor : sensors) {
+        // Example search criteria: matching the sensor name
+        if (sensor->getName().find(query) != std::string::npos ||
+            std::to_string(sensor->getID()).find(query) != std::string::npos) {
+            results.push_back(sensor);
+        }
+    }
+
+    if (results.empty()) {
+        showStatus("No matching sensors found.");
+    } else {
+        sensorspanel->addSensors(results);
+        showStatus(QString::number(results.size()) + " matching sensors found.");
+    }
 
 
+}
+
+void MainWindow::close_(){
+    QApplication::quit();
+}
+
+void MainWindow::setFullScreen(){
+
+    if (isFullScreenMode) {
+        showNormal(); // Switch to normal window
+        isFullScreenMode = false;
+    } else {
+        showFullScreen(); // Switch to full screen
+        isFullScreenMode = true;
+    }
+}
+
+
+void MainWindow::addSensor(){}
+
+
+
+
+
+void MainWindow::showStatus(QString message) {
+    statusBar()->showMessage(message);
 }
 
 
 
 
 
-void MainWindow::saveFile(){}
-void MainWindow::saveAsFile(){}
-void MainWindow::closeFile(){}
-void MainWindow::setFullScreen(){}
-void MainWindow::addSensor(){}
+
+
+
+
