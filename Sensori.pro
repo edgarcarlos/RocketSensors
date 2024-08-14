@@ -14,6 +14,8 @@ SOURCES += \
     chartpanel.cpp \
     chartvisitor.cpp \
     currentvaluevisitor.cpp \
+    editdialogwindow.cpp \
+    editwidget.cpp \
     envsensor.cpp \
     infopanel.cpp \
     json.cpp \
@@ -44,6 +46,8 @@ HEADERS += \
     chartpanel.h \
     chartvisitor.h \
     currentvaluevisitor.h \
+    editdialogwindow.h \
+    editwidget.h \
     envsensor.h \
     infopanel.h \
     json.h \

@@ -74,3 +74,10 @@ QString SensorWidget::getSensorType() const {
 void SensorWidget::setSensorValue(const QString& value){
     valueLabel->setText(value);
 }
+
+void SensorWidget::mousePressEvent(QMouseEvent* event) {
+    Q_UNUSED(event);  // Ignore l'event pour l'instant
+
+    // Émettre le signal lorsque le widget est cliqué
+    emit selected(sensor);
+}

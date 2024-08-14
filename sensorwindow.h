@@ -2,10 +2,7 @@
 #define SENSORWINDOW_H
 
 #include "abstractsensor.h"
-
 #include "chartpanel.h"
-#include "envsensor.h"
-#include "levelsensor.h"
 #include "positionsensor.h"
 #include <QWidget>
 
@@ -15,15 +12,16 @@ class SensorWindow : public QWidget
 
 public:
     SensorWindow(AbstractSensor* sensor, QWidget *parent = nullptr);
-    void environmentInfo(const EnvSensor& sensor);
-    void levelInfo(const LevelSensor& sensor);
+    void temperatureInfo(const Temperatura& sensor);
+    void pressionInfo(const Pressione& sensor);
+    void carburanteInfo(const Carburante& sensor);
     void positionInfo(const PositionSensor& sensor);
     void accept(IVisitor& visitor);
 
 private:
     ChartPanel *chartPanel;
     QString sensorType;
-
+    QVBoxLayout* infoLayout;
 
 public slots:
     void handleBack();

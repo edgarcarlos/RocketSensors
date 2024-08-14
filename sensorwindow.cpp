@@ -9,7 +9,8 @@
 #include <QLabel>
 #include <QPushButton>
 
-SensorWindow::SensorWindow(AbstractSensor* sensor, QWidget *parent) : QWidget(parent) {
+SensorWindow::SensorWindow(AbstractSensor* sensor, QWidget *parent) : QWidget(parent),
+                            infoLayout(new QVBoxLayout(this)) {
 
     QVBoxLayout* vbox = new QVBoxLayout(this);
     QHBoxLayout* hbox = new QHBoxLayout();
@@ -33,7 +34,6 @@ SensorWindow::SensorWindow(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
     QHBoxLayout* hbox2 = new QHBoxLayout();
     vbox-> addLayout(hbox2);
 
-    QVBoxLayout* infoLayout = new QVBoxLayout();
     hbox2->addLayout(infoLayout);
 
     chartPanel = new ChartPanel();
@@ -53,7 +53,7 @@ SensorWindow::SensorWindow(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
     sensor->accept(typeAndIconVisitor);
     sensorType = sensorWidget.getSensorType();
 
-    SensorWindowVisitor infovisitor(infoLayout);
+    SensorWindowVisitor infovisitor(this);
     sensor->accept(infovisitor);
 
     ChartVisitor chartvisitor(chartPanel);
@@ -62,10 +62,7 @@ SensorWindow::SensorWindow(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
 }
 
 
-void SensorWindow::environmentInfo(const EnvSensor& sensor){
-
-    QWidget* widget = new QWidget();
-    QVBoxLayout* infoLayout = new QVBoxLayout(widget);
+void SensorWindow::temperatureInfo(const Temperatura& sensor){
 
 
     QLabel* sensorTypeLabel = new QLabel("Tipo: " + sensorType);
@@ -89,11 +86,33 @@ void SensorWindow::environmentInfo(const EnvSensor& sensor){
     infoLayout->addWidget(average);
 
 }
-void SensorWindow::levelInfo(const LevelSensor& sensor){
 
-    QWidget* widget = new QWidget();
-    QVBoxLayout* infoLayout = new QVBoxLayout(widget);
+void SensorWindow::pressionInfo(const Pressione& sensor){
 
+
+
+    QLabel* sensorTypeLabel = new QLabel("Tipo: " + sensorType);
+    sensorTypeLabel->setObjectName("type");
+    infoLayout->addWidget(sensorTypeLabel);
+
+    QLabel* current = new QLabel("Attuale" + QString::number(sensor.getValoreCorrente()));
+    current->setObjectName("current");
+    infoLayout->addWidget(current);
+
+    QLabel* min = new QLabel("Min" + QString::number(sensor.valoreMin()));
+    min->setObjectName("min");
+    infoLayout->addWidget(min);
+
+    QLabel* max = new QLabel("Max" + QString::number(sensor.valoreMax()));
+    max->setObjectName("max");
+    infoLayout->addWidget(max);
+
+    QLabel* average = new QLabel("Media" + QString::number(sensor.media()));
+    average->setObjectName("average");
+    infoLayout->addWidget(average);
+
+}
+void SensorWindow::carburanteInfo(const Carburante& sensor){
 
     QLabel* sensorTypeLabel = new QLabel("Tipo: " + sensorType);
     sensorTypeLabel->setObjectName("type");
@@ -108,13 +127,8 @@ void SensorWindow::levelInfo(const LevelSensor& sensor){
     infoLayout->addWidget(capacity);
 
 
-
 }
 void SensorWindow::positionInfo(const PositionSensor& sensor){
-
-    QWidget* widget = new QWidget();
-    QVBoxLayout* infoLayout = new QVBoxLayout(widget);
-
 
     QLabel* sensorTypeLabel = new QLabel("Tipo: " + sensorType);
     sensorTypeLabel->setObjectName("type");

@@ -1,24 +1,21 @@
 #include "sensorwindowvisitor.h"
 #include "sensorwindow.h"
 
-
-SensorWindowVisitor::SensorWindowVisitor(QVBoxLayout* layout) : infoLayout(layout) {}
-
+SensorWindowVisitor::SensorWindowVisitor(SensorWindow* window) : window(window) {}
 
 void SensorWindowVisitor::visit(Carburante& carburante) {
-    static_cast<SensorWindow*>(infoLayout->parent())->levelInfo(carburante);
+
+    window->carburanteInfo(carburante);
 }
 
-
 void SensorWindowVisitor::visit(Pressione& pressione) {
-    static_cast<SensorWindow*>(infoLayout->parent())->environmentInfo(pressione);
+    window->pressionInfo(pressione);
 }
 
 void SensorWindowVisitor::visit(Temperatura& temperatura) {
-    static_cast<SensorWindow*>(infoLayout->parent())->environmentInfo(temperatura);
+    window->temperatureInfo(temperatura);
 }
 
-
 void SensorWindowVisitor::visit(PositionSensor& positionsensor) {
-    static_cast<SensorWindow*>(infoLayout->parent())->positionInfo(positionsensor);
+    window->positionInfo(positionsensor);
 }

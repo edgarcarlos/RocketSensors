@@ -3,7 +3,7 @@
 
 #include <QVBoxLayout>
 #include "IVisitor.h"
-//#include "sensorwindow.h"
+#include "sensorwindow.h"
 
 #include "carburante.h"
 #include "pressione.h"
@@ -13,7 +13,7 @@
 class SensorWindowVisitor : public IVisitor
 {
 public:
-    SensorWindowVisitor(QVBoxLayout* layout);
+    SensorWindowVisitor(SensorWindow* window);
 
     void visit(Carburante& carburante) override;
     void visit(Pressione& pressione) override;
@@ -21,7 +21,7 @@ public:
     void visit(PositionSensor& positionsensor) override;
 
 private:
-    QVBoxLayout* infoLayout;
+    SensorWindow* window;
 };
 
 #endif // SENSORWINDOWVISITOR_H

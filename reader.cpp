@@ -48,7 +48,7 @@ AbstractSensor* Reader::read(const QJsonObject& object) {
 }
 
 
-Temperatura* Reader::readTemperatura(const QJsonObject& object) {
+Temperatura* Reader::readTemperatura(const QJsonObject& object) const {
     return new Temperatura(
         object.value("name").toString().toStdString(),
         object.value("description").toString().toStdString(),
@@ -58,7 +58,7 @@ Temperatura* Reader::readTemperatura(const QJsonObject& object) {
     );
 }
 
-Pressione* Reader::readPressione(const QJsonObject& object) {
+Pressione* Reader::readPressione(const QJsonObject& object) const {
     return new Pressione( 
         object.value("name").toString().toStdString(),
         object.value("description").toString().toStdString(),
@@ -67,7 +67,7 @@ Pressione* Reader::readPressione(const QJsonObject& object) {
     );
 }
 
-Carburante* Reader::readCarburante(const QJsonObject& object) {
+Carburante* Reader::readCarburante(const QJsonObject& object) const {
     return new Carburante(
         object.value("name").toString().toStdString(),
         object.value("description").toString().toStdString(),
@@ -77,12 +77,12 @@ Carburante* Reader::readCarburante(const QJsonObject& object) {
     );
 }
 
-PositionSensor* Reader::readPositionSensor(const QJsonObject& object) {
+PositionSensor* Reader::readPositionSensor(const QJsonObject& object) const {
     return new PositionSensor(
         object.value("name").toString().toStdString(),
         object.value("description").toString().toStdString(),
         object.value("id").toInt()
-        );
+    );
 }
 
 

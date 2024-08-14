@@ -77,7 +77,7 @@ MainWindow::MainWindow(QWidget *parent)
     //Toolbar
     QToolBar* toolbar = new QToolBar(this);
 
-    toolbar = addToolBar("File Toolbar");
+    addToolBar(toolbar);
     toolbar->addAction(open);
     toolbar->addAction(save);
     toolbar->addAction(save_as);
@@ -102,7 +102,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(add_sensor, &QAction::triggered, this, &MainWindow::addSensor);
     connect(searchWidget, &SearchWidget::searchTriggered, this, &MainWindow::search);
 
-    //showStatus("Ready.");
+    showStatus("Ready.");
 }
 
 MainWindow::~MainWindow()
@@ -126,27 +126,67 @@ SearchWidget* MainWindow::getSearchWidget() {
 }
 
 //Action functions
-void MainWindow::openData(){
+void MainWindow::openData() {
+    qDebug() << "Début de openData()";
 
     QString path = QFileDialog::getOpenFileName(
         this,
         "Open Dataset",
-        "./Assets/DataJson/",
-        "JSON files *.json"
+        "",
+        "JSON files (*.json)"
         );
+
+    qDebug() << "Chemin du fichier sélectionné:" << path;
+
     if (path.isEmpty()) {
+        showStatus("No file selected.");
         return;
     }
+
+    // Supprimez le repository existant s'il existe
     if (repository != nullptr) {
         delete repository;
+        repository = nullptr;
+        qDebug() << "Ancien repository supprimé.";
     }
-    Reader reader;
-    Json converter(reader);
-    DataMapper::JsonFile data_mapper(path.toStdString(), converter);
-    repository = new /*Sensor::Repository::*/JsonRepository(data_mapper);
-    reloadData();
 
+    try {
+        Reader reader;
+        Json converter(reader);
+        DataMapper::JsonFile data_mapper(path.toStdString(), converter);
+        repository = new JsonRepository(data_mapper);
+
+        if (repository) {
+            reloadData();
+            showStatus("File loaded successfully.");
+            qDebug() << "Données rechargées avec succès.";
+        } else {
+            showStatus("Failed to initialize repository.");
+            qDebug() << "Échec de l'initialisation du repository.";
+        }
+    } catch (const std::exception& e) {
+        showStatus(QString("Error: %1").arg(e.what()));
+        qDebug() << "Exception attrapée:" << e.what();
+
+        // En cas d'erreur, supprimez le repository pour éviter les utilisations ultérieures
+        if (repository != nullptr) {
+            delete repository;
+            repository = nullptr;
+            qDebug() << "Repository supprimé après l'erreur.";
+        }
+    } catch (...) {
+        showStatus("An unknown error occurred.");
+        qDebug() << "Erreur inconnue rencontrée.";
+
+        // Même traitement en cas d'erreur inconnue
+        if (repository != nullptr) {
+            delete repository;
+            repository = nullptr;
+            qDebug() << "Repository supprimé après l'erreur inconnue.";
+        }
+    }
 }
+
 
 void MainWindow::saveData(){
     if (repository == nullptr) {

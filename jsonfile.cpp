@@ -43,23 +43,39 @@ JsonFile& JsonFile::store(const std::vector<AbstractSensor*> sensors){
     return *this;
 }
 
-std::vector<AbstractSensor*> JsonFile::load(){
+std::vector<AbstractSensor*> JsonFile::load() {
     std::vector<AbstractSensor*> sensors;
     QFile json_file(path.c_str());
-    json_file.open(QFile::ReadOnly);
+
+    // Vérification de l'ouverture du fichier
+    if (!json_file.open(QFile::ReadOnly)) {
+        throw std::ios_base::failure("Failed to open file for reading.");
+    }
+
     QByteArray data = json_file.readAll();
     json_file.close();
-    QJsonDocument document = QJsonDocument::fromJson(data);
-    QJsonArray json_sensors = document.array();
 
-    for (const QJsonValue& value: json_sensors) {
-        QJsonObject json_object = value.toObject();
-        sensors.push_back(converter.toObject(json_object));
+    try {
+        QJsonDocument document = QJsonDocument::fromJson(data);
+        if (document.isNull()) {
+            throw std::invalid_argument("Invalid JSON format.");
+        }
+
+        QJsonArray json_sensors = document.array();
+        for (const QJsonValue& value: json_sensors) {
+            QJsonObject json_object = value.toObject();
+            sensors.push_back(converter.toObject(json_object));
+        }
+    } catch (const std::exception& e) {
+        qDebug() << "Error parsing JSON:" << e.what();
+        // Vous pouvez également enregistrer l'erreur ou effectuer une action corrective
+    } catch (...) {
+        qDebug() << "An unknown error occurred while parsing JSON.";
     }
 
     return sensors;
-
 }
+
 }
 
 

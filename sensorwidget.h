@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QString>
 #include <QLabel>
+#include <QMouseEvent>
 
 #include "abstractsensor.h"
 
@@ -23,6 +24,7 @@ public:
 protected:
     QString sensorType;
     QIcon sensorIcon;
+    void mousePressEvent(QMouseEvent* event) override;
 
 private:
     AbstractSensor* sensor;
