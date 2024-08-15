@@ -27,6 +27,7 @@ protected:
     void mousePressEvent(QMouseEvent* event) override;
 
 private:
+    QWidget* widget;
     AbstractSensor* sensor;
     QLabel* sensorTypeLabel;
     QLabel* sensorIconLabel;

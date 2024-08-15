@@ -19,12 +19,13 @@
 #include "reader.h"
 #include "json.h"
 #include "jsonfile.h"
+#include "editwidget.h"
 
 using namespace std;
 
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
+    : QMainWindow(parent), repository(nullptr)
 
 {
     QVBoxLayout* mainLayout = new QVBoxLayout;
@@ -146,7 +147,6 @@ void MainWindow::openData() {
     // Supprimez le repository existant s'il existe
     if (repository != nullptr) {
         delete repository;
-        repository = nullptr;
         qDebug() << "Ancien repository supprimé.";
     }
 
@@ -254,7 +254,45 @@ void MainWindow::setFullScreen(){
 }
 
 
-void MainWindow::addSensor(){}
+void MainWindow::addSensor() {
+    // Créer un EditWidget directement dans une QDialog
+    QDialog dialog(this);
+    dialog.setWindowTitle("Add New Sensor");
+
+    EditWidget* editWidget = new EditWidget(nullptr,this,repository, &dialog);
+
+    // Ajouter des boutons "Save" et "Cancel" dans le QDialog
+    connect(editWidget, &EditWidget::sensorSaved, &dialog, &QDialog::accept);
+    connect(editWidget, &EditWidget::editCanceled, &dialog, &QDialog::reject);
+
+    // Disposition du layout dans le QDialog
+    QVBoxLayout* vbox = new QVBoxLayout(&dialog);
+    vbox->addWidget(editWidget);
+
+    // Afficher le dialogue en mode modal et attendre l'interaction de l'utilisateur
+    if (dialog.exec() == QDialog::Accepted) {
+        // Récupérer le capteur créé
+        AbstractSensor* newSensor = editWidget->getSensor();
+
+        if (newSensor) {
+
+            // Créer un vecteur temporaire avec le capteur unique
+            std::vector<AbstractSensor*> singleSensorVector = {newSensor};
+
+            // Ajouter le capteur à l'interface utilisateur (SensorsPanel)
+            sensorspanel->addSensors(singleSensorVector);
+
+            // Afficher un message de succès
+            showStatus("New sensor added successfully.");
+        } else {
+            showStatus("Failed to create the sensor.");
+        }
+    } else {
+        // Si l'utilisateur annule
+        showStatus("Sensor creation canceled.");
+    }
+}
+
 
 
 

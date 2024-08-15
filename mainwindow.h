@@ -19,7 +19,7 @@ public:
     JsonRepository* getRepository();
     MainWindow& reloadData();
     SearchWidget* getSearchWidget();
-    void showStatus(QString message);
+
 
 private:
 
@@ -37,6 +37,7 @@ public slots:
     void setFullScreen();
     void addSensor();
     void search(const std::string& query);
+    void showStatus(QString message);
 };
 
 

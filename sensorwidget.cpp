@@ -11,8 +11,8 @@
 
 SensorWidget::SensorWidget(AbstractSensor* sensor, QWidget *parent) : QWidget(parent), sensor(sensor) {
 
-
-    QHBoxLayout* hbox = new QHBoxLayout();
+    widget = new QWidget();
+    QHBoxLayout* hbox = new QHBoxLayout(widget);
     QVBoxLayout* vbox = new QVBoxLayout();
     hbox->addLayout(vbox);
 

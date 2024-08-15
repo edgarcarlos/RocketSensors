@@ -9,6 +9,7 @@
 #include "abstractsensor.h"
 #include "sensorwindow.h"
 
+
 using namespace std;
 
 class SensorsPanel : public QWidget {
@@ -18,6 +19,7 @@ public:
     SensorsPanel(QWidget* parent = nullptr);
     void addSensors(const vector<AbstractSensor*>& sensors);
     void clearResults();
+
 
 protected:
     void resizeEvent(QResizeEvent* event) override;

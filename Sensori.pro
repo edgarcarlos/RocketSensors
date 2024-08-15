@@ -14,7 +14,6 @@ SOURCES += \
     chartpanel.cpp \
     chartvisitor.cpp \
     currentvaluevisitor.cpp \
-    editdialogwindow.cpp \
     editwidget.cpp \
     envsensor.cpp \
     infopanel.cpp \
@@ -46,7 +45,6 @@ HEADERS += \
     chartpanel.h \
     chartvisitor.h \
     currentvaluevisitor.h \
-    editdialogwindow.h \
     editwidget.h \
     envsensor.h \
     infopanel.h \
@@ -75,3 +73,7 @@ FORMS +=
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    ../styles.qss \
+    styles.qss

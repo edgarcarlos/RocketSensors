@@ -1,49 +1,48 @@
 #include "sensorspanel.h"
 #include "typeandiconvisitor.h"
+
 #include <QGridLayout>
 
 SensorsPanel::SensorsPanel(QWidget* parent): QWidget(parent) {
 
     scrollArea = new QScrollArea(this);
     scrollArea->setWidgetResizable(true);
-    scrollArea->setBackgroundRole(QPalette::Dark);
-    content = new QWidget(scrollArea);
+    //scrollArea->setBackgroundRole(QPalette::Dark);
 
+    content = new QWidget();
     panelLayout = new QGridLayout(content);
     panelLayout->setAlignment(Qt::AlignTop);
     content->setLayout(panelLayout);
+
     scrollArea->setWidget(content);
 
-    setLayout(panelLayout);
+    QVBoxLayout* mainLayout = new QVBoxLayout(this);
+    mainLayout->addWidget(scrollArea);
 
+    setLayout(mainLayout);
 
 }
 
 
 void SensorsPanel::addSensors(const std::vector<AbstractSensor*>& sensors){
 
-    std::vector<SensorWidget*> sensorWidgets;
-
-    for(auto sensor : sensors){
-
+    for (auto sensor : sensors) {
+        // Créez un nouveau widget pour chaque capteur
         SensorWidget* sensorWidget = new SensorWidget(sensor, content);
-        //sensorWidget->setName(QString::fromStdString(sensor->getName()));
-        //sensorWidget->setId(sensor->getIdentifier());
 
-        TypeAndIconVisitor TypeAndIconVisitor(sensorWidget);
-        sensor->accept(TypeAndIconVisitor);
+        // Configurez le widget avec les informations du capteur
+        TypeAndIconVisitor typeAndIconVisitor(sensorWidget);
+        sensor->accept(typeAndIconVisitor);
 
-        sensorWidgets.push_back(sensorWidget);
+        // Ajoutez le widget au layout
         panelLayout->addWidget(sensorWidget);
 
+        // Connectez le signal 'selected' à la méthode 'showSensor'
         connect(sensorWidget, &SensorWidget::selected, this, &SensorsPanel::showSensor);
-
     }
-    updateLayout();
 
-    //for (SensorWidget* sensorWidget : sensorWidgets) {
-    //    connect(sensorWidget, &SensorWidget::selected, this, &SensorsPanel::showSensor);
-    //}
+    // Mettez à jour le layout pour organiser les nouveaux widgets
+    updateLayout();
 
 }
 
@@ -91,6 +90,8 @@ void SensorsPanel::clearResults() {
     }
     sensorWidgets.clear(); // Clear the sensorWidgets vector
 }
+
+
 
 
 

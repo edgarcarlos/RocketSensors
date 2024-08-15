@@ -1,0 +1,17 @@
+
+
+SensorWidget {
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+QGridLayout {
+    spacing: 15px;
+    margin: 10px;
+}
+
+QWidget {
+    background-color: yellow;
+}

@@ -44,6 +44,11 @@ JsonRepository& JsonRepository::setPath(std::string path){
 }
 
 JsonRepository& JsonRepository::create(AbstractSensor* sensor){
+    if (!sensor) {
+        qDebug() << "Error: Trying to create a sensor with a null pointer.";
+        return *this;
+    }
+
     repository[sensor->getID()] = sensor;
     return *this;
 }
@@ -58,6 +63,7 @@ AbstractSensor* JsonRepository::read(const unsigned int identifier) const{
 }
 
 JsonRepository& JsonRepository::update(AbstractSensor* item){
+
     return create(item);
 }
 
