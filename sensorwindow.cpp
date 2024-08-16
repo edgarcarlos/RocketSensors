@@ -14,7 +14,6 @@ SensorWindow::SensorWindow(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
 
     QVBoxLayout* vbox = new QVBoxLayout(this);
     QHBoxLayout* hbox = new QHBoxLayout();
-    vbox->addLayout(hbox);
 
     QPushButton* back = new QPushButton();
     hbox->addWidget(back);
@@ -31,13 +30,15 @@ SensorWindow::SensorWindow(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
     hbox->addWidget(modifica);
     hbox->addWidget(delete_);
 
+    vbox->addLayout(hbox);
+
     QHBoxLayout* hbox2 = new QHBoxLayout();
-    vbox-> addLayout(hbox2);
 
     hbox2->addLayout(infoLayout);
 
     chartPanel = new ChartPanel();
     hbox2->addWidget(chartPanel);
+    vbox-> addLayout(hbox2);
 
     setLayout(vbox);
 

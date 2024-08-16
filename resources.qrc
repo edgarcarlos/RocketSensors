@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>styles.qss</file>
+        <file>Assets/icons/carburante_icon.png</file>
+        <file>Assets/icons/position_icon.png</file>
+        <file>Assets/icons/pressione_icon.png</file>
+        <file>Assets/icons/temperatura_icon.png</file>
+    </qresource>
+</RCC>

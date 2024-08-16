@@ -1,10 +1,11 @@
 
 
-SensorWidget {
-    border: 1px solid #cccccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 15px;
+#sensorWidget {
+    border: 1px solid #e0e0e0; /* Bordure fine et grise */
+    border-radius: 10px; /* Coins arrondis */
+    padding: 15px; /* Espace interne */
+    margin: 5px; /* Espace externe */
+    background-color: white; /* Arrière-plan blanc */
 }
 
 QGridLayout {
@@ -12,6 +13,4 @@ QGridLayout {
     margin: 10px;
 }
 
-QWidget {
-    background-color: yellow;
-}
+

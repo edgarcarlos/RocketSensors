@@ -12,6 +12,8 @@ SensorsPanel::SensorsPanel(QWidget* parent): QWidget(parent) {
     content = new QWidget();
     panelLayout = new QGridLayout(content);
     panelLayout->setAlignment(Qt::AlignTop);
+    panelLayout->setSpacing(15); // Espacement entre les widgets
+
     content->setLayout(panelLayout);
 
     scrollArea->setWidget(content);
@@ -29,7 +31,7 @@ void SensorsPanel::addSensors(const std::vector<AbstractSensor*>& sensors){
     for (auto sensor : sensors) {
         // Créez un nouveau widget pour chaque capteur
         SensorWidget* sensorWidget = new SensorWidget(sensor, content);
-
+        sensorWidget->setObjectName("sensorWidget");
         // Configurez le widget avec les informations du capteur
         TypeAndIconVisitor typeAndIconVisitor(sensorWidget);
         sensor->accept(typeAndIconVisitor);

@@ -11,37 +11,58 @@
 
 SensorWidget::SensorWidget(AbstractSensor* sensor, QWidget *parent) : QWidget(parent), sensor(sensor) {
 
-    widget = new QWidget();
-    QHBoxLayout* hbox = new QHBoxLayout(widget);
-    QVBoxLayout* vbox = new QVBoxLayout();
-    hbox->addLayout(vbox);
+    //this->setObjectName("sensorWidget");
+    //setStyleSheet("background-color: red; border: 1px solid #000000; border-radius: 5px; padding: 10px;");
 
-    QHBoxLayout* hbox2 = new QHBoxLayout();
-    vbox->addLayout(hbox2);
+    QWidget* widget = new QWidget(this);
+    widget->setObjectName("sensorWidget");
 
+    /* QPalette pal = widget->palette(); // Ottiene la palette di colori del backgroundWidget
+    pal.setColor(QPalette::Window, Qt::yellow); // Imposta il colore di sfondo (in questo caso bianco)
+    widget->setAutoFillBackground(true);
+    widget->setPalette(pal);*/
+
+
+    QVBoxLayout* vbox = new QVBoxLayout(widget);
+    widget->setLayout(vbox);
+
+    vbox->setSpacing(15);
+    QHBoxLayout* hbox1 = new QHBoxLayout();
     sensorIconLabel = new QLabel();
-    //sensorIcon = new QLabel();
-    hbox2->addWidget(sensorIconLabel);
+    hbox1->addWidget(sensorIconLabel);
 
     QLabel* name = new QLabel(QString::fromStdString(sensor->getName()));
     name->setObjectName("name");
-    hbox2->addWidget(name);
+    hbox1->addWidget(name);
+
+    vbox->addLayout(hbox1);
+
+    QVBoxLayout* vbox2 = new QVBoxLayout();
 
     sensorTypeLabel = new QLabel();
-    vbox->addWidget(sensorTypeLabel);
+    vbox2->addWidget(sensorTypeLabel);
 
 
     QLabel* description = new QLabel(QString::fromStdString(sensor->getDescription()));
     description->setObjectName("description");
-    vbox->addWidget(description);
+    vbox2->addWidget(description);
 
     QLabel* ID = new QLabel(QString::number(sensor->getID()));
     ID->setObjectName("ID");
-    vbox->addWidget(ID);
+    vbox2->addWidget(ID);
+
+    vbox->addLayout(vbox2);
+
+    QHBoxLayout* hbox2 = new QHBoxLayout();
 
     valueLabel = new QLabel();
-    hbox->addWidget(valueLabel);
+    hbox2->addWidget(valueLabel);
 
+    vbox->addLayout(hbox2);
+
+    QVBoxLayout* mainLayout = new QVBoxLayout(this);
+    mainLayout->addWidget(widget);
+    setLayout(mainLayout);
 
     TypeAndIconVisitor visitor(this);
     sensor->accept(visitor);
@@ -49,7 +70,6 @@ SensorWidget::SensorWidget(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
     CurrentValueVisitor valueVisitor(this);
     sensor->accept(valueVisitor);
 
-    setLayout(hbox);
 }
 
 void SensorWidget::setSensorIcon(const QIcon& icon){
