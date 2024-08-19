@@ -15,69 +15,90 @@ EditWidget::EditWidget(AbstractSensor* sensor,
                        MainWindow* mainWindow,
                        JsonRepository* repository,
                        QWidget* parent)
-    : QWidget(parent), mainWindow(mainWindow), sensor(sensor),repository(repository),  tminLineEdit(nullptr), tmaxLineEdit(nullptr),
-    pmaxLineEdit(nullptr), soglioLineEdit(nullptr), capacityLineEdit(nullptr) {
+    : QWidget(parent), mainWindow(mainWindow), sensor(sensor), repository(repository),
+    tminLineEdit(nullptr), tmaxLineEdit(nullptr), pmaxLineEdit(nullptr), soglioLineEdit(nullptr), capacityLineEdit(nullptr) {
+
+    qDebug() << "Entering EditWidget constructor.";
 
     vboxlayout = new QVBoxLayout(this);
     vboxlayout->setObjectName("widget-edit");
     vboxlayout->setAlignment(Qt::AlignLeft | Qt::AlignTop);
+    qDebug() << "QVBoxLayout initialized.";
 
     idEdit = new QSpinBox();
     idEdit->setObjectName("identifier-input");
     idEdit->setMinimum(1);
     idEdit->setMaximum(INT_MAX);
     vboxlayout->addWidget(idEdit);
+    qDebug() << "QSpinBox added.";
 
     nameEdit = new QLineEdit(this);
     vboxlayout->addWidget(new QLabel("Name:"));
     vboxlayout->addWidget(nameEdit);
-
+    qDebug() << "NameEdit added.";
 
     descriptionEdit = new QLineEdit(this);
     vboxlayout->addWidget(new QLabel("Description:"));
     vboxlayout->addWidget(descriptionEdit);
+    qDebug() << "DescriptionEdit added.";
 
     typeComboBox = new QComboBox(this);
     typeComboBox->addItem("");
     typeComboBox->addItems({"Temperatura", "Pressione", "Carburante", "Position"});
     vboxlayout->addWidget(new QLabel("Type:"));
     vboxlayout->addWidget(typeComboBox);
+    qDebug() << "TypeComboBox added.";
 
     dynamicFieldsLayout = new QVBoxLayout();
     vboxlayout->addLayout(dynamicFieldsLayout);
+    qDebug() << "DynamicFieldsLayout added.";
 
     connect(typeComboBox, &QComboBox::currentTextChanged, this, &EditWidget::onSensorTypeChanged);
-
+    qDebug() << "TypeComboBox connected.";
 
     saveButton = new QPushButton("Save", this);
     cancelButton = new QPushButton("Cancel", this);
     vboxlayout->addWidget(saveButton);
     vboxlayout->addWidget(cancelButton);
+    qDebug() << "Buttons added.";
 
     setLayout(vboxlayout);
+    qDebug() << "Layout set.";
 
     connect(saveButton, &QPushButton::clicked, this, &EditWidget::apply);
     connect(cancelButton, &QPushButton::clicked, this, &EditWidget::onCancelClicked);
+    qDebug() << "Signals connected.";
 
-    SensorWidget sensorWidget(sensor);
-    TypeAndIconVisitor typeAndIconVisitor(&sensorWidget);
-    sensor->accept(typeAndIconVisitor);
-    QString sensorType = sensorWidget.getSensorType();
+    // Debug code to check if the sensor is valid and if the subsequent operations are being executed
+    qDebug() << "Sensor is" << (sensor ? "valid" : "null");
 
     if (sensor) {
-        // Populate fields with existing sensor data
+        SensorWidget sensorWidget(sensor);
+        qDebug() << "SensorWidget created.";
+
+        TypeAndIconVisitor typeAndIconVisitor(&sensorWidget);
+        qDebug() << "TypeAndIconVisitor created.";
+
+        sensor->accept(typeAndIconVisitor);
+        qDebug() << "Sensor accepted visitor.";
+
+        QString sensorType = sensorWidget.getSensorType();
+        qDebug() << "Sensor type obtained:" << sensorType;
+
+
         idEdit->setValue(sensor->getID());
         idEdit->setEnabled(false);
         nameEdit->setText(QString::fromStdString(sensor->getName()));
         descriptionEdit->setText(QString::fromStdString(sensor->getDescription()));
 
-        // Initialize fields based on sensor type
-        //QString type = QString::fromStdString(sensor->getSensorType()); // Assume getType() returns a string representing sensor type
         typeComboBox->setCurrentText(sensorType);
         onSensorTypeChanged(sensorType);
         typeComboBox->setEnabled(false);
+    } else {
+        qDebug() << "Sensor is null.";
     }
 
+    qDebug() << "EditWidget constructor completed.";
 }
 
 void EditWidget::onSensorTypeChanged(const QString& sensorType) {
@@ -94,6 +115,8 @@ void EditWidget::onSensorTypeChanged(const QString& sensorType) {
         createCarburanteFields();
     }
     //vboxlayout->update();
+    qDebug() << "EditWidget constructor completed.";
+
 }
 
 void EditWidget::clearDynamicFields() {
@@ -140,8 +163,8 @@ void EditWidget::createCarburanteFields(){
     capacityLineEdit = new QLineEdit(this);
 
     dynamicFieldsLayout->addWidget(new QLabel("Soglio:"));
-    dynamicFieldsLayout->addWidget(new QLabel("Capacity:"));
     dynamicFieldsLayout->addWidget(soglioLineEdit);
+    dynamicFieldsLayout->addWidget(new QLabel("Capacity:"));
     dynamicFieldsLayout->addWidget(capacityLineEdit);
 
     if(Carburante* csensor = dynamic_cast<Carburante*>(sensor)){

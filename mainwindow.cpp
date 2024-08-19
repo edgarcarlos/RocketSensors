@@ -310,12 +310,21 @@ void MainWindow::setFullScreen(){
 
 
 void MainWindow::addSensor() {
+
+    qDebug() << "Entering addSensor()";
     // Créer un EditWidget directement dans une QDialog
     QDialog dialog(this);
     dialog.setWindowTitle("Add New Sensor");
 
-    EditWidget* editWidget = new EditWidget(nullptr,this,repository, &dialog);
+    qDebug() << "Created QDialog for adding new sensor.";
 
+    // Créer l'EditWidget
+    EditWidget* editWidget = new EditWidget(nullptr, this, repository, &dialog);
+    if (!editWidget) {
+        qDebug() << "Failed to create EditWidget.";
+        return;
+    }
+    qDebug() << "EditWidget created successfully.";
     // Ajouter des boutons "Save" et "Cancel" dans le QDialog
     connect(editWidget, &EditWidget::sensorSaved, &dialog, &QDialog::accept);
     connect(editWidget, &EditWidget::editCanceled, &dialog, &QDialog::reject);

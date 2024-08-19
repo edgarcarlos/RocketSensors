@@ -24,6 +24,9 @@ const vector<double> LevelSensor::getDati()const {
 }
 
 double LevelSensor::getCurrentlevel()const {
-    return currentLevel;
+    if(!dati.empty())
+        return dati.back();
+    else
+        return 0;
 }
 
