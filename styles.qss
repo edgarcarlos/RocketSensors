@@ -8,9 +8,19 @@
     background-color: white; /* Arrière-plan blanc */
 }
 
+#name {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+
 QGridLayout {
     spacing: 15px;
     margin: 10px;
 }
 
+#scrollArea {
+    background-color: #cdf0fb;
+
+}
 

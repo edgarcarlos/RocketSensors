@@ -8,8 +8,9 @@ SensorsPanel::SensorsPanel(QWidget* parent): QWidget(parent) {
     scrollArea = new QScrollArea(this);
     scrollArea->setWidgetResizable(true);
     //scrollArea->setBackgroundRole(QPalette::Dark);
-
     content = new QWidget();
+    //content->setStyleSheet("background-color: #F5F5F5;"); // Gris clair pour le contenu
+
     panelLayout = new QGridLayout(content);
     panelLayout->setAlignment(Qt::AlignTop);
     panelLayout->setSpacing(15); // Espacement entre les widgets
@@ -37,10 +38,13 @@ void SensorsPanel::addSensors(const std::vector<AbstractSensor*>& sensors){
         sensor->accept(typeAndIconVisitor);
 
         // Ajoutez le widget au layout
-        panelLayout->addWidget(sensorWidget);
+        //panelLayout->addWidget(sensorWidget);
+        sensorWidgets.push_back(sensorWidget);
 
         // Connectez le signal 'selected' à la méthode 'showSensor'
-        connect(sensorWidget, &SensorWidget::selected, this, &SensorsPanel::showSensor);
+        connect(sensorWidget, &SensorWidget::selected, this, [this, sensor]() {
+            emit sensorClicked(sensor);
+        });
     }
 
     // Mettez à jour le layout pour organiser les nouveaux widgets
@@ -54,16 +58,18 @@ void SensorsPanel::resizeEvent(QResizeEvent* event) {
 }
 
 void SensorsPanel::updateLayout() {
-    int row = 0;
-    int col = 0;
-    int rowSize = initialRowSize;
-    if (width() > 600) {
-        rowSize = width() / 200;
+
+    while (QLayoutItem* item = panelLayout->takeAt(0)) {
+        if (QWidget* widget = item->widget()) {
+            panelLayout->removeWidget(widget);
+        }
+        delete item; // Supprime l'élément du layout
     }
 
-    if (rowSize == 0) {
-        rowSize = 1;
-    }
+    int row = 0;
+    int col = 0;
+    int rowSize = 3;
+
 
     for (SensorWidget* widget : sensorWidgets) {
         panelLayout->addWidget(widget, row, col);

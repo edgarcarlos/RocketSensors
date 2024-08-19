@@ -36,6 +36,12 @@ const double& Carburante::getSoglio() const{
     return soglio;
 }
 
+AbstractSensor& Carburante::setSoglio(const double soglio){
+    this->soglio = soglio;
+    return *this;
+}
+
+
 
 void Carburante::accept(IVisitor& visitor) {
     visitor.visit(*this);

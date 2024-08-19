@@ -1,4 +1,5 @@
 #include "jsonvisitor.h"
+#include <QJsonArray>
 
 QJsonObject JsonVisitor::getObject() const {
     return object;
@@ -15,6 +16,12 @@ void JsonVisitor::visit(const Temperatura& temperatura) {
     temperaturaObject.insert("Tmin", QJsonValue::fromVariant(temperatura.getTmin()));
     temperaturaObject.insert("Tmax", QJsonValue::fromVariant(temperatura.getTmax()));
 
+    QJsonArray datiArray;
+    for (double dato : temperatura.getDati()) {
+        datiArray.append(QJsonValue::fromVariant(dato));
+    }
+    temperaturaObject.insert("dati", datiArray);
+
     object = temperaturaObject;
 }
 
@@ -27,6 +34,12 @@ void JsonVisitor::visit(const Pressione& pressione) {
     pressioneObject.insert("name", QJsonValue::fromVariant(pressione.getName().c_str()));
     pressioneObject.insert("description", QJsonValue::fromVariant(pressione.getDescription().c_str()));
     pressioneObject.insert("Pmax", QJsonValue::fromVariant(pressione.getPmax()));
+
+    QJsonArray datiArray;
+    for (double dato : pressione.getDati()) {
+        datiArray.append(QJsonValue::fromVariant(dato));
+    }
+    pressioneObject.insert("dati", datiArray);
 
     object = pressioneObject;
 }
@@ -42,6 +55,12 @@ void JsonVisitor::visit(const Carburante& carburante) {
     carburanteObject.insert("capacity", QJsonValue::fromVariant(carburante.getCapacity()));
     carburanteObject.insert("Soglio", QJsonValue::fromVariant(carburante.getSoglio()));
 
+    QJsonArray datiArray;
+    for (double dato : carburante.getDati()) {
+        datiArray.append(QJsonValue::fromVariant(dato));
+    }
+    carburanteObject.insert("dati", datiArray);
+
     object = carburanteObject;
 }
 
@@ -53,6 +72,16 @@ void JsonVisitor::visit(const PositionSensor& positionSensor) {
     positionSensorObject.insert("id", QJsonValue::fromVariant(positionSensor.getID()));
     positionSensorObject.insert("name", QJsonValue::fromVariant(positionSensor.getName().c_str()));
     positionSensorObject.insert("description", QJsonValue::fromVariant(positionSensor.getDescription().c_str()));
+
+    QJsonArray datiArray;
+    for (const auto& loc : positionSensor.getDati()) {
+        QJsonObject locObject;
+        locObject.insert("longitude", QJsonValue::fromVariant(loc.longitude));
+        locObject.insert("latitude", QJsonValue::fromVariant(loc.latitude));
+        locObject.insert("altitude", QJsonValue::fromVariant(loc.altitude));
+        datiArray.append(locObject);
+    }
+    positionSensorObject.insert("dati", datiArray);
 
     object = positionSensorObject;
 }

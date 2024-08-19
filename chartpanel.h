@@ -19,6 +19,11 @@ public:
     void levelChart(const LevelSensor& levelSensor);
     void positionChart(const PositionSensor& positionSensor);
     void accept(IVisitor& visitor);
+    void clear();
+
+private:
+    QVBoxLayout* mainLayout;
+
 
 };
 

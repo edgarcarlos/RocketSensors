@@ -28,6 +28,12 @@ const double& Pressione::getPmax() const{
     return Pmax;
 }
 
+AbstractSensor& Pressione::setPmax(const double Pmax){
+    this->Pmax = Pmax;
+    return *this;
+}
+
+
 void Pressione::accept(IVisitor& visitor) {
     visitor.visit(*this);
 }

@@ -25,6 +25,16 @@ const double& Temperatura::getTmax() const{
     return Tmax;
 }
 
+AbstractSensor& Temperatura::setTmin(const double Tmin){
+    this->Tmin = Tmin;
+    return *this;
+}
+AbstractSensor& Temperatura::setTmax(const double Tmax){
+    this->Tmax = Tmax;
+    return *this;
+}
+
+
 void Temperatura::accept(IVisitor& visitor) {
     visitor.visit(*this);
 }

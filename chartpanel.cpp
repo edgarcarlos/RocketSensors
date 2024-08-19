@@ -2,11 +2,13 @@
 
 #include <QVBoxLayout>
 
-ChartPanel::ChartPanel(QWidget *parent) : QWidget(parent) {}
+ChartPanel::ChartPanel(QWidget *parent) : QWidget(parent) {
 
+}
 
 void ChartPanel::envChart(const EnvSensor& envSensor){
 
+    clear();
     vector<double> data = envSensor.getDati();
 
     QLineSeries *series = new QLineSeries();
@@ -19,7 +21,8 @@ void ChartPanel::envChart(const EnvSensor& envSensor){
     chart->legend()->hide();
     chart->addSeries(series);
     chart->createDefaultAxes();
-    QList<QAbstractAxis*> verticalAxes = chart->axes(Qt::Vertical);
+
+    /*QList<QAbstractAxis*> verticalAxes = chart->axes(Qt::Vertical);
     if (!verticalAxes.isEmpty()) {
         verticalAxes.first()->setRange(0, 12);
     }
@@ -27,17 +30,19 @@ void ChartPanel::envChart(const EnvSensor& envSensor){
     QList<QAbstractAxis*> horizontalAxes = chart->axes(Qt::Horizontal);
     if (!horizontalAxes.isEmpty()) {
         horizontalAxes.first()->setRange(0, 11);
-    }
+    }*/
 
     chart->setVisible(true);
 
-    QChartView *chartView = new QChartView();
+    QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
-    chartView->setVisible(true);
+    //chartView->setVisible(true);
 
-    QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->addWidget(chartView);
-    setLayout(layout);
+    if (!layout()) {
+        QVBoxLayout *newLayout = new QVBoxLayout();
+        setLayout(newLayout);
+    }
+    layout()->addWidget(chartView);
 
 
 }
@@ -45,6 +50,7 @@ void ChartPanel::envChart(const EnvSensor& envSensor){
 
 
 void ChartPanel::levelChart(const LevelSensor& levelSensor){
+    clear();
     // Calcolo volumi
     qreal usedVolume = levelSensor.getCapacity() - levelSensor.getCurrentlevel();
     qreal remainingVolume = levelSensor.getCurrentlevel();
@@ -77,15 +83,18 @@ void ChartPanel::levelChart(const LevelSensor& levelSensor){
     QChartView* chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
 
-    QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->addWidget(chartView);
-    setLayout(layout);
+    if (!layout()) {
+        QVBoxLayout *newLayout = new QVBoxLayout();
+        setLayout(newLayout);
+    }
+    layout()->addWidget(chartView);
 }
 
 
 
 
 void ChartPanel::positionChart(const PositionSensor& positionSensor){
+    clear();
     // 1. charts per longitude et la latitude
     QScatterSeries* scatterSeries = new QScatterSeries();
     const vector<PositionSensor::Localisation>& locations = positionSensor.getDati();
@@ -112,6 +121,7 @@ void ChartPanel::positionChart(const PositionSensor& positionSensor){
 
     QChartView* scatterChartView = new QChartView(scatterChart);
     scatterChartView->setRenderHint(QPainter::Antialiasing);
+    scatterChartView->setFixedSize(750, 400); // Set fixed size for scatter chart
 
     // 2. chart per altitude
     QLineSeries* lineSeries = new QLineSeries();
@@ -137,14 +147,31 @@ void ChartPanel::positionChart(const PositionSensor& positionSensor){
 
     QChartView* lineChartView = new QChartView(lineChart);
     lineChartView->setRenderHint(QPainter::Antialiasing);
-
-    QVBoxLayout* layout = new QVBoxLayout(this);
-    layout->addWidget(scatterChartView);
-    layout->addWidget(lineChartView);
-    setLayout(layout);
+    lineChartView->setFixedSize(750, 400);
+    if (!layout()) {
+        QVBoxLayout *newLayout = new QVBoxLayout();
+        setLayout(newLayout);
+    }
+    layout()->addWidget(scatterChartView);
+    layout()->addWidget(lineChartView);
 
 }
 
+void ChartPanel::clear() {
+    // Clean up any existing charts or widgets
+    QLayout* existingLayout = layout();
+    if (existingLayout) {
+        QLayoutItem* item;
+        while ((item = existingLayout->takeAt(0))) {
+            // Delete the widget if it exists
+            if (item->widget()) {
+                delete item->widget();
+            }
+            // Delete the layout item itself
+            delete item;
+        }
+    }
+}
 
 
 

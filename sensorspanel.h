@@ -32,7 +32,8 @@ private:
     QScrollArea* scrollArea;
     QWidget* content;
 
-
+signals:
+    void sensorClicked(AbstractSensor* sensor);
 
 public slots:
     void showSensor(AbstractSensor* sensor);

@@ -12,12 +12,16 @@ SearchWidget::SearchWidget(QWidget *parent) : QWidget(parent) {
     searchInput = new QLineEdit();
     formLayout->addRow("Search", searchInput);
 
-    QPushButton* search_input = new QPushButton();
+    QPushButton* search_input = new QPushButton(QIcon(QPixmap((":Assets/icons/search_icon.png"))),
+                                "Search");
     layout->addWidget(search_input);
+
+    search_input->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_Enter));
+
 
     // Filter menu
     filterMenu = new QMenu(this);
-    filterMenu->setTitle("Filter");
+    filterMenu->setTitle("filter");
 
     QWidget *filterWidget = new QWidget(filterMenu);
     QVBoxLayout *filterLayout = new QVBoxLayout(filterWidget);
@@ -38,8 +42,11 @@ SearchWidget::SearchWidget(QWidget *parent) : QWidget(parent) {
     filterMenu->addAction(filterAction);
 
     filterButton = new QToolButton();
-    filterButton->setText("Filter");
-    filterButton->setMenu(filterMenu);
+    QIcon filterIcon(QPixmap(":Assets/icons/filter_icon.png"));
+
+    filterButton->setIcon(filterIcon); // Définir l'icône
+    filterButton->setText("Filter");   // Définir le texte
+    filterButton->setMenu(filterMenu); // Définir le menu
     filterButton->setPopupMode(QToolButton::InstantPopup);
     layout->addWidget(filterButton);
 

@@ -21,6 +21,7 @@ class Carburante: public LevelSensor {
                    const vector<double> dati = {0,0,0,0,0,0,0},
                     const double currentLevel = 0.0);
         const double& getSoglio() const;
+        AbstractSensor& setSoglio(const double soglio);
         double debito(vector<double> dati)const;
         string statoQuantita(double currentLevel)const;
         void accept(IVisitor& visitor) override;

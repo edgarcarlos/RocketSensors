@@ -22,7 +22,7 @@ public:
 
 
 private:
-
+    QStackedWidget* stackedWidget;
     SearchWidget* searchWidget;
     SensorsPanel* sensorspanel;
     JsonRepository* repository;
@@ -30,6 +30,7 @@ private:
     bool isFullScreenMode = false;
 
 public slots:
+    void showSensorWindow(AbstractSensor* sensor);
     void openData();
     void saveData();
     void saveAsData();
@@ -37,6 +38,8 @@ public slots:
     void setFullScreen();
     void addSensor();
     void search(const std::string& query);
+    void deleteSensor(const AbstractSensor* sensor);
+    void modifySensor(AbstractSensor* sensor);
     void showStatus(QString message);
 };
 

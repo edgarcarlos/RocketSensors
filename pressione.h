@@ -23,6 +23,8 @@ class Pressione: public EnvSensor {
             );
 
         const double& getPmax() const;
+        AbstractSensor& setPmax(const double Pmax);
+
         vector<double> pressioneAssoluta(vector<double> dati)const ;
         void accept(IVisitor& visitor) override;
         void accept(SConstVisitor& visitor) const override;

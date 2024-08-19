@@ -24,6 +24,9 @@ class Temperatura: public EnvSensor {
                     const double valoreCorrente = 0.0);
         const double& getTmin() const;
         const double& getTmax() const;
+        AbstractSensor& setTmin(const double Tmin);
+        AbstractSensor& setTmax(const double Tmax);
+
         string stato(double valoreCorrente)const ;
         void accept(IVisitor& visitor) override;
         void accept(SConstVisitor& visitor) const override;

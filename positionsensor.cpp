@@ -3,8 +3,9 @@
 PositionSensor::PositionSensor(const string name,
                        const string description,
                        const unsigned int ID,
-                       const Localisation& positionAttuale,
-                       const vector<Localisation>& dati): AbstractSensor(name,description,ID),
+                       const vector<Localisation>& dati,
+                       const Localisation& positionAttuale
+                       ): AbstractSensor(name,description,ID),
                                                         positionAttuale(positionAttuale),
                                                         dati(dati) {}
 

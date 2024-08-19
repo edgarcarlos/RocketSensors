@@ -12,7 +12,11 @@ EnvSensor::EnvSensor(const string name,
  }
 
 double EnvSensor::getValoreCorrente()const {
-    return valoreCorrente;
+
+    if(!dati.empty())
+        return dati.back();
+    else
+        return 0;
 }
 
 
@@ -31,26 +35,35 @@ double EnvSensor::media()const {
 double EnvSensor:: valoreMin()const {
 
     int n = dati.size();
-    double min = dati[0];
-    
-    for (int i=0; i<n; i++){
-        if (dati[i]<min)
-            min = dati[i+1];
-    }
+    if(!dati.empty()){
+        double min = dati[0];
 
-    return min;
+        for (int i=0; i<n; i++){
+            if (dati[i]<min)
+                min = dati[i+1];
+        }
+        return min;
+    }
+    else return 0;
+
+
     
 }
 
 double EnvSensor::valoreMax()const {
 
     int n = dati.size();
-    double max = dati[0];
-    
-    for (int i=0; i<n; i++){
-        if (dati[i]>max)
-            max = dati[i+1];
-    }
+    if(!dati.empty()){
+        double max = dati[0];
 
-    return max;
+        for (int i=0; i<n; i++){
+            if (dati[i]>max)
+                max = dati[i+1];
+        }
+
+        return max;
+    }
+    else
+        return 0;
+
 }

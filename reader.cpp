@@ -5,6 +5,8 @@
 #include "pressione.h"
 #include "positionsensor.h"
 
+#include <QJsonArray>
+
 
 
 const std::map<unsigned int, AbstractSensor*>& Reader::getCache() const{
@@ -49,39 +51,72 @@ AbstractSensor* Reader::read(const QJsonObject& object) {
 
 
 Temperatura* Reader::readTemperatura(const QJsonObject& object) const {
+    QJsonArray datiArray = object.value("dati").toArray();
+    vector<double> dati;
+    for (const QJsonValue& value : datiArray) {
+        dati.push_back(value.toDouble());
+    }
+
     return new Temperatura(
         object.value("name").toString().toStdString(),
         object.value("description").toString().toStdString(),
         object.value("id").toInt(),
         object.value("Tmin").toDouble(),
-        object.value("Tmax").toDouble()
+        object.value("Tmax").toDouble(),
+        dati
     );
 }
 
 Pressione* Reader::readPressione(const QJsonObject& object) const {
-    return new Pressione( 
+    QJsonArray datiArray = object.value("dati").toArray();
+    vector<double> dati;
+    for (const QJsonValue& value : datiArray) {
+        dati.push_back(value.toDouble());
+    }
+
+    return new Pressione(
         object.value("name").toString().toStdString(),
         object.value("description").toString().toStdString(),
         object.value("id").toInt(),
-        object.value("Pmax").toDouble()
+        object.value("Pmax").toDouble(),
+        dati
     );
 }
 
 Carburante* Reader::readCarburante(const QJsonObject& object) const {
+    QJsonArray datiArray = object.value("dati").toArray();
+    vector<double> dati;
+    for (const QJsonValue& value : datiArray) {
+        dati.push_back(value.toDouble());
+    }
+
     return new Carburante(
         object.value("name").toString().toStdString(),
         object.value("description").toString().toStdString(),
         object.value("id").toInt(),
         object.value("capacity").toDouble(),
-        object.value("soglio").toDouble()
+        object.value("soglio").toDouble(),
+        dati
     );
 }
 
 PositionSensor* Reader::readPositionSensor(const QJsonObject& object) const {
+    QJsonArray datiArray = object.value("dati").toArray();
+    vector<PositionSensor::Localisation> dati;
+    for (const QJsonValue& value : datiArray) {
+        QJsonObject locObj = value.toObject();
+        PositionSensor::Localisation loc{
+            locObj.value("longitude").toDouble(),
+            locObj.value("latitude").toDouble(),
+            locObj.value("altitude").toDouble()
+        };
+        dati.push_back(loc);
+    }
     return new PositionSensor(
         object.value("name").toString().toStdString(),
         object.value("description").toString().toStdString(),
-        object.value("id").toInt()
+        object.value("id").toInt(),
+        dati
     );
 }
 

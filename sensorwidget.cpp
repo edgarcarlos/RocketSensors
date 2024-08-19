@@ -23,7 +23,7 @@ SensorWidget::SensorWidget(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
     widget->setPalette(pal);*/
 
 
-    QVBoxLayout* vbox = new QVBoxLayout(widget);
+    QVBoxLayout* vbox = new QVBoxLayout(this);
     widget->setLayout(vbox);
 
     vbox->setSpacing(15);
@@ -33,7 +33,10 @@ SensorWidget::SensorWidget(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
 
     QLabel* name = new QLabel(QString::fromStdString(sensor->getName()));
     name->setObjectName("name");
+    name->setAlignment(Qt::AlignCenter);
+    hbox1->addStretch();
     hbox1->addWidget(name);
+    hbox1->addStretch();
 
     vbox->addLayout(hbox1);
 
