@@ -16,20 +16,22 @@ SearchWidget::SearchWidget(QWidget *parent) : QWidget(parent) {
                                 "Search");
     layout->addWidget(search_input);
 
-    search_input->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_Enter));
+    search_input->setShortcut(QKeySequence(Qt::Key_Return));
 
 
     // Filter menu
     filterMenu = new QMenu(this);
     filterMenu->setTitle("filter");
 
-    QWidget *filterWidget = new QWidget(filterMenu);
+    QWidget *filterWidget = new QWidget();
     QVBoxLayout *filterLayout = new QVBoxLayout(filterWidget);
+    //filterLayout->SetMinimumSize(150, 100);
 
-    QCheckBox* temperatura = new QCheckBox("Temperatura");
-    QCheckBox* pressione = new QCheckBox("pressione");
-    QCheckBox* carburante = new QCheckBox("Carburante");
-    QCheckBox* position = new QCheckBox("Position");
+    temperatura = new QCheckBox("Temperatura");
+    pressione = new QCheckBox("Pressione");
+    carburante = new QCheckBox("Carburante");
+    position = new QCheckBox("Position");
+
 
     filterLayout->addWidget(temperatura);
     filterLayout->addWidget(pressione);
@@ -37,8 +39,12 @@ SearchWidget::SearchWidget(QWidget *parent) : QWidget(parent) {
     filterLayout->addWidget(position);
 
     filterWidget->setLayout(filterLayout);
-    QAction *filterAction = new QWidgetAction(filterMenu);
-    //filterAction->setDefaultWidget(filterWidget);
+
+    filterWidget->setMinimumSize(200, 150);
+    filterWidget->resize(200, 150);
+
+    QWidgetAction *filterAction = new QWidgetAction(filterMenu);
+    filterAction->setDefaultWidget(filterWidget);
     filterMenu->addAction(filterAction);
 
     filterButton = new QToolButton();
@@ -66,7 +72,33 @@ void SearchWidget::searchClicked(){
 
     std::string searchString = searchInput->text().toStdString();
     emit searchTriggered(searchString);
+
+    temperatura->setChecked(false);
+    pressione->setChecked(false);
+    carburante->setChecked(false);
+    position->setChecked(false);
+
 }
 
 
-void SearchWidget::Checkboxchanged(){}
+void SearchWidget::Checkboxchanged(){
+
+    std::vector<QString> selectedTypes;
+
+    // Vérifiez l'état de chaque case à cocher et ajoutez le type correspondant si elle est sélectionnée
+    if (temperatura->isChecked()) {
+        selectedTypes.push_back("Temperatura");
+    }
+    if (pressione->isChecked()) {
+        selectedTypes.push_back("Pressione");
+    }
+    if (carburante->isChecked()) {
+        selectedTypes.push_back("Carburante");
+    }
+    if (position->isChecked()) {
+        selectedTypes.push_back("Position");
+    }
+
+    // Émettez un signal avec les types sélectionnés sous forme de vecteur de chaînes
+    emit filterTypesChanged(selectedTypes);
+}

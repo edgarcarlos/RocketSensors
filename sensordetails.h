@@ -1,5 +1,5 @@
-#ifndef SENSORWINDOW_H
-#define SENSORWINDOW_H
+#ifndef SENSORDETAILS_H
+#define SENSORDETAILS_H
 
 #include "abstractsensor.h"
 #include "chartpanel.h"
@@ -7,12 +7,12 @@
 #include "chartvisitor.h"
 #include <QWidget>
 
-class SensorWindow : public QWidget
+class SensorDetails : public QWidget
 {
     Q_OBJECT
 
 public:
-    SensorWindow(AbstractSensor* sensor, QWidget *parent = nullptr);
+    SensorDetails(AbstractSensor* sensor, QWidget *parent = nullptr);
     void temperatureInfo(const Temperatura& sensor);
     void pressionInfo(const Pressione& sensor);
     void carburanteInfo(const Carburante& sensor);
@@ -41,4 +41,4 @@ signals:
     //void backRequested();
 };
 
-#endif // SENSORWINDOW_H
+#endif // SENSORDETAILS_H

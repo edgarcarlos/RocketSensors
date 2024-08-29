@@ -19,7 +19,7 @@ void TypeAndIconVisitor::visit(Temperatura& /*temperatura*/) {
 }
 
 void TypeAndIconVisitor::visit(PositionSensor& /*positionsensor*/) {
-    sensor->setSensorType("Positionsensor");
+    sensor->setSensorType("Position");
     sensor->setSensorIcon(QIcon(":Assets/icons/position_icon.png"));
 }
 

@@ -30,7 +30,7 @@ private:
     bool isFullScreenMode = false;
 
 public slots:
-    void showSensorWindow(AbstractSensor* sensor);
+    void showSensorDetails(AbstractSensor* sensor);
     void openData();
     void saveData();
     void saveAsData();
@@ -38,6 +38,7 @@ public slots:
     void setFullScreen();
     void addSensor();
     void search(const std::string& query);
+    void filterTypes(const std::vector<QString>& types);
     void deleteSensor(const AbstractSensor* sensor);
     void modifySensor(AbstractSensor* sensor);
     void showStatus(QString message);

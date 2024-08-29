@@ -1,11 +1,23 @@
 
 
 #sensorWidget {
-    border: 1px solid #e0e0e0; /* Bordure fine et grise */
-    border-radius: 10px; /* Coins arrondis */
-    padding: 15px; /* Espace interne */
-    margin: 5px; /* Espace externe */
-    background-color: white; /* Arrière-plan blanc */
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 5px;
+    background-color: white;
+
+}
+
+#valueLabel {
+    font-weight: bold;
+    font-size: 14px;
+    color: #0583F2;
+
+}
+
+#sensorWidget:hover {
+    background-color: #E4F0FD;
 }
 
 #name {
@@ -19,8 +31,5 @@ QGridLayout {
     margin: 10px;
 }
 
-#scrollArea {
-    background-color: #cdf0fb;
 
-}
 

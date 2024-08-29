@@ -31,7 +31,7 @@ SensorWidget::SensorWidget(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
     sensorIconLabel = new QLabel();
     hbox1->addWidget(sensorIconLabel);
 
-    QLabel* name = new QLabel(QString::fromStdString(sensor->getName()));
+    QLabel* name = new QLabel( QString::fromStdString(sensor->getName()));
     name->setObjectName("name");
     name->setAlignment(Qt::AlignCenter);
     hbox1->addStretch();
@@ -46,11 +46,12 @@ SensorWidget::SensorWidget(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
     vbox2->addWidget(sensorTypeLabel);
 
 
-    QLabel* description = new QLabel(QString::fromStdString(sensor->getDescription()));
+    QLabel* description = new QLabel("Description: " + QString::fromStdString(sensor->getDescription()));
+    description->setWordWrap(true);
     description->setObjectName("description");
     vbox2->addWidget(description);
 
-    QLabel* ID = new QLabel(QString::number(sensor->getID()));
+    QLabel* ID = new QLabel("ID: " + QString::number(sensor->getID()));
     ID->setObjectName("ID");
     vbox2->addWidget(ID);
 
@@ -59,6 +60,7 @@ SensorWidget::SensorWidget(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
     QHBoxLayout* hbox2 = new QHBoxLayout();
 
     valueLabel = new QLabel();
+    valueLabel->setObjectName("valueLabel");
     hbox2->addWidget(valueLabel);
 
     vbox->addLayout(hbox2);
@@ -69,6 +71,8 @@ SensorWidget::SensorWidget(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
 
     TypeAndIconVisitor visitor(this);
     sensor->accept(visitor);
+
+    //sensorTypeLabel->setText("Type: " + sensorTypeLabel->text());
 
     CurrentValueVisitor valueVisitor(this);
     sensor->accept(valueVisitor);
@@ -86,7 +90,7 @@ QIcon SensorWidget::getSensorIcon() const {
 
 void SensorWidget::setSensorType(const QString& type){
     sensorType = type;
-    sensorTypeLabel->setText(type);
+    sensorTypeLabel->setText("Type: " + type);
 }
 
 QString SensorWidget::getSensorType() const {

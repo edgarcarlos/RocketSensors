@@ -1,19 +1,19 @@
-#ifndef SENSORWINDOWVISITOR_H
-#define SENSORWINDOWVISITOR_H
+#ifndef SENSORDETAILSVISITOR_H
+#define SENSORDETAILSVISITOR_H
 
 #include <QVBoxLayout>
 #include "IVisitor.h"
-#include "sensorwindow.h"
+#include "sensordetails.h"
 
 #include "carburante.h"
 #include "pressione.h"
 #include "temperatura.h"
 #include "positionsensor.h"
 
-class SensorWindowVisitor : public IVisitor
+class SensorDetailsVisitor : public IVisitor
 {
 public:
-    SensorWindowVisitor(SensorWindow* window);
+    SensorDetailsVisitor(SensorDetails* window);
 
     void visit(Carburante& carburante) override;
     void visit(Pressione& pressione) override;
@@ -21,7 +21,7 @@ public:
     void visit(PositionSensor& positionsensor) override;
 
 private:
-    SensorWindow* window;
+    SensorDetails* window;
 };
 
-#endif // SENSORWINDOWVISITOR_H
+#endif // SENSORDETAILSVISITOR_H

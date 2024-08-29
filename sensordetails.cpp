@@ -1,5 +1,5 @@
-#include "sensorwindow.h"
-#include "sensorwindowvisitor.h"
+#include "sensordetails.h"
+#include "sensorDetailsvisitor.h"
 #include "typeandiconvisitor.h"
 #include "chartvisitor.h"
 #include "sensorwidget.h"
@@ -9,7 +9,7 @@
 #include <QLabel>
 #include <QPushButton>
 
-SensorWindow::SensorWindow(AbstractSensor* sensor, QWidget *parent) : QWidget(parent),
+SensorDetails::SensorDetails(AbstractSensor* sensor, QWidget *parent) : QWidget(parent),
                          sensor(sensor)    /*infoLayout(new QVBoxLayout(this))*/ {
 
     QVBoxLayout* vbox = new QVBoxLayout(this);
@@ -23,22 +23,22 @@ SensorWindow::SensorWindow(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
     name->setObjectName("name");
     hbox->addWidget(name);
 
-    QPushButton* simula = new QPushButton(QIcon(QPixmap((":Assets/icons/simula_icon.png"))),
+    QPushButton* simulate = new QPushButton(QIcon(QPixmap((":Assets/icons/simula_icon.png"))),
                                           "Simulate");
-    QPushButton* modifica = new QPushButton(QIcon(QPixmap((":Assets/icons/modifica_icon.png"))),
-                                            "Modifica");
+    QPushButton* modify = new QPushButton(QIcon(QPixmap((":Assets/icons/modifica_icon.png"))),
+                                            "Modify");
     QPushButton* delete_ = new QPushButton(QIcon(QPixmap((":Assets/icons/delete_icon.png"))),
                                            "Delete");
 
     int buttonWidth = 100; // Largeur fixe souhaitée pour les boutons
 
-    simula->setFixedWidth(buttonWidth);
-    modifica->setFixedWidth(buttonWidth);
+    simulate->setFixedWidth(buttonWidth);
+    modify->setFixedWidth(buttonWidth);
     delete_->setFixedWidth(buttonWidth);
     back->setFixedWidth(60);
 
-    hbox->addWidget(simula);
-    hbox->addWidget(modifica);
+    hbox->addWidget(simulate);
+    hbox->addWidget(modify);
     hbox->addWidget(delete_);
 
     vbox->addLayout(hbox);
@@ -59,12 +59,12 @@ SensorWindow::SensorWindow(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
     setLayout(vbox);
 
     // Connect
-    connect(back, &QPushButton::clicked, this, &SensorWindow::handleBack);
-    connect(simula, &QPushButton::clicked, this, &SensorWindow::simulaSensor);
-    connect(modifica, &QPushButton::clicked, this, &SensorWindow::modifySensor);
-    connect(delete_, &QPushButton::clicked, this, &SensorWindow::deleteSensor);
+    connect(back, &QPushButton::clicked, this, &SensorDetails::handleBack);
+    connect(simulate, &QPushButton::clicked, this, &SensorDetails::simulaSensor);
+    connect(modify, &QPushButton::clicked, this, &SensorDetails::modifySensor);
+    connect(delete_, &QPushButton::clicked, this, &SensorDetails::deleteSensor);
 
-    connect(this, &SensorWindow::simulateSignal, this, &SensorWindow::updateCharts);
+    connect(this, &SensorDetails::simulateSignal, this, &SensorDetails::updateCharts);
 
 
     SensorWidget sensorWidget(sensor);
@@ -72,7 +72,7 @@ SensorWindow::SensorWindow(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
     sensor->accept(typeAndIconVisitor);
     sensorType = sensorWidget.getSensorType();
 
-    SensorWindowVisitor infovisitor(this);
+    SensorDetailsVisitor infovisitor(this);
     sensor->accept(infovisitor);
 
     ChartVisitor chartvisitor(chartPanel);
@@ -81,75 +81,75 @@ SensorWindow::SensorWindow(AbstractSensor* sensor, QWidget *parent) : QWidget(pa
 }
 
 
-void SensorWindow::temperatureInfo(const Temperatura& sensor){
+void SensorDetails::temperatureInfo(const Temperatura& sensor){
 
 
-    QLabel* sensorTypeLabel = new QLabel("Tipo: " + sensorType);
+    QLabel* sensorTypeLabel = new QLabel("Type: " + sensorType);
     sensorTypeLabel->setObjectName("type");
     infoLayout->addWidget(sensorTypeLabel);
 
-    QLabel* current = new QLabel("Attuale" + QString::number(sensor.getValoreCorrente()));
+    QLabel* current = new QLabel("Current: " + QString::number(sensor.getValoreCorrente()));
     current->setObjectName("current");
     infoLayout->addWidget(current);
 
-    QLabel* min = new QLabel("Min" + QString::number(sensor.valoreMin()));
+    QLabel* min = new QLabel("Min: " + QString::number(sensor.valoreMin()));
     min->setObjectName("min");
     infoLayout->addWidget(min);
 
-    QLabel* max = new QLabel("Max" + QString::number(sensor.valoreMax()));
+    QLabel* max = new QLabel("Max: " + QString::number(sensor.valoreMax()));
     max->setObjectName("max");
     infoLayout->addWidget(max);
 
-    QLabel* average = new QLabel("Media" + QString::number(sensor.media()));
+    QLabel* average = new QLabel("Average: " + QString::number(sensor.media()));
     average->setObjectName("average");
     infoLayout->addWidget(average);
 
 }
 
-void SensorWindow::pressionInfo(const Pressione& sensor){
+void SensorDetails::pressionInfo(const Pressione& sensor){
 
 
 
-    QLabel* sensorTypeLabel = new QLabel("Tipo: " + sensorType);
+    QLabel* sensorTypeLabel = new QLabel("Type: " + sensorType);
     sensorTypeLabel->setObjectName("type");
     infoLayout->addWidget(sensorTypeLabel);
 
-    QLabel* current = new QLabel("Attuale" + QString::number(sensor.getValoreCorrente()));
+    QLabel* current = new QLabel("Current: " + QString::number(sensor.getValoreCorrente()));
     current->setObjectName("current");
     infoLayout->addWidget(current);
 
-    QLabel* min = new QLabel("Min" + QString::number(sensor.valoreMin()));
+    QLabel* min = new QLabel("Min: " + QString::number(sensor.valoreMin()));
     min->setObjectName("min");
     infoLayout->addWidget(min);
 
-    QLabel* max = new QLabel("Max" + QString::number(sensor.valoreMax()));
+    QLabel* max = new QLabel("Max: " + QString::number(sensor.valoreMax()));
     max->setObjectName("max");
     infoLayout->addWidget(max);
 
-    QLabel* average = new QLabel("Media" + QString::number(sensor.media()));
+    QLabel* average = new QLabel("Average: " + QString::number(sensor.media()));
     average->setObjectName("average");
     infoLayout->addWidget(average);
 
 }
-void SensorWindow::carburanteInfo(const Carburante& sensor){
+void SensorDetails::carburanteInfo(const Carburante& sensor){
 
-    QLabel* sensorTypeLabel = new QLabel("Tipo: " + sensorType);
+    QLabel* sensorTypeLabel = new QLabel("Type: " + sensorType);
     sensorTypeLabel->setObjectName("type");
     infoLayout->addWidget(sensorTypeLabel);
 
-    QLabel* current = new QLabel("Attuale: " + QString::number(sensor.getCurrentlevel()));
+    QLabel* current = new QLabel("Currrent: " + QString::number(sensor.getCurrentlevel()));
     current->setObjectName("current");
     infoLayout->addWidget(current);
 
-    QLabel* capacity = new QLabel("Capacità: " + QString::number(sensor.getCapacity()));
+    QLabel* capacity = new QLabel("Capacity: " + QString::number(sensor.getCapacity()));
     capacity->setObjectName("capacity");
     infoLayout->addWidget(capacity);
 
 
 }
-void SensorWindow::positionInfo(const PositionSensor& sensor){
+void SensorDetails::positionInfo(const PositionSensor& sensor){
 
-    QLabel* sensorTypeLabel = new QLabel("Tipo: " + sensorType);
+    QLabel* sensorTypeLabel = new QLabel("Type: " + sensorType);
     sensorTypeLabel->setObjectName("type");
     infoLayout->addWidget(sensorTypeLabel);
 
@@ -157,11 +157,11 @@ void SensorWindow::positionInfo(const PositionSensor& sensor){
     altitude->setObjectName("altitude");
     infoLayout->addWidget(altitude);
 
-    QLabel* longitude = new QLabel("Min" + QString::number(sensor.getLongitude()));
+    QLabel* longitude = new QLabel("Longitude: " + QString::number(sensor.getLongitude()));
     longitude->setObjectName("longitude");
     infoLayout->addWidget(longitude);
 
-    QLabel* latitude = new QLabel("Max" + QString::number(sensor.getLatitude()));
+    QLabel* latitude = new QLabel("Latitude: " + QString::number(sensor.getLatitude()));
     latitude->setObjectName("latitude");
     infoLayout->addWidget(latitude);
 
@@ -169,22 +169,22 @@ void SensorWindow::positionInfo(const PositionSensor& sensor){
 
 }
 
-void SensorWindow::handleBack() {
+void SensorDetails::handleBack() {
     if (stackedWidget) {
         stackedWidget->setCurrentWidget(stackedWidget->widget(0));  // Revenir à searchWidget
     }
 }
 
 
-void SensorWindow::simulaSensor(){
+void SensorDetails::simulaSensor(){
     emit simulateSignal();
 }
 
-void SensorWindow::modifySensor(){
+void SensorDetails::modifySensor(){
     emit modifySignal(sensor);
 }
 
-void SensorWindow::deleteSensor(){
+void SensorDetails::deleteSensor(){
     QMessageBox::StandardButton reply;
     reply = QMessageBox::question(this, "Delete Sensor",
                                   "Sicuro di cancellare questo sensore?",
@@ -197,7 +197,7 @@ void SensorWindow::deleteSensor(){
     }
 }
 
-void SensorWindow::updateCharts() {
+void SensorDetails::updateCharts() {
 
     if (auto envSensor = dynamic_cast<EnvSensor*>(sensor)) {
         chartPanel->envChart(*envSensor);
@@ -209,7 +209,7 @@ void SensorWindow::updateCharts() {
 }
 
 
-void SensorWindow::setStackedWidget(QStackedWidget* stackedWidget) {
+void SensorDetails::setStackedWidget(QStackedWidget* stackedWidget) {
     this->stackedWidget = stackedWidget;
 }
 

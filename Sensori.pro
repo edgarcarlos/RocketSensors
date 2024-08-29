@@ -29,10 +29,10 @@ SOURCES += \
     pressione.cpp \
     reader.cpp \
     searchwidget.cpp \
+    sensordetails.cpp \
     sensorspanel.cpp \
     sensorwidget.cpp \
-    sensorwindow.cpp \
-    sensorwindowvisitor.cpp \
+    sensordetailsvisitor.cpp \
     temperatura.cpp \
     typeandiconvisitor.cpp
 
@@ -60,10 +60,10 @@ HEADERS += \
     reader.h \
     sconstvisitor.h \
     searchwidget.h \
+    sensordetails.h \
+    sensordetailsvisitor.h \
     sensorspanel.h \
     sensorwidget.h \
-    sensorwindow.h \
-    sensorwindowvisitor.h \
     temperatura.h \
     typeandiconvisitor.h
 

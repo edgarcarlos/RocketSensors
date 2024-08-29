@@ -40,7 +40,7 @@ double EnvSensor:: valoreMin()const {
 
         for (int i=0; i<n; i++){
             if (dati[i]<min)
-                min = dati[i+1];
+                min = dati[i];
         }
         return min;
     }
@@ -58,7 +58,7 @@ double EnvSensor::valoreMax()const {
 
         for (int i=0; i<n; i++){
             if (dati[i]>max)
-                max = dati[i+1];
+                max = dati[i];
         }
 
         return max;

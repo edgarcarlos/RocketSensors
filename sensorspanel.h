@@ -7,7 +7,7 @@
 #include <vector>
 #include "sensorwidget.h"
 #include "abstractsensor.h"
-#include "sensorwindow.h"
+#include "sensordetails.h"
 
 
 using namespace std;

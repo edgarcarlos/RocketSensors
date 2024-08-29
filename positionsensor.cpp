@@ -11,23 +11,28 @@ PositionSensor::PositionSensor(const string name,
 
        
  const PositionSensor::Localisation& PositionSensor::getPosition()const {
-    return positionAttuale;
+    static PositionSensor::Localisation defaultPosition;
+    if (!dati.empty())
+        return dati.back();
+    else
+        return defaultPosition;
  }
+
 
 const vector<PositionSensor::Localisation> PositionSensor::getDati()const {
     return dati;
 }
 
 double PositionSensor::getAltitude()const {
-    return positionAttuale.altitude;
+    return getPosition().altitude;
 }
 
 double PositionSensor::getLongitude()const {
-    return positionAttuale.longitude;
+    return getPosition().longitude;
 }
 
 double PositionSensor::getLatitude()const {
-    return positionAttuale.latitude;
+    return getPosition().latitude;
 }
 
 void PositionSensor::accept(IVisitor& visitor) {

@@ -10,6 +10,8 @@ void ChartPanel::envChart(const EnvSensor& envSensor){
 
     clear();
     vector<double> data = envSensor.getDati();
+    double min = envSensor.valoreMin();
+    double max = envSensor.valoreMax();
 
     QLineSeries *series = new QLineSeries();
 
@@ -17,20 +19,31 @@ void ChartPanel::envChart(const EnvSensor& envSensor){
         series->append(i, data[i]);
     }
 
+    QLineSeries *minLine = new QLineSeries();
+    minLine->append(0, min);
+    minLine->append(data.size() - 1, min);
+    //minLine->setColor(QColor(1,0,0));
+    minLine->setPen(QPen(Qt::DashLine));
+    minLine->setPen(QColor(1,0,0));
+
+    QLineSeries *maxLine = new QLineSeries();
+    maxLine->append(0, max);
+    maxLine->append(data.size() - 1, max);
+    //maxLine->setColor(QColor(1,0,0));
+    maxLine->setPen(Qt::DashLine);
+    maxLine->setPen(QColor(1,0,0));
+
+
+
     QChart *chart = new QChart();
+
+
     chart->legend()->hide();
     chart->addSeries(series);
+    chart->addSeries(minLine);
+    chart->addSeries(maxLine);
     chart->createDefaultAxes();
 
-    /*QList<QAbstractAxis*> verticalAxes = chart->axes(Qt::Vertical);
-    if (!verticalAxes.isEmpty()) {
-        verticalAxes.first()->setRange(0, 12);
-    }
-
-    QList<QAbstractAxis*> horizontalAxes = chart->axes(Qt::Horizontal);
-    if (!horizontalAxes.isEmpty()) {
-        horizontalAxes.first()->setRange(0, 11);
-    }*/
 
     chart->setVisible(true);
 
@@ -107,7 +120,7 @@ void ChartPanel::positionChart(const PositionSensor& positionSensor){
     QChart* scatterChart = new QChart();
     scatterChart->addSeries(scatterSeries);
     scatterChart->setTitle("Longitude vs Latitude");
-    scatterChart->createDefaultAxes();
+    //scatterChart->createDefaultAxes();
 
     QValueAxis* axisX = new QValueAxis();
     axisX->setTitleText("Longitude");
@@ -133,7 +146,7 @@ void ChartPanel::positionChart(const PositionSensor& positionSensor){
     QChart* lineChart = new QChart();
     lineChart->addSeries(lineSeries);
     lineChart->setTitle("Altitude Over Time");
-    lineChart->createDefaultAxes();
+    //lineChart->createDefaultAxes();
 
     QValueAxis* lineAxisX = new QValueAxis();
     lineAxisX->setTitleText("Index"); // Change to a proper time unit if applicable

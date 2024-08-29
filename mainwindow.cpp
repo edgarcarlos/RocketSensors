@@ -112,6 +112,7 @@ MainWindow::MainWindow(QWidget *parent)
     toolbar->addSeparator();
     toolbar->addAction(close);
     toolbar->addSeparator();
+    toolbar->addSeparator();
     toolbar->addAction(add_sensor);
 
 
@@ -135,7 +136,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     //connect Signals
-    connect(sensorspanel, &SensorsPanel::sensorClicked, this, &MainWindow::showSensorWindow);
+    connect(sensorspanel, &SensorsPanel::sensorClicked, this, &MainWindow::showSensorDetails);
 
     connect(open, &QAction::triggered, this, &MainWindow::openData);
     connect(save, &QAction::triggered, this, &MainWindow::saveData);
@@ -144,6 +145,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(fullScreen, &QAction::triggered, this, &MainWindow::setFullScreen);
     connect(add_sensor, &QAction::triggered, this, &MainWindow::addSensor);
     connect(searchWidget, &SearchWidget::searchTriggered, this, &MainWindow::search);
+    connect(searchWidget, &SearchWidget::filterTypesChanged, this, &MainWindow::filterTypes);
 
 
     showStatus("Ready.");
@@ -153,14 +155,14 @@ MainWindow::~MainWindow()
 {
 }
 
-void MainWindow::showSensorWindow(AbstractSensor* sensor) {
-    SensorWindow* sensorWindow = new SensorWindow(sensor, this);
-    sensorWindow->setStackedWidget(stackedWidget);  // Définir le QStackedWidget
-    stackedWidget->addWidget(sensorWindow);
-    stackedWidget->setCurrentWidget(sensorWindow);
+void MainWindow::showSensorDetails(AbstractSensor* sensor) {
+    SensorDetails* sensorDetails = new SensorDetails(sensor, this);
+    sensorDetails->setStackedWidget(stackedWidget);  // Définir le QStackedWidget
+    stackedWidget->addWidget(sensorDetails);
+    stackedWidget->setCurrentWidget(sensorDetails);
 
-    connect(sensorWindow, &SensorWindow::deleteSignal, this, &MainWindow::deleteSensor);
-    connect(sensorWindow, &SensorWindow::modifySignal, this, &MainWindow::modifySensor);
+    connect(sensorDetails, &SensorDetails::deleteSignal, this, &MainWindow::deleteSensor);
+    connect(sensorDetails, &SensorDetails::modifySignal, this, &MainWindow::modifySensor);
 
 }
 
@@ -292,6 +294,44 @@ void MainWindow::search(const std::string& query){
 
 
 }
+
+void MainWindow::filterTypes(const std::vector<QString>& types) {
+    if (!repository) {
+        showStatus("No repository loaded.");
+        return;
+    }
+
+    sensorspanel->clearResults();
+
+    std::vector<AbstractSensor*> results;
+    std::vector<AbstractSensor*> sensors = repository->readAll();
+
+    for (AbstractSensor* sensor : sensors) {
+
+        SensorWidget sensorWidget(sensor);
+        QString sensorType = sensorWidget.getSensorType();
+
+        bool matches = false;
+        for (const auto& type : types) {
+            if (sensorType == type) {
+                matches = true;
+                break;
+            }
+        }
+        if (matches) {
+            results.push_back(sensor);
+        }
+    }
+
+    if (results.empty()) {
+        showStatus("No matching sensors found.");
+        search("");
+    } else {
+        sensorspanel->addSensors(results);
+        showStatus(QString::number(results.size()) + " matching sensors found.");
+    }
+}
+
 
 void MainWindow::close_(){
     QApplication::quit();

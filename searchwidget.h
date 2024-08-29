@@ -23,10 +23,14 @@ private:
     QLineEdit* searchInput;
     QToolButton* filterButton;
     QMenu* filterMenu;
+    QCheckBox* temperatura;
+    QCheckBox* pressione;
+    QCheckBox* carburante;
+    QCheckBox* position;
 
 signals:
     void  searchTriggered(const std::string& query);
-
+    void filterTypesChanged(const std::vector<QString>& types);
 
 public slots:
     void searchClicked();

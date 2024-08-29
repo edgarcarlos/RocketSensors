@@ -1,7 +1,7 @@
 #ifndef INFOPANEL_H
 #define INFOPANEL_H
 
-#include "sensorwindow.h"
+#include "sensordetails.h"
 
 #include <QWidget>
 
