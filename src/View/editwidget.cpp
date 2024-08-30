@@ -1,15 +1,16 @@
 #include "editwidget.h"
-#include <QVBoxLayout>
-#include <QLabel>
-#include <QLineEdit>
-#include <QString>
-#include <QLayoutItem>
-
 #include "../Sensor/temperatura.h"
 #include "../Sensor/pressione.h"
 #include "../Sensor/carburante.h"
 #include "../Sensor/positionsensor.h"
 #include "typeandiconvisitor.h"
+
+#include <QVBoxLayout>
+#include <QLabel>
+#include <QLineEdit>
+#include <QString>
+#include <QLayoutItem>
+#include <QMessageBox>
 
 namespace View {
 
@@ -25,20 +26,24 @@ EditWidget::EditWidget(Sensor::AbstractSensor* sensor,
     vboxlayout->setObjectName("widget-edit");
     vboxlayout->setAlignment(Qt::AlignLeft | Qt::AlignTop);
 
+    //ID edit
     idEdit = new QSpinBox();
     idEdit->setObjectName("identifier-input");
     idEdit->setMinimum(1);
     idEdit->setMaximum(INT_MAX);
     vboxlayout->addWidget(idEdit);
 
+    //name edit
     nameEdit = new QLineEdit(this);
     vboxlayout->addWidget(new QLabel("Name:"));
     vboxlayout->addWidget(nameEdit);
 
+    //description edit
     descriptionEdit = new QLineEdit(this);
     vboxlayout->addWidget(new QLabel("Description:"));
     vboxlayout->addWidget(descriptionEdit);
 
+    //tipi a scelta
     typeComboBox = new QComboBox(this);
     typeComboBox->addItem("");
     typeComboBox->addItems({"Temperatura", "Pressione", "Carburante", "Position"});
@@ -46,12 +51,14 @@ EditWidget::EditWidget(Sensor::AbstractSensor* sensor,
     vboxlayout->addWidget(typeComboBox);
     qDebug() << "TypeComboBox added.";
 
+    //creazione di layout dinamico che cambia a seconda del tipo di sensore
     dynamicFieldsLayout = new QVBoxLayout();
     vboxlayout->addLayout(dynamicFieldsLayout);
     qDebug() << "DynamicFieldsLayout added.";
 
     connect(typeComboBox, &QComboBox::currentTextChanged, this, &EditWidget::onSensorTypeChanged);
 
+    //pulsante save e cancel
     saveButton = new QPushButton("Save", this);
     cancelButton = new QPushButton("Cancel", this);
     vboxlayout->addWidget(saveButton);
@@ -65,18 +72,14 @@ EditWidget::EditWidget(Sensor::AbstractSensor* sensor,
     connect(descriptionEdit, &QLineEdit::textChanged, this, &EditWidget::checkForChanges);
     connect(idEdit, QOverload<int>::of(&QSpinBox::valueChanged), this, &EditWidget::checkForChanges);
 
-    // Debug code to check if the sensor is valid and if the subsequent operations are being executed
-
+    //caso in cui esiste già un sensore da edit (caso di modifica )
     if (sensor) {
         SensorWidget sensorWidget(sensor);
-
         TypeAndIconVisitor typeAndIconVisitor(&sensorWidget);
-
         sensor->accept(typeAndIconVisitor);
-
         QString sensorType = sensorWidget.getSensorType();
 
-
+        // fare i set dei dati nei campi
         idEdit->setValue(sensor->getID());
         idEdit->setEnabled(false);
         nameEdit->setText(QString::fromStdString(sensor->getName()));
@@ -85,28 +88,31 @@ EditWidget::EditWidget(Sensor::AbstractSensor* sensor,
         typeComboBox->setCurrentText(sensorType);
         onSensorTypeChanged(sensorType);
         typeComboBox->setEnabled(false);
-    } else {
-        qDebug() << "Sensor is null.";
-    }
-    storeInitialValues();
 
+    }
+
+    storeInitialValues();
     saveButton->setEnabled(false);
 }
 
 void EditWidget::storeInitialValues() {
+
+    //ottenere i dati per verificare se sono cambiati prima del save
     initialName = nameEdit->text();
     initialDescription = descriptionEdit->text();
     initialID = idEdit->value();
 }
 
 void EditWidget::checkForChanges() {
+
+    //verifica se c'è cambiamento
     bool isModified = false;
 
     if (nameEdit->text() != initialName) isModified = true;
     if (descriptionEdit->text() != initialDescription) isModified = true;
     if (idEdit->value() != initialID) isModified = true;
 
-    saveButton->setEnabled(isModified);  // Activer ou désactiver le bouton "Save"
+    saveButton->setEnabled(isModified);  // Attivare oppure disattivare il pulsante "Save"
 }
 
 
@@ -114,6 +120,7 @@ void EditWidget::onSensorTypeChanged(const QString& sensorType) {
 
     clearDynamicFields();
 
+    //aggiunto dei campi dinamici
     if (sensorType == "Temperatura") {
         createTemperatureFields();
     }
@@ -123,17 +130,15 @@ void EditWidget::onSensorTypeChanged(const QString& sensorType) {
     else if (sensorType == "Carburante") {
         createCarburanteFields();
     }
-    //vboxlayout->update();
-    qDebug() << "EditWidget constructor completed.";
 
 }
 
 void EditWidget::clearDynamicFields() {
-    // Supprimer tous les widgets dans dynamicFieldsLayout
+
     QLayoutItem* item;
     while ((item = dynamicFieldsLayout->takeAt(0)) != nullptr) {
-        delete item->widget(); // Supprime le widget
-        delete item; // Supprime l'item du layout
+        delete item->widget();
+        delete item;
     }
 }
 
@@ -147,7 +152,7 @@ void EditWidget::createTemperatureFields() {
     dynamicFieldsLayout->addWidget(tmaxLineEdit);
 
     if (Sensor::Temperatura *tsensor = dynamic_cast<Sensor::Temperatura*>(sensor)) {
-        // Populate fields with existing sensor data
+        // Popolare i campi con dati esistenti
         tminLineEdit->setText(QString::number(tsensor->getTmin()));
         tmaxLineEdit->setText(QString::number(tsensor->getTmax()));
     }
@@ -161,6 +166,7 @@ void EditWidget::createPressionFields(){
     dynamicFieldsLayout->addWidget(pmaxLineEdit);
 
     if(Sensor::Pressione *psensor = dynamic_cast<Sensor::Pressione*>(sensor)){
+        // Popolare i campi con dati esistenti
         pmaxLineEdit->setText(QString::number(psensor->getPmax()));
 
     }
@@ -176,6 +182,7 @@ void EditWidget::createCarburanteFields(){
     dynamicFieldsLayout->addWidget(new QLabel("Capacity:"));
     dynamicFieldsLayout->addWidget(capacityLineEdit);
 
+    // Popolare i campi con dati esistenti
     if(Sensor::Carburante* csensor = dynamic_cast<Sensor::Carburante*>(sensor)){
         soglioLineEdit->setText(QString::number(csensor->getSoglio()));
     }
@@ -195,11 +202,11 @@ void EditWidget::apply() {
 
     if (repository->read(ID) && (!sensor || sensor->getID() != ID)) {
         QMessageBox::warning(this, "ID Conflict", "The selected ID is already in use. Please choose a different ID.");
-        return; // Quitter la méthode si l'ID est déjà utilisé
+        return;
     }
 
     if (sensor) {
-        // Modification d'un capteur existant
+        // Modifica
         sensor->setName(name.toStdString());
         sensor->setDescription(description.toStdString());
 
@@ -230,9 +237,11 @@ void EditWidget::apply() {
                 carbSensor->setCapacity(capacity);
             }
         }
-        // Pour PositionSensor, aucune mise à jour supplémentaire n'est nécessaire car il n'a pas de champs spécifiques dans cet exemple
+        // Nessun modifica per PositionSensor
+
     } else {
-        // Création d'un nouveau capteur
+        // Creazione di un nuovo sensore
+
         if (sensorType == "Temperatura") {
             double tmin = tminLineEdit ? tminLineEdit->text().toDouble() : 0.0;
             double tmax = tmaxLineEdit ? tmaxLineEdit->text().toDouble() : 0.0;
@@ -263,21 +272,17 @@ void EditWidget::apply() {
 
     if (sensor) {
         Sensor::Repository::JsonRepository* repo = mainWindow->getRepository();
-        if (repo) {
-            qDebug() << "Repository available, updating sensor.";
-            repo->update(sensor);
-            emit sensorSaved();
-        } else {
-            qDebug() << "Repository not available.";
-        }
-    }}
+        repo->update(sensor);
+        emit sensorSaved();
+
+    }
+}
 
 void EditWidget::onCancelClicked() {
     emit editCanceled();
 }
 
 Sensor::AbstractSensor* EditWidget::getSensor() const { return sensor; }
-
 
 
 }

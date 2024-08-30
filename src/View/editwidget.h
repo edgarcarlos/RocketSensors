@@ -1,11 +1,11 @@
 #ifndef EDITWIDGET_H
 #define EDITWIDGET_H
 
-#include <QWidget>
 #include "../Sensor/abstractsensor.h"
 #include "../Sensor/Repository/jsonrepository.h"
 #include "mainwindow.h"
 
+#include <QWidget>
 #include <QLineEdit>
 #include <QComboBox>
 #include <QPushButton>
@@ -39,7 +39,7 @@ private:
     void createPressionFields();
     void createCarburanteFields();
     void createPositionFields();
-    void storeInitialValues();       // Méthode pour stocker les valeurs initiales
+    void storeInitialValues();
 
 
     QLineEdit* tminLineEdit;
@@ -67,4 +67,5 @@ public slots:
     void onCancelClicked();
 };
 }
+
 #endif // EDITWIDGET_H

@@ -1,14 +1,15 @@
 #ifndef TYPEANDICONVISITOR_H
 #define TYPEANDICONVISITOR_H
 
-#include "../Sensor/IVisitor.h"
+#include "../Sensor/svisitor.h"
 #include "sensorwidget.h"
+
 #include <QIcon>
 #include <QString>
 
 namespace View {
 
-class TypeAndIconVisitor: public Sensor::IVisitor
+class TypeAndIconVisitor: public Sensor::SVisitor
 {
 public:
     TypeAndIconVisitor(SensorWidget* sensor);

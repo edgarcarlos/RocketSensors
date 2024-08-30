@@ -1,14 +1,15 @@
 #include "envsensor.h"
+
 namespace Sensor{
 
-EnvSensor::EnvSensor(const string name,
-                    const string description,
+EnvSensor::EnvSensor(const std::string name,
+                    const std::string description,
                     const unsigned int ID,
-                    const vector<double> dati,
-                    const double valoreCorrente): AbstractSensor(name,description,ID),
-                                                    dati(dati), valoreCorrente(valoreCorrente) {}
+                    const std::vector<double> dati
+                    ): AbstractSensor(name,description,ID), dati(dati) {}
 
- const vector<double> EnvSensor::getDati()const {
+
+ const std::vector<double> EnvSensor::getDati()const {
     return dati;
  }
 

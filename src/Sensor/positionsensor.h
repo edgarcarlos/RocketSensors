@@ -6,7 +6,6 @@
 
 #include "abstractsensor.h"
 
-using namespace std;
 namespace Sensor{
 
 class PositionSensor: public AbstractSensor {
@@ -18,25 +17,20 @@ class PositionSensor: public AbstractSensor {
         };
         
     private:
-        Localisation positionAttuale;
-        vector<Localisation> dati;
-    
-    
-        
+        std::vector<Localisation> dati;
+         
     public:
-        PositionSensor(const string name,
-                       const string descrizione,
+        PositionSensor(const std::string name,
+                       const std::string descrizione,
                        const unsigned int ID,
-                       const vector<Localisation>& dati = {},
-                       const Localisation& positionAttuale = {0.0, 0.0, 0.0}
-
+                       const std::vector<Localisation>& dati = {}
                        );
         const Localisation& getPosition()const ;
-        const vector<Localisation> getDati()const ;
+        const std::vector<Localisation> getDati()const ;
         double getAltitude()const ;
         double getLongitude()const ;
         double getLatitude()const ;
-        void accept(IVisitor& visitor) override;
+        void accept(SVisitor& visitor) override;
         void accept(SConstVisitor& visitor) const override;
 
 };

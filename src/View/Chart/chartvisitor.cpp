@@ -1,4 +1,5 @@
 #include "chartvisitor.h"
+
 namespace View{
 namespace Chart{
 
@@ -21,5 +22,6 @@ void ChartVisitor::visit(Sensor::Temperatura& temperatura) {
 void ChartVisitor::visit(Sensor::PositionSensor& positionsensor) {
     chart->positionChart(positionsensor);
 }
+
 }
 }

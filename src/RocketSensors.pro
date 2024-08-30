@@ -41,7 +41,6 @@ SOURCES += \
     main.cpp
 
 HEADERS += \
-    Sensor/IVisitor.h \
     Sensor/abstractsensor.h \
     Sensor/carburante.h \
     Sensor/envsensor.h \
@@ -49,6 +48,7 @@ HEADERS += \
     Sensor/positionsensor.h \
     Sensor/pressione.h \
     Sensor/sconstvisitor.h \
+    Sensor/svisitor.h \
     Sensor/temperatura.h \
     \
     View/currentvaluevisitor.h \

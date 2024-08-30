@@ -5,12 +5,10 @@
 #include <QGridLayout>
 #include <QScrollArea>
 #include <vector>
+
 #include "sensorwidget.h"
 #include "../Sensor/abstractSensor.h"
-#include "sensordetails.h"
-
-
-using namespace std;
+//#include "sensordetails.h"
 
 namespace View {
 
@@ -19,7 +17,7 @@ class SensorsPanel : public QWidget {
 
 public:
     SensorsPanel(QWidget* parent = nullptr);
-    void addSensors(const vector<Sensor::AbstractSensor*>& sensors);
+    void addSensors(const std::vector<Sensor::AbstractSensor*>& sensors);
     void clearResults();
 
 
@@ -28,7 +26,7 @@ protected:
 
 private:
     QGridLayout* panelLayout;
-    vector<SensorWidget*> sensorWidgets;
+    std::vector<SensorWidget*> sensorWidgets;
     void updateLayout();
     const int initialRowSize = 3;
     QScrollArea* scrollArea;

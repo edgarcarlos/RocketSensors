@@ -2,7 +2,8 @@
 #define SENSORDETAILSVISITOR_H
 
 #include <QVBoxLayout>
-#include "../Sensor/IVisitor.h"
+
+#include "../Sensor/svisitor.h"
 #include "sensordetails.h"
 
 #include "../Sensor/carburante.h"
@@ -12,7 +13,7 @@
 
 namespace View {
 
-class SensorDetailsVisitor : public Sensor::IVisitor
+class SensorDetailsVisitor : public Sensor::SVisitor
 {
 public:
     SensorDetailsVisitor(SensorDetails* window);

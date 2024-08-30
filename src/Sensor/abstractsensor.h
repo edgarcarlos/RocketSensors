@@ -3,33 +3,34 @@
 
 #include <string>
 
-#include "IVisitor.h"
+#include "svisitor.h"
 #include "sconstvisitor.h"
 
-using namespace std;
+
 namespace Sensor{
 
 
 class AbstractSensor {
     private:
-        string name;
-        string description;
+        std::string name;
+        std::string description;
         unsigned int ID;
 
     public:
-        AbstractSensor(const string name,
-                       const string description,
+        AbstractSensor(const std::string name,
+                       const std::string description,
                        const unsigned int ID);
         virtual ~AbstractSensor();
-        const string& getName() const;
-        AbstractSensor& setName(const string name);
-        const string& getDescription()const;
-        AbstractSensor& setDescription(const string description);
+        const std::string& getName() const;
+        AbstractSensor& setName(const std::string name);
+        const std::string& getDescription()const;
+        AbstractSensor& setDescription(const std::string description);
         unsigned int getID() const;
-        virtual void accept(IVisitor& visitor) = 0;
+        virtual void accept(SVisitor& visitor) = 0;
         virtual void accept(SConstVisitor& visitor) const = 0;
 
 };
+
 }
 
 #endif // ABSTRACTSENSOR_H

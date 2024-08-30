@@ -1,20 +1,20 @@
 #include "pressione.h"
+
 namespace Sensor{
 
-Pressione::Pressione(const string name,
-            const string description,
+double Pressione::pressioneAtmos = 101325.0;
+
+Pressione::Pressione(const std::string name,
+            const std::string description,
             const unsigned int ID,
             const double Pmax,
-            const vector<double> dati,
-            const double valoreCorrente,
-            const double pressioneAtmos
-            ): EnvSensor(name,description,ID,dati,valoreCorrente),
-    pressioneAtmos(pressioneAtmos), Pmax(Pmax) {}
-            
+            const std::vector<double> dati
+            ): EnvSensor(name,description,ID,dati), Pmax(Pmax) {}
 
-vector<double> Pressione::pressioneAssoluta(vector<double> dati)const {
 
-    vector<double> A;
+std::vector<double> Pressione::pressioneAssoluta(std::vector<double> dati)const {
+
+    std::vector<double> A;
     double pressioneA;
 
     for(unsigned int i = 0; i<dati.size(); i++){
@@ -35,11 +35,12 @@ AbstractSensor& Pressione::setPmax(const double Pmax){
 }
 
 
-void Pressione::accept(IVisitor& visitor) {
+void Pressione::accept(SVisitor& visitor) {
     visitor.visit(*this);
 }
 
 void Pressione::accept(SConstVisitor& visitor) const {
     visitor.visit(*this);
 }
+
 }

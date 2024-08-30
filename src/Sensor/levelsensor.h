@@ -6,29 +6,25 @@
 
 #include "abstractsensor.h"
 
-using namespace std;
 namespace Sensor{
-
 
 class LevelSensor: public AbstractSensor {
     private:
         double capacity;
-        vector<double> dati;
-        double currentLevel;
-
+        std::vector<double> dati;
 
     public:
-        LevelSensor(const string name,
-                    const string description,
+        LevelSensor(const std::string name,
+                    const std::string description,
                     const unsigned int ID,
                     const double capacity,
-                    const vector<double> dati,
-                    const double currentLevel);
+                    const std::vector<double> dati
+                    );
         double getCapacity()const ;
         LevelSensor& setCapacity(double capacity);
-        const vector<double> getDati()const ;
+        const std::vector<double> getDati()const ;
         double getCurrentlevel()const ;
-        //void accept(IVisitor& visitor) override;
+        //void accept(SVisitor& visitor) override;
         //void accept(SConstVisitor& visitor) const override;
 
 };

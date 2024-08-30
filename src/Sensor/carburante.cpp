@@ -1,18 +1,19 @@
 #include "carburante.h"
+
 namespace Sensor{
 
-Carburante::Carburante(const string name,
-                    const string description,
+Carburante::Carburante(const std::string name,
+                    const std::string description,
                     const unsigned int ID,
                     const double capacity,
                     const double soglio,
-                    const vector<double> dati,
-                    const double currentLevel): LevelSensor(name,description,ID,capacity,dati,currentLevel),
+                    const std::vector<double> dati
+                    ): LevelSensor(name,description,ID,capacity,dati),
                                     soglio(soglio) {}
 
 
 
-double Carburante::debito(vector<double> dati) const{
+double Carburante::debito(std::vector<double> dati) const{
     double difTotale = 0.0;
     
     for(unsigned int i=1; i<dati.size(); i++){
@@ -25,12 +26,12 @@ double Carburante::debito(vector<double> dati) const{
     return difTotale/tempoTot;
 }
 
-string Carburante::statoQuantita(double currentLevel) const{
+std::string Carburante::statoQuantita(double currentLevel) const{
 
     if(currentLevel <= soglio)
-        return string("Basso");
+        return std::string("Basso");
         
-    else return string("Sufficiente");
+    else return std::string("Sufficiente");
 }
 
 const double& Carburante::getSoglio() const{
@@ -42,9 +43,7 @@ AbstractSensor& Carburante::setSoglio(const double soglio){
     return *this;
 }
 
-
-
-void Carburante::accept(IVisitor& visitor) {
+void Carburante::accept(SVisitor& visitor) {
     visitor.visit(*this);
 }
 

@@ -75,6 +75,7 @@ void SearchWidget::searchClicked(){
     std::string searchString = searchInput->text().toStdString();
     emit searchTriggered(searchString);
 
+    //disattivare il check quando si lancia una ricerca
     temperatura->setChecked(false);
     pressione->setChecked(false);
     carburante->setChecked(false);

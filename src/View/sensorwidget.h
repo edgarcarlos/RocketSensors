@@ -20,7 +20,7 @@ public:
     void setSensorType(const QString& type);
     QString getSensorType() const;
     void setSensorValue(const QString& value);
-    void accept(Sensor::IVisitor& visitor);
+    void accept(Sensor::SVisitor& visitor);
 
 protected:
     QString sensorType;
@@ -32,7 +32,6 @@ private:
     QLabel* sensorTypeLabel;
     QLabel* sensorIconLabel;
     QLabel* valueLabel;
-
 
 signals:
     void selected(Sensor::AbstractSensor* sensor);

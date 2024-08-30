@@ -5,6 +5,7 @@
 #include "Chart/chartpanel.h"
 #include "../Sensor/positionsensor.h"
 #include "Chart/chartvisitor.h"
+
 #include <QWidget>
 
 namespace View {
@@ -19,7 +20,7 @@ public:
     void pressionInfo(const Sensor::Pressione& sensor);
     void carburanteInfo(const Sensor::Carburante& sensor);
     void positionInfo(const Sensor::PositionSensor& sensor);
-    void accept(Sensor::IVisitor& visitor);
+    void accept(Sensor::SVisitor& visitor);
     void setStackedWidget(QStackedWidget* stackedWidget);
 
 
@@ -29,6 +30,7 @@ private:
     QString sensorType;
     QVBoxLayout* infoLayout;
     QStackedWidget* stackedWidget;
+
 public slots:
     void handleBack();
     void simulaSensor();
@@ -40,7 +42,6 @@ signals:
     void modifySignal(Sensor::AbstractSensor* sensor);
     void simulateSignal();
     void deleteSignal(Sensor::AbstractSensor* sensor);
-    //void backRequested();
 };
 }
 #endif // SENSORDETAILS_H

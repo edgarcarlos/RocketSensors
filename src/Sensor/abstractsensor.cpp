@@ -1,12 +1,9 @@
 #include "abstractsensor.h"
 
-
-using namespace std;
-
 namespace Sensor{
 
-AbstractSensor::AbstractSensor(const string name,
-                       const string description,
+AbstractSensor::AbstractSensor(const std::string name,
+                       const std::string description,
                        const unsigned int ID): name(name),
                                          description(description),
                                          ID(ID) {}
@@ -14,20 +11,20 @@ AbstractSensor::AbstractSensor(const string name,
 
 AbstractSensor::~AbstractSensor() {}
 
-const string& AbstractSensor::getName() const {
+const std::string& AbstractSensor::getName() const {
     return name;
 }
 
-AbstractSensor& AbstractSensor::setName(const string name){
+AbstractSensor& AbstractSensor::setName(const std::string name){
     this->name = name;
     return *this;
 }
 
-const string& AbstractSensor::getDescription()const{
+const std::string& AbstractSensor::getDescription()const{
     return description;
 }
 
-AbstractSensor& AbstractSensor::setDescription(const string description){
+AbstractSensor& AbstractSensor::setDescription(const std::string description){
     this->description = description;
     return *this;
 }

@@ -4,6 +4,7 @@ namespace View {
 
 TypeAndIconVisitor::TypeAndIconVisitor(SensorWidget* sensor): sensor(sensor) {}
 
+//attributi comentati per evitare i warnings
 
 void TypeAndIconVisitor::visit(Sensor::Carburante& /*carburante*/) {
     sensor->setSensorType("Carburante");

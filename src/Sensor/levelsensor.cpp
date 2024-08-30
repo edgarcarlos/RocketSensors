@@ -1,15 +1,16 @@
 #include "levelsensor.h"
+
 namespace Sensor{
 
-LevelSensor::LevelSensor(const string name,
-                    const string description,
+LevelSensor::LevelSensor(const std::string name,
+                    const std::string description,
                     const unsigned int ID,
                     const double capacity,
-                    const vector<double> dati,
-                    const double currentLevel): AbstractSensor(name,description,ID),
+                    const std::vector<double> dati
+                    ): AbstractSensor(name,description,ID),
                                         capacity(capacity),
-                                        dati(dati),
-                                        currentLevel(currentLevel) {}
+                                        dati(dati) {}
+
                      
 double LevelSensor:: getCapacity()const {
     return capacity;
@@ -20,7 +21,7 @@ LevelSensor& LevelSensor:: setCapacity(double capacity){
     return *this;
 }
 
-const vector<double> LevelSensor::getDati()const {
+const std::vector<double> LevelSensor::getDati()const {
     return dati;
 }
 
@@ -30,4 +31,5 @@ double LevelSensor::getCurrentlevel()const {
     else
         return 0;
 }
+
 }

@@ -6,7 +6,6 @@
 
 #include "levelsensor.h"
 
-using namespace std;
 namespace Sensor{
 
 class Carburante: public LevelSensor {
@@ -14,18 +13,18 @@ class Carburante: public LevelSensor {
         double soglio;
 
     public:
-        Carburante(const string name,
-                    const string description,
+        Carburante(const std::string name,
+                    const std::string description,
                     const unsigned int ID,
                     const double capacity,
                     const double soglio,
-                   const vector<double> dati = {0,0,0,0,0,0,0},
-                    const double currentLevel = 0.0);
+                    const std::vector<double> dati = {0,0,0,0,0,0,0}
+                    );
         const double& getSoglio() const;
         AbstractSensor& setSoglio(const double soglio);
-        double debito(vector<double> dati)const;
-        string statoQuantita(double currentLevel)const;
-        void accept(IVisitor& visitor) override;
+        double debito(std::vector<double> dati)const;
+        std::string statoQuantita(double currentLevel)const;
+        void accept(SVisitor& visitor) override;
         void accept(SConstVisitor& visitor) const override;
 
 };

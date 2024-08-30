@@ -3,6 +3,7 @@
 #include "typeandiconvisitor.h"
 #include "Chart/chartvisitor.h"
 #include "sensorwidget.h"
+
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -17,6 +18,7 @@ SensorDetails::SensorDetails(Sensor::AbstractSensor* sensor, QWidget *parent) : 
     QVBoxLayout* vbox = new QVBoxLayout(this);
     QHBoxLayout* hbox = new QHBoxLayout();
 
+    //pulsante back
     QPushButton* back = new QPushButton(QIcon(QPixmap((":Assets/icons/back_icon.png"))),
                                         "Back");
     hbox->addWidget(back);
@@ -25,6 +27,7 @@ SensorDetails::SensorDetails(Sensor::AbstractSensor* sensor, QWidget *parent) : 
     name->setObjectName("name");
     hbox->addWidget(name);
 
+
     QPushButton* simulate = new QPushButton(QIcon(QPixmap((":Assets/icons/simula_icon.png"))),
                                           "Simulate");
     QPushButton* modify = new QPushButton(QIcon(QPixmap((":Assets/icons/modifica_icon.png"))),
@@ -32,7 +35,7 @@ SensorDetails::SensorDetails(Sensor::AbstractSensor* sensor, QWidget *parent) : 
     QPushButton* delete_ = new QPushButton(QIcon(QPixmap((":Assets/icons/delete_icon.png"))),
                                            "Delete");
 
-    int buttonWidth = 100; // Largeur fixe souhaitée pour les boutons
+    int buttonWidth = 100; // Larghezza fissa per i pulsanti
 
     simulate->setFixedWidth(buttonWidth);
     modify->setFixedWidth(buttonWidth);
@@ -47,9 +50,11 @@ SensorDetails::SensorDetails(Sensor::AbstractSensor* sensor, QWidget *parent) : 
 
     QHBoxLayout* hbox2 = new QHBoxLayout();
 
+    //creazione del layout delle informazioni sui sensori
     infoLayout = new QVBoxLayout();
     hbox2->addLayout(infoLayout);
 
+    //creazione dei charts
     chartPanel = new Chart::ChartPanel();
     QScrollArea* scrollArea = new QScrollArea();
     scrollArea->setWidgetResizable(true); // Allows the content to resize automatically
@@ -65,9 +70,7 @@ SensorDetails::SensorDetails(Sensor::AbstractSensor* sensor, QWidget *parent) : 
     connect(simulate, &QPushButton::clicked, this, &SensorDetails::simulaSensor);
     connect(modify, &QPushButton::clicked, this, &SensorDetails::modifySensor);
     connect(delete_, &QPushButton::clicked, this, &SensorDetails::deleteSensor);
-
     connect(this, &SensorDetails::simulateSignal, this, &SensorDetails::updateCharts);
-
 
     SensorWidget sensorWidget(sensor);
     TypeAndIconVisitor typeAndIconVisitor(&sensorWidget);
@@ -183,7 +186,7 @@ void SensorDetails::positionInfo(const Sensor::PositionSensor& sensor){
 
 void SensorDetails::handleBack() {
     if (stackedWidget) {
-        stackedWidget->setCurrentWidget(stackedWidget->widget(0));  // Revenir à searchWidget
+        stackedWidget->setCurrentWidget(stackedWidget->widget(0));  //ritornare a sensorPanel
     }
 }
 
@@ -203,9 +206,10 @@ void SensorDetails::deleteSensor(){
                                   QMessageBox::Yes | QMessageBox::No);
 
     if (reply == QMessageBox::Yes) {
-        emit deleteSignal(sensor);  // Continue with deletion if confirmed
+        emit deleteSignal(sensor);
+
     } else {
-        // Do nothing if the user cancels the deletion
+        //fare niente
     }
 }
 

@@ -6,30 +6,27 @@
 
 #include "envsensor.h"
 
-using namespace std;
 namespace Sensor{
 
 class Pressione: public EnvSensor {
     private:
-        double pressioneAtmos;
+        static double pressioneAtmos;
         double Pmax;
     public:
-        Pressione(const string name,
-            const string description,
+        Pressione(const std::string name,
+            const std::string description,
             const unsigned int ID,
             const double Pmax,
-            const vector<double> dati= {0,0,0,0,0,0,0},
-            const double valoreCorrente= 0.0,
-            const double pressioneAtmos = 0.0
+            const std::vector<double> dati= {0,0,0,0,0,0,0}
             );
 
         const double& getPmax() const;
         AbstractSensor& setPmax(const double Pmax);
-
-        vector<double> pressioneAssoluta(vector<double> dati)const ;
-        void accept(IVisitor& visitor) override;
+        std::vector<double> pressioneAssoluta(std::vector<double> dati)const ;
+        void accept(SVisitor& visitor) override;
         void accept(SConstVisitor& visitor) const override;
 
 };
+
 }
 #endif // PRESSIONE_H

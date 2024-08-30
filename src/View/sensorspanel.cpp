@@ -1,5 +1,6 @@
 #include "sensorspanel.h"
 #include "typeandiconvisitor.h"
+#include "sensordetails.h"
 
 #include <QGridLayout>
 
@@ -9,13 +10,11 @@ SensorsPanel::SensorsPanel(QWidget* parent): QWidget(parent) {
 
     scrollArea = new QScrollArea(this);
     scrollArea->setWidgetResizable(true);
-    //scrollArea->setBackgroundRole(QPalette::Dark);
     content = new QWidget();
-    //content->setStyleSheet("background-color: #F5F5F5;"); // Gris clair pour le contenu
 
     panelLayout = new QGridLayout(content);
     panelLayout->setAlignment(Qt::AlignTop);
-    panelLayout->setSpacing(15); // Espacement entre les widgets
+    panelLayout->setSpacing(15);
 
     content->setLayout(panelLayout);
 
@@ -32,24 +31,24 @@ SensorsPanel::SensorsPanel(QWidget* parent): QWidget(parent) {
 void SensorsPanel::addSensors(const std::vector<Sensor::AbstractSensor*>& sensors){
 
     for (auto sensor : sensors) {
-        // Créez un nouveau widget pour chaque capteur
+        // nuovo widget per ogni sensore
+
         SensorWidget* sensorWidget = new SensorWidget(sensor, content);
         sensorWidget->setObjectName("sensorWidget");
-        // Configurez le widget avec les informations du capteur
+
+        // aggiunto di icon e label type
         TypeAndIconVisitor typeAndIconVisitor(sensorWidget);
         sensor->accept(typeAndIconVisitor);
 
-        // Ajoutez le widget au layout
-        //panelLayout->addWidget(sensorWidget);
+        // aggiunto del widget al layout
         sensorWidgets.push_back(sensorWidget);
 
-        // Connectez le signal 'selected' à la méthode 'showSensor'
+        // Connect
         connect(sensorWidget, &SensorWidget::selected, this, [this, sensor]() {
             emit sensorClicked(sensor);
         });
     }
 
-    // Mettez à jour le layout pour organiser les nouveaux widgets
     updateLayout();
 
 }
@@ -61,11 +60,13 @@ void SensorsPanel::resizeEvent(QResizeEvent* event) {
 
 void SensorsPanel::updateLayout() {
 
+    //aggiornamento del layout per una disposizione a tre colonne
+
     while (QLayoutItem* item = panelLayout->takeAt(0)) {
         if (QWidget* widget = item->widget()) {
             panelLayout->removeWidget(widget);
         }
-        delete item; // Supprime l'élément du layout
+        delete item;
     }
 
     int row = 0;
@@ -85,20 +86,21 @@ void SensorsPanel::updateLayout() {
 
 
 void SensorsPanel::showSensor(Sensor::AbstractSensor* sensor) {
+
     SensorDetails* detailWindow = new SensorDetails(sensor);
     detailWindow->setAttribute(Qt::WA_DeleteOnClose);
     detailWindow->show();
 }
 
 void SensorsPanel::clearResults() {
-    // Iterate over all items in the layout and remove each widget
+
     while (QLayoutItem* item = panelLayout->takeAt(0)) {
         if (QWidget* widget = item->widget()) {
-            widget->deleteLater(); // Mark widget for deletion
+            widget->deleteLater();
         }
-        delete item; // Delete the layout item
+        delete item;
     }
-    sensorWidgets.clear(); // Clear the sensorWidgets vector
+    sensorWidgets.clear();
 }
 
 

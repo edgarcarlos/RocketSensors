@@ -12,17 +12,13 @@
 #include <QToolButton>
 #include <QPixmap>
 #include <QToolBar>
+#include <QWidget>
 
-//#include <string>
-
-//#include "abstractSensor.h"
 #include "../Sensor/Converter/Json/reader.h"
 #include "../Sensor/Converter/Json/json.h"
 #include "../Sensor/DataMapper/jsonfile.h"
-
 #include "editwidget.h"
-
-using namespace std;
+#include "sensordetails.h"
 
 namespace View {
 
@@ -31,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), repository(nullptr)
 
 {
+
     QVBoxLayout* mainLayout = new QVBoxLayout;
     QWidget* centralWidget = new QWidget(this);
     centralWidget->setLayout(mainLayout);
@@ -39,8 +36,7 @@ MainWindow::MainWindow(QWidget *parent)
     resize(1000,700);
 
 
-    //Menubar
-
+    //Actions
     QAction* open = new QAction(
         QIcon(QPixmap((":Assets/icons/open_icon.png"))),
         "Open"
@@ -59,26 +55,25 @@ MainWindow::MainWindow(QWidget *parent)
         QIcon(QPixmap((":Assets/icons/close_icon.png"))),
         "Close"
         );
-    QAction* add_sensor = new QAction(
+    add_sensor = new QAction(
         QIcon(QPixmap((":Assets/icons/add_icon.png"))),
         "Add sensor"
         );
 
-
+    //Shortcut
     open->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_O));
     save->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_S));
     save_as->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_S));
     close->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_Q));
     add_sensor->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_N));
+    add_sensor->setEnabled(false);
 
-
-    //QMenuBar* menuBar = new QMenuBar(this);
+    //menuBar
     QMenuBar* menuBar = new QMenuBar(this);
     setMenuBar(menuBar);
 
+    //File menu
     QMenu* file =  menuBar->addMenu("&File");
-
-    //menuBar->addMenu(file);
 
     file->addAction(open);
     file->addAction(save);
@@ -89,22 +84,14 @@ MainWindow::MainWindow(QWidget *parent)
     //View menu
     QMenu* view =  menuBar->addMenu("&View");
     QAction* fullScreen = new QAction("Full Screen", this);
-    QAction* viewOption2 = new QAction("View Option 2", this);
+    QAction* toggle_toolbar = new QAction("Toggle ToolBar", this);
 
     view->addAction(fullScreen);
-    view->addAction(viewOption2);
-
-    //Home Menu
-    QMenu* home =  menuBar->addMenu("&Home");
-    QAction* homeOption1 = new QAction("Home Option 1", this);
-    QAction* homeOption2 = new QAction("Home Option 2", this);
-
-    home->addAction(homeOption1);
-    home->addAction(homeOption2);
+    view->addAction(toggle_toolbar);
 
 
     //Toolbar
-    QToolBar* toolbar = new QToolBar(this);
+    toolbar = new QToolBar(this);
 
     addToolBar(toolbar);
     toolbar->addAction(open);
@@ -115,52 +102,42 @@ MainWindow::MainWindow(QWidget *parent)
     toolbar->addSeparator();
     toolbar->addAction(close);
     toolbar->addSeparator();
-    toolbar->addSeparator();
     toolbar->addAction(add_sensor);
 
 
-     // Assurez-vous de remplacer par votre propre widget
-        //set search Widget
+    //set search and sensors panel
     searchWidget = new SearchWidget(this);
     mainLayout->addWidget(searchWidget);
 
     stackedWidget = new QStackedWidget(this);
 
-    // Assurez-vous de remplacer par votre propre widget
     sensorspanel = new SensorsPanel(this);
 
     stackedWidget->addWidget(sensorspanel);
     mainLayout->addWidget(stackedWidget);
 
 
-    //set sensor panel
-    //sensorspanel= new SensorsPanel(this);
-    //mainLayout->addWidget(sensorspanel);
-
-
     //connect Signals
     connect(sensorspanel, &SensorsPanel::sensorClicked, this, &MainWindow::showSensorDetails);
-
     connect(open, &QAction::triggered, this, &MainWindow::openData);
     connect(save, &QAction::triggered, this, &MainWindow::saveData);
     connect(save_as, &QAction::triggered, this, &MainWindow::saveAsData);
     connect(close, &QAction::triggered, this, &MainWindow::close_);
     connect(fullScreen, &QAction::triggered, this, &MainWindow::setFullScreen);
+    connect(toggle_toolbar, &QAction::triggered, this, &MainWindow::toggleToolbar);
     connect(add_sensor, &QAction::triggered, this, &MainWindow::addSensor);
     connect(searchWidget, &SearchWidget::searchTriggered, this, &MainWindow::search);
     connect(searchWidget, &SearchWidget::filterTypesChanged, this, &MainWindow::filterTypes);
 
-
+    //status bar
     showStatus("Ready.");
 }
 
-MainWindow::~MainWindow()
-{
-}
 
 void MainWindow::showSensorDetails(Sensor::AbstractSensor* sensor) {
+
     SensorDetails* sensorDetails = new SensorDetails(sensor, this);
-    sensorDetails->setStackedWidget(stackedWidget);  // Définir le QStackedWidget
+    sensorDetails->setStackedWidget(stackedWidget);
     stackedWidget->addWidget(sensorDetails);
     stackedWidget->setCurrentWidget(sensorDetails);
 
@@ -185,16 +162,15 @@ SearchWidget* MainWindow::getSearchWidget() {
     return searchWidget;
 }
 
-//Action functions
-void MainWindow::openData() {
 
+void MainWindow::openData() {
 
     QString path = QFileDialog::getOpenFileName(
         this,
         "Open Dataset",
         "",
         "JSON files (*.json)"
-        );
+    );
 
 
     if (path.isEmpty()) {
@@ -215,22 +191,16 @@ void MainWindow::openData() {
 
         if (repository) {
             reloadData();
+            add_sensor->setEnabled(true);
+
             showStatus("File loaded successfully.");
         } else {
             showStatus("Failed to initialize repository.");
         }
 
-    } catch (const std::exception& e) {
-        showStatus(QString("Error: %1").arg(e.what()));
-
-        if (repository != nullptr) {
-            delete repository;
-            repository = nullptr;
-        }
     } catch (...) {
         showStatus("An unknown error occurred.");
 
-        // Même traitement en cas d'erreur inconnue
         if (repository != nullptr) {
             delete repository;
             repository = nullptr;
@@ -248,6 +218,7 @@ void MainWindow::saveData(){
 }
 
 void MainWindow::saveAsData(){
+
     QString path = QFileDialog::getSaveFileName(
         this,
         "Creates new Dataset",
@@ -272,8 +243,8 @@ void MainWindow::search(const std::string& query){
     std::vector<Sensor::AbstractSensor*> results;
     std::vector<Sensor::AbstractSensor*> sensors = repository->readAll();
 
+    //ricerca basata sul nome e l'ID
     for (Sensor::AbstractSensor* sensor : sensors) {
-        // Example search criteria: matching the sensor name
         if (query.empty() || sensor->getName().find(query) != std::string::npos ||
             std::to_string(sensor->getID()).find(query) != std::string::npos) {
             results.push_back(sensor);
@@ -287,10 +258,11 @@ void MainWindow::search(const std::string& query){
         showStatus(QString::number(results.size()) + " matching sensors found.");
     }
 
-
 }
 
+
 void MainWindow::filterTypes(const std::vector<QString>& types) {
+
     if (!repository) {
         showStatus("No repository loaded.");
         return;
@@ -303,8 +275,11 @@ void MainWindow::filterTypes(const std::vector<QString>& types) {
 
     for (Sensor::AbstractSensor* sensor : sensors) {
 
+        //creazione di un sensor widget per ottenere il type
         SensorWidget sensorWidget(sensor);
         QString sensorType = sensorWidget.getSensorType();
+
+        //ricerca dei sensori con il tipo selezionato nei filtri
 
         bool matches = false;
         for (const auto& type : types) {
@@ -332,13 +307,14 @@ void MainWindow::close_(){
     QApplication::quit();
 }
 
+
 void MainWindow::setFullScreen(){
 
     if (isFullScreenMode) {
-        showNormal(); // Switch to normal window
+        showNormal();
         isFullScreenMode = false;
     } else {
-        showFullScreen(); // Switch to full screen
+        showFullScreen();
         isFullScreenMode = true;
     }
 }
@@ -358,25 +334,18 @@ void MainWindow::addSensor() {
     connect(editWidget, &EditWidget::sensorSaved, &dialog, &QDialog::accept);
     connect(editWidget, &EditWidget::editCanceled, &dialog, &QDialog::reject);
 
-    // Disposition du layout dans le QDialog
     QVBoxLayout* vbox = new QVBoxLayout(&dialog);
     vbox->addWidget(editWidget);
 
-    // Afficher le dialogue en mode modal et attendre l'interaction de l'utilisateur
     if (dialog.exec() == QDialog::Accepted) {
-        // Récupérer le capteur créé
+
         Sensor::AbstractSensor* newSensor = editWidget->getSensor();
 
         if (newSensor) {
-
-            // Créer un vecteur temporaire avec le capteur unique
             std::vector<Sensor::AbstractSensor*> singleSensorVector = {newSensor};
-
-            // Ajouter le capteur à l'interface utilisateur (SensorsPanel)
             sensorspanel->addSensors(singleSensorVector);
-
-
             showStatus("New sensor added successfully.");
+
         } else {
             showStatus("Failed to create the sensor.");
         }
@@ -394,6 +363,7 @@ void MainWindow::deleteSensor(const Sensor::AbstractSensor* sensor) {
 
 }
 
+
 void MainWindow::modifySensor(Sensor::AbstractSensor* sensor){
     QDialog dialog(this);
     dialog.setWindowTitle("Modify Sensor");
@@ -409,7 +379,7 @@ void MainWindow::modifySensor(Sensor::AbstractSensor* sensor){
     if (dialog.exec() == QDialog::Accepted) {
         showStatus("Sensor modified successfully.");
 
-        search("");  // Recherchez tous les capteurs pour rafraîchir la vue
+        search("");
     } else {
         showStatus("Sensor modification canceled.");
     }
@@ -420,7 +390,17 @@ void MainWindow::showStatus(QString message) {
     statusBar()->showMessage(message);
 }
 
+void MainWindow::toggleToolbar() {
+    toolbar->setVisible(!toolbar->isVisible());
+    showStatus("Toolbar toggled.");
 }
+
+MainWindow::~MainWindow()
+{
+}
+
+}
+
 
 
 

@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QStackedWidget>
 
 #include "searchwidget.h"
 #include "sensorspanel.h"
@@ -28,6 +29,8 @@ private:
     Sensor::Repository::JsonRepository* repository;
     std::vector<Sensor::AbstractSensor*> sensors;
     bool isFullScreenMode = false;
+    QAction* add_sensor;
+    QToolBar* toolbar;
 
 public slots:
     void showSensorDetails(Sensor::AbstractSensor* sensor);
@@ -42,6 +45,7 @@ public slots:
     void deleteSensor(const Sensor::AbstractSensor* sensor);
     void modifySensor(Sensor::AbstractSensor* sensor);
     void showStatus(QString message);
+    void toggleToolbar();
 };
 }
 

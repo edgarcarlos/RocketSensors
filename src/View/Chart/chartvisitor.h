@@ -1,7 +1,7 @@
 #ifndef CHARTVISITOR_H
 #define CHARTVISITOR_H
 
-#include "../../Sensor/IVisitor.h"
+#include "../../Sensor/svisitor.h"
 #include "chartpanel.h"
 
 #include "../../Sensor/carburante.h"
@@ -12,7 +12,7 @@
 namespace View{
 namespace Chart{
 
-class ChartVisitor: public Sensor::IVisitor
+class ChartVisitor: public Sensor::SVisitor
 {
 public:
     ChartVisitor(ChartPanel *chart);

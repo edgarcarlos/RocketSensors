@@ -6,9 +6,7 @@
 
 #include "envsensor.h"
 
-using namespace std;
 namespace Sensor{
-
 
 class Temperatura: public EnvSensor {
     private:
@@ -16,21 +14,22 @@ class Temperatura: public EnvSensor {
         double Tmax;
 
     public:
-        Temperatura(const string name,
-                    const string description,
+        Temperatura(const std::string name,
+                    const std::string description,
                     const unsigned int ID,
                     const double Tmin,
                     const double Tmax,
-                    const vector<double> dati = {0,0,0,0,0,0,0,0,0},
-                    const double valoreCorrente = 0.0);
+                    const std::vector<double> dati = {0,0,0,0,0,0,0,0,0}
+                    );
         const double& getTmin() const;
         const double& getTmax() const;
         AbstractSensor& setTmin(const double Tmin);
         AbstractSensor& setTmax(const double Tmax);
 
-        string stato(double valoreCorrente)const ;
-        void accept(IVisitor& visitor) override;
+        std::string stato(double valoreCorrente)const ;
+        void accept(SVisitor& visitor) override;
         void accept(SConstVisitor& visitor) const override;
 };
+
 }
 #endif // TEMPERATURA_H

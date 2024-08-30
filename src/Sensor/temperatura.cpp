@@ -1,22 +1,22 @@
 #include "temperatura.h"
+
 namespace Sensor{
 
-Temperatura::Temperatura(const string name,
-                    const string description,
+Temperatura::Temperatura(const std::string name,
+                    const std::string description,
                     const unsigned int ID,
                     const double Tmin,
                     const double Tmax,
-                    const vector<double> dati,
-                    const double valoreCorrente): EnvSensor(name,description,ID,dati,valoreCorrente),
-                                        Tmin(Tmin),
-                                        Tmax(Tmax) {}
+                    const std::vector<double> dati): EnvSensor(name,description,ID,dati),
+                                                Tmin(Tmin),
+                                                Tmax(Tmax) {}
 
-string Temperatura::stato(double valoreCorrente)const {
+std::string Temperatura::stato(double valoreCorrente)const {
 
-    if(valoreCorrente <= Tmin) return string("Basso");
-    else if(Tmin < valoreCorrente && valoreCorrente < Tmax) return string("Normale");
-    else if(valoreCorrente >= Tmax) return string("Elevato");
-    else return string("errore");
+    if(valoreCorrente <= Tmin) return std::string("Basso");
+    else if(Tmin < valoreCorrente && valoreCorrente < Tmax) return std::string("Normale");
+    else if(valoreCorrente >= Tmax) return std::string("Elevato");
+    else return std::string("errore");
 }
 
 const double& Temperatura::getTmin() const{
@@ -36,7 +36,7 @@ AbstractSensor& Temperatura::setTmax(const double Tmax){
 }
 
 
-void Temperatura::accept(IVisitor& visitor) {
+void Temperatura::accept(SVisitor& visitor) {
     visitor.visit(*this);
 }
 

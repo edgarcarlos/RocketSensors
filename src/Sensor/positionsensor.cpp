@@ -1,26 +1,24 @@
 #include "positionsensor.h"
+
 namespace Sensor{
 
-PositionSensor::PositionSensor(const string name,
-                       const string description,
+PositionSensor::PositionSensor(const std::string name,
+                       const std::string description,
                        const unsigned int ID,
-                       const vector<Localisation>& dati,
-                       const Localisation& positionAttuale
-                       ): AbstractSensor(name,description,ID),
-                                                        positionAttuale(positionAttuale),
-                                                        dati(dati) {}
+                       const std::vector<Localisation>& dati
+                       ): AbstractSensor(name,description,ID), dati(dati) {}
 
-       
- const PositionSensor::Localisation& PositionSensor::getPosition()const {
+
+const PositionSensor::Localisation& PositionSensor::getPosition()const {
     static PositionSensor::Localisation defaultPosition;
     if (!dati.empty())
         return dati.back();
     else
         return defaultPosition;
- }
+}
 
 
-const vector<PositionSensor::Localisation> PositionSensor::getDati()const {
+const std::vector<PositionSensor::Localisation> PositionSensor::getDati()const {
     return dati;
 }
 
@@ -36,7 +34,7 @@ double PositionSensor::getLatitude()const {
     return getPosition().latitude;
 }
 
-void PositionSensor::accept(IVisitor& visitor) {
+void PositionSensor::accept(SVisitor& visitor) {
     visitor.visit(*this);
 }
 

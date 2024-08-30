@@ -6,29 +6,28 @@
 
 #include "abstractsensor.h"
 
-using namespace std;
 namespace Sensor{
 
 class EnvSensor: public AbstractSensor {
     private:
-        vector<double> dati;
-        double valoreCorrente;
+        std::vector<double> dati;
 
     public:
-        EnvSensor(const string name,
-                    const string description,
-                    const unsigned int ID,
-                    const vector<double> dati,
-                    const double valoreCorrente);
-        const vector<double> getDati()const ;
+        EnvSensor(const std::string name,
+                const std::string description,
+                const unsigned int ID,
+                const std::vector<double> dati
+                );
+        const std::vector<double> getDati()const ;
         double getValoreCorrente()const ;
         double media()const ;
         double valoreMin()const ;
         double valoreMax()const ;
-        //void accept(IVisitor& visitor) override;
+        //void accept(SVisitor& visitor) override;
         //void accept(SConstVisitor& visitor) const override;
 
 };
+
 }
 
 #endif // ENVSENSOR_H

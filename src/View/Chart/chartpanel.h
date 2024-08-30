@@ -2,12 +2,11 @@
 #define CHARTPANEL_H
 
 #include <QWidget>
+#include <QtCharts>
 
 #include "../../Sensor/envsensor.h"
 #include "../../Sensor/levelsensor.h"
 #include "../../Sensor/positionsensor.h"
-
-#include <QtCharts>
 
 namespace View{
 namespace Chart{
@@ -21,7 +20,7 @@ public:
     void envChart(const Sensor::EnvSensor& envSensor);
     void levelChart(const Sensor::LevelSensor& levelSensor);
     void positionChart(const Sensor::PositionSensor& positionSensor);
-    void accept(Sensor::IVisitor& visitor);
+    void accept(Sensor::SVisitor& visitor);
     void clear();
 
 private:
@@ -29,6 +28,8 @@ private:
 
 
 };
+
 }
 }
+
 #endif // CHARTPANEL_H

@@ -1,5 +1,5 @@
 #include "sensorwidget.h"
-//#include "IVisitor.h"
+//#include "svisitor.h"
 #include "typeandiconvisitor.h"
 #include "currentvaluevisitor.h"
 #include <QHBoxLayout>
@@ -18,12 +18,6 @@ SensorWidget::SensorWidget(Sensor::AbstractSensor* sensor, QWidget *parent) : QW
 
     QWidget* widget = new QWidget(this);
     widget->setObjectName("sensorWidget");
-
-    /* QPalette pal = widget->palette(); // Ottiene la palette di colori del backgroundWidget
-    pal.setColor(QPalette::Window, Qt::yellow); // Imposta il colore di sfondo (in questo caso bianco)
-    widget->setAutoFillBackground(true);
-    widget->setPalette(pal);*/
-
 
     QVBoxLayout* vbox = new QVBoxLayout(this);
     widget->setLayout(vbox);
@@ -74,8 +68,6 @@ SensorWidget::SensorWidget(Sensor::AbstractSensor* sensor, QWidget *parent) : QW
     TypeAndIconVisitor visitor(this);
     sensor->accept(visitor);
 
-    //sensorTypeLabel->setText("Type: " + sensorTypeLabel->text());
-
     CurrentValueVisitor valueVisitor(this);
     sensor->accept(valueVisitor);
 
@@ -105,9 +97,8 @@ void SensorWidget::setSensorValue(const QString& value){
 }
 
 void SensorWidget::mousePressEvent(QMouseEvent* event) {
-    Q_UNUSED(event);  // Ignore l'event pour l'instant
-
-    // Émettre le signal lorsque le widget est cliqué
+    Q_UNUSED(event);
+    // emit quando il widget è cliccato
     emit selected(sensor);
 }
 

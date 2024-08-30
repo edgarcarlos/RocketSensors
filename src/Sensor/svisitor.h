@@ -1,5 +1,5 @@
-#ifndef IVISITOR_H
-#define IVISITOR_H
+#ifndef SVISITOR_H
+#define SVISITOR_H
 
 namespace Sensor{
 
@@ -10,9 +10,9 @@ class PositionSensor;
 
 
 
-class IVisitor {
+class SVisitor {
 public :
-    virtual ~IVisitor() {}
+    virtual ~SVisitor() {}
     virtual void visit(Carburante& carburante) =0;
     virtual void visit(Pressione& pressione) =0;
     virtual void visit(Temperatura& temperatura) =0;
@@ -20,4 +20,4 @@ public :
 };
 }
 
-#endif // IVISITOR_H
+#endif // SVISITOR_H

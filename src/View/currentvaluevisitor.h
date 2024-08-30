@@ -1,9 +1,10 @@
 #ifndef CURRENTVALUEVISITOR_H
 #define CURRENTVALUEVISITOR_H
 
-#include "../Sensor/IVisitor.h"
-#include "sensorwidget.h"
 #include <QString>
+
+#include "../Sensor/svisitor.h"
+#include "sensorwidget.h"
 
 #include "../Sensor/carburante.h"
 #include "../Sensor/pressione.h"
@@ -12,7 +13,7 @@
 
 namespace View {
 
-class CurrentValueVisitor: public Sensor::IVisitor
+class CurrentValueVisitor: public Sensor::SVisitor
 
 {
 public:
