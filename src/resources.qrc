@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Assets/icons/carburante_icon.png</file>
+        <file>Assets/icons/position_icon.png</file>
+        <file>Assets/icons/pressione_icon.png</file>
+        <file>Assets/icons/temperatura_icon.png</file>
+        <file>Assets/icons/add_icon.png</file>
+        <file>Assets/icons/filter_icon.png</file>
+        <file>Assets/icons/humidity_icon.png</file>
+        <file>Assets/icons/open_icon.png</file>
+        <file>Assets/icons/save_icon.png</file>
+        <file>Assets/icons/search_icon.png</file>
+        <file>Assets/icons/close_icon.png</file>
+        <file>Assets/icons/save_as_icon.png</file>
+        <file>Assets/icons/back_icon.png</file>
+        <file>Assets/icons/delete_icon.png</file>
+        <file>Assets/icons/modifica_icon.png</file>
+        <file>Assets/icons/simula_icon.png</file>
+        <file>Assets/rocket.png</file>
+        <file>Assets/styles.qss</file>
+    </qresource>
+</RCC>

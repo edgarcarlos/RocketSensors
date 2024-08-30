@@ -1,0 +1,36 @@
+
+
+#sensorWidget {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 5px;
+    background-color: white;
+
+}
+
+#valueLabel {
+    font-weight: bold;
+    font-size: 14px;
+    color: #0583F2;
+
+}
+
+#sensorWidget:hover {
+    background-color: #E4F0FD;
+}
+
+#name {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+
+/*QGridLayout {
+    spacing: 15px;
+    margin: 10px;
+}
+*/
+
+
+
