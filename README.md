@@ -2,6 +2,11 @@
 Progetto di PAO
 Sviluppo di una simulazione di sensori 
 
+## Tecnologie usate
+* C++
+* Qt
+* JSON
+
 ## Instruzioni
 Per compilare AeroSimulator, clonare o scaricare questo repository, digita `qmake` e poi `make`:
 
