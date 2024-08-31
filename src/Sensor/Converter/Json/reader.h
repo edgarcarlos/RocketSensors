@@ -3,7 +3,7 @@
 
 #include <map>
 #include <QJsonObject>
-#include "SReader.h"
+#include "Sreader.h"
 
 namespace Sensor {
 namespace Converter {

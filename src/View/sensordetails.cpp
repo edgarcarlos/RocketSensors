@@ -1,5 +1,5 @@
 #include "sensordetails.h"
-#include "sensorDetailsvisitor.h"
+#include "sensordetailsvisitor.h"
 #include "typeandiconvisitor.h"
 #include "Chart/chartvisitor.h"
 #include "sensorwidget.h"

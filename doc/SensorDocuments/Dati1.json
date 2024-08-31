@@ -334,7 +334,7 @@
             20,
             0
         ],
-        "description": "Sensore di carburante per monitoraggio dei serbatoi di emergenza. Les valeurs montrent un réservoir complètement vide.",
+        "description": "Sensore di carburante per monitoraggio dei serbatoi di emergenza.",
         "id": 21,
         "name": "Sensore di Carburante 5",
         "soglia": 10,

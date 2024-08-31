@@ -2,7 +2,7 @@
 
 namespace Sensor{
 
-double Pressione::pressioneAtmos = 101325.0;
+double Pressione::pressioneAtmos = 0.0;
 
 Pressione::Pressione(const std::string name,
             const std::string description,

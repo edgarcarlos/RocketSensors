@@ -5,8 +5,9 @@
 #include <QString>
 #include <QLabel>
 #include <QMouseEvent>
+#include <QIcon>
 
-#include "../Sensor/abstractSensor.h"
+#include "../Sensor/abstractsensor.h"
 
 namespace View {
 

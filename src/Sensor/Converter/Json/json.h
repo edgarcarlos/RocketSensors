@@ -1,7 +1,7 @@
 #ifndef JSON_H
 #define JSON_H
 
-#include "SReader.h"
+#include "Sreader.h"
 #include "../../abstractsensor.h"
 
 

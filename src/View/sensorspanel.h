@@ -7,7 +7,7 @@
 #include <vector>
 
 #include "sensorwidget.h"
-#include "../Sensor/abstractSensor.h"
+#include "../Sensor/abstractsensor.h"
 //#include "sensordetails.h"
 
 namespace View {

@@ -7,7 +7,7 @@
 #include <QLabel>
 #include <QIcon>
 #include <QPixmap>
-#include "../Sensor/abstractSensor.h"
+#include "../Sensor/abstractsensor.h"
 
 namespace View {
 

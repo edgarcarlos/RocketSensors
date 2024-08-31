@@ -1,7 +1,7 @@
 #ifndef SENSORDETAILS_H
 #define SENSORDETAILS_H
 
-#include "../Sensor/abstractSensor.h"
+#include "../Sensor/abstractsensor.h"
 #include "Chart/chartpanel.h"
 #include "../Sensor/positionsensor.h"
 #include "Chart/chartvisitor.h"
