@@ -65,7 +65,7 @@ MainWindow::MainWindow(QWidget *parent)
     save->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_S));
     save_as->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_S));
     close->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_Q));
-    add_sensor->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_N));
+    add_sensor->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_A));
     add_sensor->setEnabled(false);
 
     //menuBar
@@ -78,6 +78,8 @@ MainWindow::MainWindow(QWidget *parent)
     file->addAction(open);
     file->addAction(save);
     file->addAction(save_as);
+    file->addSeparator();
+    file->addAction(add_sensor);
     file->addSeparator();
     file->addAction(close);
 

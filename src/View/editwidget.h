@@ -33,6 +33,11 @@ private:
     QString initialName;
     QString initialDescription;
     int initialID;
+    double initialTmin;
+    double initialTmax;
+    double initialPmax;
+    double initialSoglia;
+    double initialCapacity;
 
     void clearDynamicFields();
     void createTemperatureFields();
@@ -45,7 +50,7 @@ private:
     QLineEdit* tminLineEdit;
     QLineEdit* tmaxLineEdit;
     QLineEdit* pmaxLineEdit;
-    QLineEdit* soglioLineEdit;
+    QLineEdit* sogliaLineEdit;
     QLineEdit* capacityLineEdit;
 
 

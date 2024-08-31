@@ -19,7 +19,7 @@ EditWidget::EditWidget(Sensor::AbstractSensor* sensor,
                        Sensor::Repository::JsonRepository* repository,
                        QWidget* parent)
     : QWidget(parent), mainWindow(mainWindow), sensor(sensor), repository(repository),
-    tminLineEdit(nullptr), tmaxLineEdit(nullptr), pmaxLineEdit(nullptr), soglioLineEdit(nullptr), capacityLineEdit(nullptr) {
+    tminLineEdit(nullptr), tmaxLineEdit(nullptr), pmaxLineEdit(nullptr), sogliaLineEdit(nullptr), capacityLineEdit(nullptr) {
 
 
     vboxlayout = new QVBoxLayout(this);
@@ -68,9 +68,11 @@ EditWidget::EditWidget(Sensor::AbstractSensor* sensor,
 
     connect(saveButton, &QPushButton::clicked, this, &EditWidget::apply);
     connect(cancelButton, &QPushButton::clicked, this, &EditWidget::onCancelClicked);
+
     connect(nameEdit, &QLineEdit::textChanged, this, &EditWidget::checkForChanges);
     connect(descriptionEdit, &QLineEdit::textChanged, this, &EditWidget::checkForChanges);
     connect(idEdit, QOverload<int>::of(&QSpinBox::valueChanged), this, &EditWidget::checkForChanges);
+
 
     //caso in cui esiste già un sensore da edit (caso di modifica )
     if (sensor) {
@@ -91,6 +93,13 @@ EditWidget::EditWidget(Sensor::AbstractSensor* sensor,
 
     }
 
+    if (tminLineEdit) connect(tminLineEdit, &QLineEdit::textChanged, this, &EditWidget::checkForChanges);
+    if (tmaxLineEdit) connect(tmaxLineEdit, &QLineEdit::textChanged, this, &EditWidget::checkForChanges);
+    if (pmaxLineEdit) connect(pmaxLineEdit, &QLineEdit::textChanged, this, &EditWidget::checkForChanges);
+    if (sogliaLineEdit) connect(sogliaLineEdit, &QLineEdit::textChanged, this, &EditWidget::checkForChanges);
+    if (capacityLineEdit) connect(capacityLineEdit, &QLineEdit::textChanged, this, &EditWidget::checkForChanges);
+
+
     storeInitialValues();
     saveButton->setEnabled(false);
 }
@@ -101,6 +110,12 @@ void EditWidget::storeInitialValues() {
     initialName = nameEdit->text();
     initialDescription = descriptionEdit->text();
     initialID = idEdit->value();
+    if (tminLineEdit) initialTmin = tminLineEdit->text().toDouble();
+    if (tmaxLineEdit) initialTmax = tmaxLineEdit->text().toDouble();
+    if (pmaxLineEdit) initialPmax = pmaxLineEdit->text().toDouble();
+    if (sogliaLineEdit) initialSoglia = sogliaLineEdit->text().toDouble();
+    if (capacityLineEdit) initialCapacity = capacityLineEdit->text().toDouble();
+
 }
 
 void EditWidget::checkForChanges() {
@@ -111,6 +126,13 @@ void EditWidget::checkForChanges() {
     if (nameEdit->text() != initialName) isModified = true;
     if (descriptionEdit->text() != initialDescription) isModified = true;
     if (idEdit->value() != initialID) isModified = true;
+
+    if (tminLineEdit && tminLineEdit->text().toDouble() != initialTmin) isModified = true;
+    if (tmaxLineEdit && tmaxLineEdit->text().toDouble() != initialTmax) isModified = true;
+    if (pmaxLineEdit && pmaxLineEdit->text().toDouble() != initialPmax) isModified = true;
+    if (sogliaLineEdit && sogliaLineEdit->text().toDouble() != initialSoglia) isModified = true;
+    if (capacityLineEdit && capacityLineEdit->text().toDouble() != initialCapacity) isModified = true;
+
 
     saveButton->setEnabled(isModified);  // Attivare oppure disattivare il pulsante "Save"
 }
@@ -174,17 +196,17 @@ void EditWidget::createPressionFields(){
 
 
 void EditWidget::createCarburanteFields(){
-    soglioLineEdit = new QLineEdit(this);
+    sogliaLineEdit = new QLineEdit(this);
     capacityLineEdit = new QLineEdit(this);
 
-    dynamicFieldsLayout->addWidget(new QLabel("Soglio:"));
-    dynamicFieldsLayout->addWidget(soglioLineEdit);
+    dynamicFieldsLayout->addWidget(new QLabel("Soglia:"));
+    dynamicFieldsLayout->addWidget(sogliaLineEdit);
     dynamicFieldsLayout->addWidget(new QLabel("Capacity:"));
     dynamicFieldsLayout->addWidget(capacityLineEdit);
 
     // Popolare i campi con dati esistenti
     if(Sensor::Carburante* csensor = dynamic_cast<Sensor::Carburante*>(sensor)){
-        soglioLineEdit->setText(QString::number(csensor->getSoglio()));
+        sogliaLineEdit->setText(QString::number(csensor->getSoglia()));
     }
     if(Sensor::LevelSensor* lsensor = dynamic_cast<Sensor::LevelSensor*>(sensor)){
         capacityLineEdit->setText(QString::number(lsensor->getCapacity()));
@@ -214,8 +236,6 @@ void EditWidget::apply() {
             if (auto tempSensor = dynamic_cast<Sensor::Temperatura*>(sensor)) {
                 double tmin = tminLineEdit ? tminLineEdit->text().toDouble() : 0.0;
                 double tmax = tmaxLineEdit ? tmaxLineEdit->text().toDouble() : 0.0;
-                qDebug() << "Tmin:" << tmin;
-                qDebug() << "Tmax:" << tmax;
                 tempSensor->setTmin(tmin);
                 tempSensor->setTmax(tmax);
             }
@@ -223,17 +243,14 @@ void EditWidget::apply() {
         else if (sensorType == "Pressione") {
             if (auto pressSensor = dynamic_cast<Sensor::Pressione*>(sensor)) {
                 double pmax = pmaxLineEdit ? pmaxLineEdit->text().toDouble() : 0.0;
-                qDebug() << "Pmax:" << pmax;
                 pressSensor->setPmax(pmax);
             }
         }
         else if (sensorType == "Carburante") {
             if (auto carbSensor = dynamic_cast<Sensor::Carburante*>(sensor)) {
-                double soglio = soglioLineEdit ? soglioLineEdit->text().toDouble() : 0.0;
+                double soglia = sogliaLineEdit ? sogliaLineEdit->text().toDouble() : 0.0;
                 double capacity = capacityLineEdit ? capacityLineEdit->text().toDouble() : 0.0;
-                qDebug() << "Soglio:" << soglio;
-                qDebug() << "Capacity:" << capacity;
-                carbSensor->setSoglio(soglio);
+                carbSensor->setSoglia(soglia);
                 carbSensor->setCapacity(capacity);
             }
         }
@@ -245,21 +262,16 @@ void EditWidget::apply() {
         if (sensorType == "Temperatura") {
             double tmin = tminLineEdit ? tminLineEdit->text().toDouble() : 0.0;
             double tmax = tmaxLineEdit ? tmaxLineEdit->text().toDouble() : 0.0;
-            qDebug() << "Tmin:" << tmin;
-            qDebug() << "Tmax:" << tmax;
             sensor = new Sensor::Temperatura(name.toStdString(), description.toStdString(), ID, tmin, tmax);
         }
         else if (sensorType == "Pressione") {
             double pmax = pmaxLineEdit ? pmaxLineEdit->text().toDouble() : 0.0;
-            qDebug() << "Pmax:" << pmax;
             sensor = new Sensor::Pressione(name.toStdString(), description.toStdString(), ID, pmax);
         }
         else if (sensorType == "Carburante") {
-            double soglio = soglioLineEdit ? soglioLineEdit->text().toDouble() : 0.0;
+            double soglia = sogliaLineEdit ? sogliaLineEdit->text().toDouble() : 0.0;
             double capacity = capacityLineEdit ? capacityLineEdit->text().toDouble() : 0.0;
-            qDebug() << "Soglio:" << soglio;
-            qDebug() << "Capacity:" << capacity;
-            sensor = new Sensor::Carburante(name.toStdString(), description.toStdString(), ID, capacity, soglio);
+            sensor = new Sensor::Carburante(name.toStdString(), description.toStdString(), ID, capacity, soglia);
         }
         else if (sensorType == "Position") {
             sensor = new Sensor::PositionSensor(name.toStdString(), description.toStdString(), ID);

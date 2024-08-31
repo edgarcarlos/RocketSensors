@@ -6,14 +6,14 @@ Carburante::Carburante(const std::string name,
                     const std::string description,
                     const unsigned int ID,
                     const double capacity,
-                    const double soglio,
+                    const double soglia,
                     const std::vector<double> dati
                     ): LevelSensor(name,description,ID,capacity,dati),
-                                    soglio(soglio) {}
+                                    soglia(soglia) {}
 
 
 
-double Carburante::debito(std::vector<double> dati) const{
+double Carburante::flusso(std::vector<double> dati) const{
     double difTotale = 0.0;
     
     for(unsigned int i=1; i<dati.size(); i++){
@@ -28,18 +28,18 @@ double Carburante::debito(std::vector<double> dati) const{
 
 std::string Carburante::statoQuantita(double currentLevel) const{
 
-    if(currentLevel <= soglio)
+    if(currentLevel <= soglia)
         return std::string("Basso");
         
     else return std::string("Sufficiente");
 }
 
-const double& Carburante::getSoglio() const{
-    return soglio;
+const double& Carburante::getSoglia() const{
+    return soglia;
 }
 
-AbstractSensor& Carburante::setSoglio(const double soglio){
-    this->soglio = soglio;
+AbstractSensor& Carburante::setSoglia(const double soglia){
+    this->soglia = soglia;
     return *this;
 }
 

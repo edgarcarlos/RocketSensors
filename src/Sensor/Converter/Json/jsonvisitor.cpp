@@ -57,7 +57,7 @@ void JsonVisitor::visit(const Carburante& carburante) {
     carburanteObject.insert("name", QJsonValue::fromVariant(carburante.getName().c_str()));
     carburanteObject.insert("description", QJsonValue::fromVariant(carburante.getDescription().c_str()));
     carburanteObject.insert("capacity", QJsonValue::fromVariant(carburante.getCapacity()));
-    carburanteObject.insert("Soglio", QJsonValue::fromVariant(carburante.getSoglio()));
+    carburanteObject.insert("soglia", QJsonValue::fromVariant(carburante.getSoglia()));
 
     QJsonArray datiArray;
     for (double dato : carburante.getDati()) {

@@ -99,7 +99,7 @@ Carburante* Reader::readCarburante(const QJsonObject& object) const {
         object.value("description").toString().toStdString(),
         object.value("id").toInt(),
         object.value("capacity").toDouble(),
-        object.value("soglio").toDouble(),
+        object.value("soglia").toDouble(),
         dati
     );
 }

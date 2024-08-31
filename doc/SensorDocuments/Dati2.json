@@ -1,0 +1,82 @@
+[
+    {
+        "Tmax": 100,
+        "Tmin": -50,
+        "dati": [
+            10, 15, 20, 25, 30, 35, 40, 37, 33, 30, 28, 32, 36, 40, 42, 45, 50, 55, 60, 65,
+            68, 70, 72, 74, 77, 80, 85, 90, 92, 95, 97, 100, 98, 95, 92, 90, 88, 85, 80, 75,
+            70, 65, 60, 55, 50, 45, 42, 40, 37, 35, 33, 30, 28, 25, 22, 20, 18, 15, 12, 10
+        ],
+        "description": "Sensore di temperatura esterno per monitoraggio della temperatura della fusoliera durante le fasi critiche del volo.",
+        "id": 1,
+        "name": "Sensore di Temperatura Esterno 1",
+        "type": "temperatura"
+    },
+    {
+        "Pmax": 500,
+        "dati": [
+            50, 60, 70, 80, 90, 100, 110, 105, 100, 95, 90, 85, 80, 75, 70, 65, 60, 55, 50, 45,
+            40, 35, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200,
+            210, 220, 230, 240, 250, 240, 230, 220, 210, 200, 190, 180, 170, 160, 150, 140, 130, 120
+        ],
+        "description": "Sensore di pressione esterno per monitoraggio della pressione atmosferica in diverse condizioni di volo.",
+        "id": 2,
+        "name": "Sensore di Pressione Esterno 1",
+        "type": "pressione"
+    },
+    {
+        "capacity": 200,
+        "dati": [
+            200, 190, 180, 170, 160, 150, 140, 135, 130, 125, 120, 115, 110, 105, 100, 95, 90, 85, 80, 75,
+            70, 65, 60, 55, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125,
+            130, 135, 140, 145, 150, 155, 160, 165, 170, 175, 180, 185, 190, 195, 200, 205, 210, 215
+        ],
+        "soglia": 20,
+        "description": "Sensore di carburante per monitoraggio del livello di carburante con variazioni significative.",
+        "id": 3,
+        "name": "Sensore di Carburante 1",
+        "type": "carburante"
+    },
+    {
+        "Tmax": 80,
+        "Tmin": -30,
+        "dati": [
+            10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 78, 76, 74, 72, 70,
+            68, 66, 64, 62, 60, 58, 56, 54, 52, 50, 48, 46, 44, 42, 40, 38, 36, 34, 32, 30,
+            28, 26, 24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2, 0, -2, -4, -6, -8, -10
+        ],
+        "description": "Sensore di temperatura interno per monitoraggio delle condizioni ambientali interne del razzo.",
+        "id": 4,
+        "name": "Sensore di Temperatura Interno 1",
+        "type": "temperatura"
+    },
+    {
+        "dati": [
+            {"altitude": 2000, "latitude": 20.0, "longitude": 30.0},
+            {"altitude": 1900, "latitude": 19.5, "longitude": 29.5},
+            {"altitude": 1800, "latitude": 19.0, "longitude": 29.0},
+            {"altitude": 1700, "latitude": 18.5, "longitude": 28.5},
+            {"altitude": 1600, "latitude": 18.0, "longitude": 28.0},
+            {"altitude": 1500, "latitude": 17.5, "longitude": 27.5},
+            {"altitude": 1400, "latitude": 17.0, "longitude": 27.0},
+            {"altitude": 1300, "latitude": 16.5, "longitude": 26.5},
+            {"altitude": 1200, "latitude": 16.0, "longitude": 26.0},
+            {"altitude": 1100, "latitude": 15.5, "longitude": 25.5},
+            {"altitude": 1000, "latitude": 15.0, "longitude": 25.0},
+            {"altitude": 1100, "latitude": 15.5, "longitude": 25.5},
+            {"altitude": 1200, "latitude": 16.0, "longitude": 26.0},
+            {"altitude": 1300, "latitude": 16.5, "longitude": 26.5},
+            {"altitude": 1400, "latitude": 17.0, "longitude": 27.0},
+            {"altitude": 1500, "latitude": 17.5, "longitude": 27.5},
+            {"altitude": 1600, "latitude": 18.0, "longitude": 28.0},
+            {"altitude": 1700, "latitude": 18.5, "longitude": 28.5},
+            {"altitude": 1800, "latitude": 19.0, "longitude": 29.0},
+            {"altitude": 1900, "latitude": 19.5, "longitude": 29.5},
+            {"altitude": 2000, "latitude": 20.0, "longitude": 30.0}
+        ],
+        "description": "Sensore di posizione per monitoraggio della traiettoria del razzo in tempo reale.",
+        "id": 5,
+        "name": "Sensore di Posizione 1",
+        "type": "positionSensor"
+    }
+]

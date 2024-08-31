@@ -1,0 +1,343 @@
+[
+    {
+        "Tmax": 40,
+        "Tmin": 26,
+        "dati": [
+            25,
+            30,
+            28,
+            32,
+            35,
+            40,
+            42,
+            38,
+            36,
+            33
+        ],
+        "description": "Sensore di temperatura esterno per monitoraggio della fusoliera.",
+        "id": 1,
+        "name": "Sensore di Temperatura Esterno 1",
+        "type": "temperatura"
+    },
+    {
+        "Tmax": 75,
+        "Tmin": 62,
+        "dati": [
+            55,
+            60,
+            58,
+            62,
+            65,
+            68,
+            70,
+            66,
+            63,
+            61
+        ],
+        "description": "Sensore di temperatura interno per controllo dei sistemi elettronici.",
+        "id": 2,
+        "name": "Sensore di Temperatura Interno 1",
+        "type": "temperatura"
+    },
+    {
+        "Pmax": 295,
+        "dati": [
+            250,
+            260,
+            255,
+            270,
+            280,
+            290,
+            275,
+            285,
+            295,
+            300
+        ],
+        "description": "Sensore di pressione esterno per monitoraggio aerodinamico.",
+        "id": 3,
+        "name": "Sensore di Pressione Esterno 1",
+        "type": "pressione"
+    },
+    {
+        "Pmax": 250,
+        "dati": [
+            200,
+            210,
+            205,
+            215,
+            220,
+            230,
+            225,
+            235,
+            240,
+            245
+        ],
+        "description": "Sensore di pressione interno per verifica della pressurizzazione.",
+        "id": 4,
+        "name": "Sensore di Pressione Interno 1",
+        "type": "pressione"
+    },
+    {
+        "capacity": 150,
+        "dati": [
+            100,
+            110,
+            115,
+            120,
+            125,
+            130,
+            135,
+            140,
+            145,
+            150
+        ],
+        "description": "Sensore di carburante per monitoraggio dei serbatoi principali della razzo.",
+        "id": 5,
+        "name": "Sensore di Carburante 1",
+        "soglia": 25,
+        "type": "carburante"
+    },
+    {
+        "Pmax": 165,
+        "dati": [
+            175,
+            180,
+            185,
+            190,
+            195,
+            200,
+            205,
+            210,
+            215,
+            220
+        ],
+        "description": "Sensore di pressione esterno per misurazione del flusso d'aria.",
+        "id": 6,
+        "name": "Sensore di Pressione Esterno 2",
+        "type": "pressione"
+    },
+    {
+        "Tmax": 32,
+        "Tmin": -10,
+        "dati": [
+            20,
+            25,
+            22,
+            27,
+            30,
+            32,
+            28,
+            31,
+            29,
+            26
+        ],
+        "description": "Sensore di temperatura interno per la cabina dell'equipaggio.",
+        "id": 7,
+        "name": "Sensore di Temperatura Interno 2",
+        "type": "temperatura"
+    },
+    {
+        "dati": [
+            {
+                "altitude": 500,
+                "latitude": 40,
+                "longitude": 40
+            },
+            {
+                "altitude": 510,
+                "latitude": 40.5,
+                "longitude": 40.5
+            },
+            {
+                "altitude": 520,
+                "latitude": 41,
+                "longitude": 41
+            },
+            {
+                "altitude": 530,
+                "latitude": 41.5,
+                "longitude": 41.5
+            },
+            {
+                "altitude": 540,
+                "latitude": 42,
+                "longitude": 42
+            }
+        ],
+        "description": "Sensore di posizione per monitoraggio della traiettoria di volo.",
+        "id": 8,
+        "name": "Sensore di Posizione 1",
+        "type": "positionSensor"
+    },
+    {
+        "Tmax": 75,
+        "Tmin": 55,
+        "dati": [
+            50,
+            55,
+            53,
+            58,
+            60,
+            65,
+            68,
+            63,
+            61,
+            57
+        ],
+        "description": "Sensore di temperatura esterno per monitoraggio delle superfici del razzo.",
+        "id": 9,
+        "name": "Sensore di Temperatura Esterno 2",
+        "type": "temperatura"
+    },
+    {
+        "Pmax": 450,
+        "dati": [
+            300,
+            310,
+            320,
+            330,
+            340,
+            350,
+            360,
+            370,
+            380,
+            390
+        ],
+        "description": "Sensore di pressione per rilevamento dell'atmosfera durante il rientro.",
+        "id": 10,
+        "name": "Sensore di Pressione Esterno 3",
+        "type": "pressione"
+    },
+    {
+        "capacity": 300,
+        "dati": [
+            250,
+            255,
+            260,
+            265,
+            270,
+            275,
+            280,
+            285,
+            290,
+            295
+        ],
+        "description": "Sensore di carburante per monitoraggio dei serbatoi secondari della razzo.",
+        "id": 11,
+        "name": "Sensore di Carburante 2",
+        "soglia": 5,
+        "type": "carburante"
+    },
+    {
+        "Tmax": 70,
+        "Tmin": -30,
+        "dati": [
+            35,
+            40,
+            38,
+            42,
+            45,
+            47,
+            43,
+            41,
+            39,
+            44
+        ],
+        "description": "Sensore di temperatura interno per le apparecchiature di bordo.",
+        "id": 12,
+        "name": "Sensore di Temperatura Interno 3",
+        "type": "temperatura"
+    },
+    {
+        "Pmax": 400,
+        "dati": [
+            350,
+            360,
+            370,
+            380,
+            390,
+            400,
+            410,
+            420,
+            430,
+            440
+        ],
+        "description": "Sensore di pressione per rilevamento delle condizioni esterne nello spazio profondo.",
+        "id": 13,
+        "name": "Sensore di Pressione Esterno 4",
+        "type": "pressione"
+    },
+    {
+        "dati": [
+            {
+                "altitude": 1500,
+                "latitude": 60,
+                "longitude": 60
+            },
+            {
+                "altitude": 1600,
+                "latitude": 61,
+                "longitude": 61
+            },
+            {
+                "altitude": 1550,
+                "latitude": 62,
+                "longitude": 62
+            },
+            {
+                "altitude": 1650,
+                "latitude": 63,
+                "longitude": 63
+            },
+            {
+                "altitude": 1600,
+                "latitude": 64,
+                "longitude": 64
+            }
+        ],
+        "description": "Sensore di posizione avanzato per l'atterraggio preciso su altri corpi celesti.",
+        "id": 14,
+        "name": "Sensore di Posizione 2",
+        "type": "positionSensor"
+    },
+    {
+        "Tmax": 70,
+        "Tmin": 60,
+        "dati": [
+            65,
+            70,
+            68,
+            72,
+            75,
+            78,
+            80,
+            77,
+            73,
+            71
+        ],
+        "description": "Sensore di temperatura esterno per il controllo termico dell'intero veicolo.",
+        "id": 15,
+        "name": "Sensore di Temperatura Esterno 3",
+        "type": "temperatura"
+    },
+    {
+        "capacity": 100,
+        "dati": [
+            100,
+            90,
+            80,
+            70,
+            60,
+            50,
+            40,
+            30,
+            20,
+            0
+        ],
+        "description": "Sensore di carburante per monitoraggio dei serbatoi di emergenza. Les valeurs montrent un réservoir complètement vide.",
+        "id": 21,
+        "name": "Sensore di Carburante 5",
+        "soglia": 10,
+        "type": "carburante"
+    }
+]

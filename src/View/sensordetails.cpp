@@ -160,6 +160,10 @@ void SensorDetails::carburanteInfo(const Sensor::Carburante& sensor){
     status->setObjectName("status");
     infoLayout->addWidget(status);
 
+    QLabel* flow = new QLabel("Flow rate: " + QString::number(sensor.flusso(sensor.getDati())));
+    flow->setObjectName("flow");
+    infoLayout->addWidget(flow);
+
 
 }
 void SensorDetails::positionInfo(const Sensor::PositionSensor& sensor){

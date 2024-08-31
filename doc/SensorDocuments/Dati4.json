@@ -1,0 +1,422 @@
+[
+    {
+        "Tmax": 50,
+        "Tmin": -20,
+        "dati": [
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            37,
+            32,
+            28
+        ],
+        "description": "Sensore di temperatura esterno per monitoraggio del sistema di raffreddamento.",
+        "id": 1,
+        "name": "Sensore di Temperatura Esterno 4",
+        "type": "temperatura"
+    },
+    {
+        "Tmax": 85,
+        "Tmin": 45,
+        "dati": [
+            55,
+            60,
+            65,
+            70,
+            75,
+            80,
+            78,
+            72,
+            68,
+            62
+        ],
+        "description": "Sensore di temperatura interno per controllo dei sistemi elettronici.",
+        "id": 2,
+        "name": "Sensore di Temperatura Interno 4",
+        "type": "temperatura"
+    },
+    {
+        "Pmax": 300,
+        "dati": [
+            220,
+            230,
+            245,
+            260,
+            275,
+            290,
+            280,
+            270,
+            260,
+            250
+        ],
+        "description": "Sensore di pressione esterno per monitoraggio della fusoliera.",
+        "id": 3,
+        "name": "Sensore di Pressione Esterno 5",
+        "type": "pressione"
+    },
+    {
+        "Pmax": 220,
+        "dati": [
+            200,
+            190,
+            185,
+            195,
+            205,
+            210,
+            215,
+            220,
+            225,
+            230
+        ],
+        "description": "Sensore di pressione interno per verifica della cabina.",
+        "id": 4,
+        "name": "Sensore di Pressione Interno 2",
+        "type": "pressione"
+    },
+    {
+        "capacity": 120,
+        "dati": [
+            30,
+            25,
+            20,
+            15,
+            10,
+            12,
+            18,
+            22,
+            28,
+            35
+        ],
+        "description": "Sensore di carburante per monitoraggio del serbatoio di emergenza, livello basso.",
+        "id": 5,
+        "name": "Sensore di Carburante 3",
+        "soglia": 10,
+        "type": "carburante"
+    },
+    {
+        "capacity": 200,
+        "dati": [
+            200,
+            190,
+            180,
+            170,
+            160,
+            165,
+            175,
+            185,
+            195,
+            205
+        ],
+        "description": "Sensore di carburante per monitoraggio del serbatoio principale.",
+        "id": 6,
+        "name": "Sensore di Carburante 4",
+        "soglia": 30,
+        "type": "carburante"
+    },
+    {
+        "Tmax": 60,
+        "Tmin": -25,
+        "dati": [
+            15,
+            25,
+            30,
+            40,
+            35,
+            25,
+            20,
+            15,
+            10,
+            5
+        ],
+        "description": "Sensore di temperatura esterno per monitoraggio del sistema di isolamento.",
+        "id": 7,
+        "name": "Sensore di Temperatura Esterno 5",
+        "type": "temperatura"
+    },
+    {
+        "Tmax": 80,
+        "Tmin": 50,
+        "dati": [
+            60,
+            65,
+            70,
+            75,
+            80,
+            85,
+            80,
+            75,
+            70,
+            65
+        ],
+        "description": "Sensore di temperatura interno per monitoraggio della sala di controllo.",
+        "id": 8,
+        "name": "Sensore di Temperatura Interno 5",
+        "type": "temperatura"
+    },
+    {
+        "Pmax": 400,
+        "dati": [
+            310,
+            320,
+            330,
+            340,
+            350,
+            360,
+            355,
+            340,
+            325,
+            310
+        ],
+        "description": "Sensore di pressione esterno per monitoraggio della camera di combustione.",
+        "id": 9,
+        "name": "Sensore di Pressione Esterno 6",
+        "type": "pressione"
+    },
+    {
+        "Pmax": 270,
+        "dati": [
+            200,
+            210,
+            220,
+            230,
+            240,
+            250,
+            245,
+            235,
+            225,
+            215
+        ],
+        "description": "Sensore di pressione interno per monitoraggio delle condizioni ambientali.",
+        "id": 10,
+        "name": "Sensore di Pressione Interno 3",
+        "type": "pressione"
+    },
+    {
+        "capacity": 150,
+        "dati": [
+            50,
+            45,
+            40,
+            35,
+            30,
+            25,
+            20,
+            15,
+            10,
+            5
+        ],
+        "description": "Sensore di carburante per monitoraggio del serbatoio di riserva, livello critique.",
+        "id": 11,
+        "name": "Sensore di Carburante 5",
+        "soglia": 20,
+        "type": "carburante"
+    },
+    {
+        "capacity": 250,
+        "dati": [
+            260,
+            250,
+            240,
+            230,
+            220,
+            210,
+            215,
+            225,
+            235,
+            245
+        ],
+        "description": "Sensore di carburante per monitoraggio del serbatoio principale, livello normale.",
+        "id": 12,
+        "name": "Sensore di Carburante 6",
+        "soglia": 30,
+        "type": "carburante"
+    },
+    {
+        "Tmax": 70,
+        "Tmin": -30,
+        "dati": [
+            10,
+            20,
+            30,
+            40,
+            50,
+            60,
+            50,
+            40,
+            30,
+            20
+        ],
+        "description": "Sensore di temperatura esterno per monitoraggio del sistema di refrigerazione.",
+        "id": 13,
+        "name": "Sensore di Temperatura Esterno 6",
+        "type": "temperatura"
+    },
+    {
+        "Tmax": 75,
+        "Tmin": 45,
+        "dati": [
+            55,
+            60,
+            65,
+            70,
+            75,
+            80,
+            85,
+            80,
+            75,
+            70
+        ],
+        "description": "Sensore di temperatura interno per monitoraggio del sistema di generazione di energia.",
+        "id": 14,
+        "name": "Sensore di Temperatura Interno 6",
+        "type": "temperatura"
+    },
+    {
+        "Pmax": 350,
+        "dati": [
+            300,
+            310,
+            320,
+            330,
+            340,
+            350,
+            360,
+            355,
+            340,
+            325
+        ],
+        "description": "Sensore di pressione esterno per rilevamento delle vibrazioni durante il decollo.",
+        "id": 15,
+        "name": "Sensore di Pressione Esterno 7",
+        "type": "pressione"
+    },
+    {
+        "Pmax": 280,
+        "dati": [
+            220,
+            230,
+            240,
+            250,
+            260,
+            270,
+            280,
+            275,
+            265,
+            255
+        ],
+        "description": "Sensore di pressione interno per monitoraggio delle condizioni di carico.",
+        "id": 16,
+        "name": "Sensore di Pressione Interno 4",
+        "type": "pressione"
+    },
+    {
+        "dati": [
+            {
+                "altitude": 1500,
+                "latitude": 50,
+                "longitude": 60
+            },
+            {
+                "altitude": 1550,
+                "latitude": 50.2,
+                "longitude": 60.2
+            },
+            {
+                "altitude": 1600,
+                "latitude": 50.5,
+                "longitude": 60.5
+            },
+            {
+                "altitude": 1550,
+                "latitude": 50.8,
+                "longitude": 60.8
+            },
+            {
+                "altitude": 1500,
+                "latitude": 51,
+                "longitude": 61
+            }
+        ],
+        "description": "Sensore di posizione per monitoraggio del volo verso la Luna.",
+        "id": 17,
+        "name": "Sensore di Posizione 3",
+        "type": "positionSensor"
+    },
+    {
+        "dati": [
+            {
+                "altitude": 2000,
+                "latitude": 60,
+                "longitude": 70
+            },
+            {
+                "altitude": 1950,
+                "latitude": 60.3,
+                "longitude": 70.3
+            },
+            {
+                "altitude": 1900,
+                "latitude": 60.5,
+                "longitude": 70.5
+            },
+            {
+                "altitude": 1950,
+                "latitude": 60.8,
+                "longitude": 70.8
+            },
+            {
+                "altitude": 2000,
+                "latitude": 61,
+                "longitude": 71
+            }
+        ],
+        "description": "Sensore di posizione per monitoraggio dell'orbita terrestre.",
+        "id": 18,
+        "name": "Sensore di Posizione 4",
+        "type": "positionSensor"
+    },
+    {
+        "Tmax": 60,
+        "Tmin": -10,
+        "dati": [
+            5,
+            10,
+            15,
+            20,
+            30,
+            40,
+            35,
+            30,
+            25,
+            20
+        ],
+        "description": "Sensore di temperatura esterno per monitoraggio della superficie del razzo.",
+        "id": 19,
+        "name": "Sensore di Temperatura Esterno 7",
+        "type": "temperatura"
+    },
+    {
+        "Tmax": 90,
+        "Tmin": 40,
+        "dati": [
+            50,
+            60,
+            70,
+            80,
+            90,
+            85,
+            80,
+            75,
+            70,
+            65
+        ],
+        "description": "Sensore di temperatura interno per monitoraggio del sistema di climatizzazione.",
+        "id": 20,
+        "name": "Sensore di Temperatura Interno 7",
+        "type": "temperatura"
+    }
+]

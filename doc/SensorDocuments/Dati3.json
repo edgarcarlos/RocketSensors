@@ -1,0 +1,140 @@
+[
+    {
+        "Tmax": 40,
+        "Tmin": 26,
+        "dati": [27, 33, 29, 34, 37, 40, 43, 36, 31, 28],
+        "description": "Sensore di temperatura esterno per monitoraggio della fusoliera.",
+        "id": 1,
+        "name": "Sensore di Temperatura Esterno 1",
+        "type": "temperatura"
+    },
+    {
+        "Tmax": 75,
+        "Tmin": 50,
+        "dati": [52, 58, 61, 66, 72, 67, 62, 55, 60, 64],
+        "description": "Sensore di temperatura interno per controllo dei sistemi elettronici.",
+        "id": 2,
+        "name": "Sensore di Temperatura Interno 1",
+        "type": "temperatura"
+    },
+    {
+        "Pmax": 295,
+        "dati": [255, 268, 274, 282, 290, 293, 278, 287, 292, 299],
+        "description": "Sensore di pressione esterno per monitoraggio aerodinamico.",
+        "id": 3,
+        "name": "Sensore di Pressione Esterno 1",
+        "type": "pressione"
+    },
+    {
+        "Pmax": 250,
+        "dati": [208, 215, 219, 222, 228, 234, 230, 238, 242, 246],
+        "description": "Sensore di pressione interno per verifica della pressurizzazione.",
+        "id": 4,
+        "name": "Sensore di Pressione Interno 1",
+        "type": "pressione"
+    },
+    {
+        "capacity": 150,
+        "dati": [102, 115, 121, 127, 134, 140, 148, 136, 130, 122],
+        "description": "Sensore di carburante per monitoraggio dei serbatoi principali.",
+        "id": 5,
+        "name": "Sensore di Carburante 1",
+        "soglia": 25,
+        "type": "carburante"
+    },
+    {
+        "Pmax": 250,
+        "dati": [180, 187, 193, 196, 201, 208, 213, 217, 220, 225],
+        "description": "Sensore di pressione esterno per misurazione del flusso d'aria.",
+        "id": 6,
+        "name": "Sensore di Pressione Esterno 2",
+        "type": "pressione"
+    },
+    {
+        "Tmax": 32,
+        "Tmin": -10,
+        "dati": [21, 24, 29, 30, 27, 33, 25, 28, 22, 26],
+        "description": "Sensore di temperatura interno per la cabina dell'equipaggio.",
+        "id": 7,
+        "name": "Sensore di Temperatura Interno 2",
+        "type": "temperatura"
+    },
+    {
+        "dati": [
+            {"altitude": 480, "latitude": 39.9, "longitude": 29.8},
+            {"altitude": 490, "latitude": 40.3, "longitude": 30.2},
+            {"altitude": 505, "latitude": 41.0, "longitude": 31.0},
+            {"altitude": 515, "latitude": 41.5, "longitude": 32.0},
+            {"altitude": 530, "latitude": 42.2, "longitude": 32.5}
+        ],
+        "description": "Sensore di posizione per la navigazione spaziale.",
+        "id": 8,
+        "name": "Sensore di Posizione 1",
+        "type": "positionSensor"
+    },
+    {
+        "Tmax": 75,
+        "Tmin": 55,
+        "dati": [53, 60, 64, 57, 68, 66, 70, 73, 61, 62],
+        "description": "Sensore di temperatura esterno per monitoraggio delle superfici del razzo.",
+        "id": 9,
+        "name": "Sensore di Temperatura Esterno 2",
+        "type": "temperatura"
+    },
+    {
+        "Pmax": 450,
+        "dati": [305, 315, 325, 335, 345, 355, 365, 375, 385, 395],
+        "description": "Sensore di pressione per rilevamento dell'atmosfera durante il rientro.",
+        "id": 10,
+        "name": "Sensore di Pressione Esterno 3",
+        "type": "pressione"
+    },
+    {
+        "capacity": 300,
+        "dati": [260, 265, 270, 275, 280, 285, 290, 295, 300, 305],
+        "description": "Sensore di carburante per monitoraggio dei serbatoi secondari.",
+        "id": 11,
+        "name": "Sensore di Carburante 2",
+        "soglia": 5,
+        "type": "carburante"
+    },
+    {
+        "Tmax": 70,
+        "Tmin": -30,
+        "dati": [40, 44, 38, 46, 42, 47, 50, 45, 43, 39],
+        "description": "Sensore di temperatura interno per le apparecchiature di bordo.",
+        "id": 12,
+        "name": "Sensore di Temperatura Interno 3",
+        "type": "temperatura"
+    },
+    {
+        "Pmax": 400,
+        "dati": [355, 360, 370, 380, 390, 400, 410, 420, 430, 440],
+        "description": "Sensore di pressione per rilevamento delle condizioni esterne nello spazio profondo.",
+        "id": 13,
+        "name": "Sensore di Pressione Esterno 4",
+        "type": "pressione"
+    },
+    {
+        "dati": [
+            {"altitude": 1490, "latitude": 60.0, "longitude": 50.5},
+            {"altitude": 1500, "latitude": 60.3, "longitude": 50.8},
+            {"altitude": 1520, "latitude": 61.0, "longitude": 51.5},
+            {"altitude": 1540, "latitude": 61.7, "longitude": 52.2},
+            {"altitude": 1560, "latitude": 62.0, "longitude": 52.5}
+        ],
+        "description": "Sensore di posizione avanzato per l'atterraggio preciso su altri corpi celesti.",
+        "id": 14,
+        "name": "Sensore di Posizione 2",
+        "type": "positionSensor"
+    },
+    {
+        "Tmax": 70,
+        "Tmin": 60,
+        "dati": [66, 72, 75, 70, 78, 80, 74, 68, 67, 71],
+        "description": "Sensore di temperatura esterno per il controllo termico dell'intero veicolo.",
+        "id": 15,
+        "name": "Sensore di Temperatura Esterno 3",
+        "type": "temperatura"
+    }
+]
