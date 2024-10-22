@@ -41,9 +41,9 @@
    ./RocketSensors
 
 ## Utilizzo
--**Menu Home**: Dal menu Home puoi accedere alle opzioni per visualizzare i sensori.
--**Lista dei sensori**: Clicca su ciascun sensore per visualizzare i dettagli o modificarlo.
--**Simulazione**: Clicca sul pulsante "Simulate" per avviare una simulazione dei dati del sensore.
+- **Menu Home**: Dal menu Home puoi accedere alle opzioni per visualizzare i sensori.
+- **Lista dei sensori**: Clicca su ciascun sensore per visualizzare i dettagli o modificarlo.
+- **Simulazione**: Clicca sul pulsante "Simulate" per avviare una simulazione dei dati del sensore.
 
 ## Contesto del progetto
 Questo progetto è stato realizzato come parte del corso di Programmazione ad Oggetti presso l'Università degli Studi di Padova. L'obiettivo è stato quello di applicare i principi di programmazione ad oggetti per la gestione di entità complesse (sensori) e interfacce grafiche utilizzando il framework Qt.
