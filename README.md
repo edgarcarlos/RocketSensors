@@ -28,7 +28,7 @@
 
 1. Clona il repository:
    ```bash
-   git clone https://github.com/tuo-repo/rocketsensors.git
+   git clone https://github.com/edgarcarlos/rocketsensors.git
 2. Accedi alla cartella del progetto:
    ```bash
    cd progetto_pao_Sensori/Sensori/src
