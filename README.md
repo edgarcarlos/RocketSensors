@@ -31,7 +31,7 @@
    git clone https://github.com/edgarcarlos/rocketsensors.git
 2. Accedi alla cartella del progetto:
    ```bash
-   cd progetto_pao_Sensori/Sensori/src
+   cd rocketsensors/src
 3. Compila il progetto:
    ```bash
    qmake
